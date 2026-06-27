@@ -259,9 +259,9 @@ body.wp-colordrop .colordrop-wrap{
   position:absolute;
   top:0;
   height:var(--drop-height);
-  width:.69444%;
+  width:var(--drop-width, .69444%);
   margin-top:calc(var(--drop-height) * -1);
-  left:calc(var(--i) * .69444%);
+  left:calc(var(--i) * var(--drop-width, .69444%));
   background-image:linear-gradient(to bottom,#000,hsla(var(--hue),100%,50%,.8));
   animation:colorDrop 4s infinite ease-in;
   animation-delay:var(--delay);
@@ -1255,6 +1255,83 @@ button,
   }
 }
 
+
+/* ── PERFORMANCE GUARDS ──
+   Keeps the page smoother on phones and weaker GPUs. */
+@media(max-width:700px){
+  #vanta-bg,
+  .colordrop-wrap{
+    transform:translateZ(0);
+  }
+
+  .color-drop-col{
+    --drop-height:260px;
+    --dot-size:1.4vw;
+  }
+
+  body[class*="wp-"]:not(.wp-none) .avatar-inner,
+  body[class*="wp-"]:not(.wp-none) .hl-ring,
+  body[class*="wp-"]:not(.wp-none) .hl-new,
+  body[class*="wp-"]:not(.wp-none) .post-cell,
+  .theme-panel,
+  .post-play span{
+    backdrop-filter:none!important;
+  }
+
+  body[class*="wp-"]:not(.wp-none) .profile-info,
+  body[class*="wp-"]:not(.wp-none) .nav-logo,
+  body[class*="wp-"]:not(.wp-none) .username,
+  body[class*="wp-"]:not(.wp-none) .bio-text,
+  body[class*="wp-"]:not(.wp-none) .stat-num,
+  body[class*="wp-"]:not(.wp-none) .stat-label{
+    text-shadow:0 1px 2px rgba(0,0,0,.55);
+  }
+
+  body.wp-vanta-halo .row-username .btn:not(.btn-more),
+  body.wp-vanta-waves .row-username .btn:not(.btn-more),
+  body.wp-vanta-fog .row-username .btn:not(.btn-more),
+  body.wp-vanta-birds .row-username .btn:not(.btn-more),
+  body.wp-colordrop .row-username .btn:not(.btn-more){
+    box-shadow:0 6px 14px rgba(0,0,0,.28);
+  }
+}
+
+@media(hover:none){
+  .post-cell:hover .post-bg{
+    filter:none!important;
+    transform:none!important;
+  }
+
+  .post-cell:hover .post-stats,
+  .post-cell:hover .post-cap{
+    opacity:0!important;
+  }
+
+  .c-swatch:hover,
+  .wp-card:hover,
+  .theme-fab:hover,
+  .btn:hover{
+    transform:none!important;
+    opacity:1!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+    scroll-behavior:auto!important;
+  }
+
+  #vanta-bg,
+  .colordrop-wrap{
+    display:none!important;
+  }
+}
+
 </style>
 </head>
 <body class="theme-dark">
@@ -1352,156 +1429,144 @@ button,
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.halo.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.waves.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.clouds.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.fog.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.birds.min.js"></script>
 <script>
 
 let vantaEffect = null;
+let resizeTimer = null;
 
-function startVantaHalo(){
-  if (!window.VANTA || !window.VANTA.HALO) return;
-
-  if (vantaEffect) {
-    vantaEffect.destroy();
-    vantaEffect = null;
-  }
-
-  vantaEffect = window.VANTA.HALO({
-    el: '#vanta-bg',
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200,
-    minWidth: 200,
-    baseColor: 0x111111,
-    backgroundColor: 0x000000,
-    amplitudeFactor: 1.6,
-    size: 1.2
-  });
-}
-
-function startVantaWaves(){
-  if (!window.VANTA || !window.VANTA.WAVES) return;
-
-  if (vantaEffect) {
-    vantaEffect.destroy();
-    vantaEffect = null;
-  }
-
-  vantaEffect = window.VANTA.WAVES({
-    el: '#vanta-bg',
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200,
-    minWidth: 200,
-    scale: 1,
-    scaleMobile: 1,
-    color: 0x005f8f,
-    shininess: 45,
-    waveHeight: 18,
-    waveSpeed: 0.9,
-    zoom: 0.9
-  });
-}
-
-function startVantaClouds(){
-  if (!window.VANTA || !window.VANTA.CLOUDS) return;
-
-  if (vantaEffect) {
-    vantaEffect.destroy();
-    vantaEffect = null;
-  }
-
-  vantaEffect = window.VANTA.CLOUDS({
-    el: '#vanta-bg',
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200,
-    minWidth: 200,
-    skyColor: 0x68b8d7,
-    cloudColor: 0xadc1de,
-    cloudShadowColor: 0x183550,
-    sunColor: 0xff9919,
-    sunGlareColor: 0xff6633,
-    sunlightColor: 0xff9933,
-    speed: 0.8
-  });
-}
-
-function startVantaFog(){
-  if (!window.VANTA || !window.VANTA.FOG) return;
-
-  if (vantaEffect) {
-    vantaEffect.destroy();
-    vantaEffect = null;
-  }
-
-  vantaEffect = window.VANTA.FOG({
-    el: '#vanta-bg',
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200,
-    minWidth: 200,
-    highlightColor: 0xb89cff,
-    midtoneColor: 0x6f4bd8,
-    lowlightColor: 0x1a0f35,
-    baseColor: 0x070712,
-    blurFactor: 0.65,
-    speed: 1.4,
-    zoom: 1.1
-  });
-}
-
-
-function startVantaBirds(){
-  if (!window.VANTA || !window.VANTA.BIRDS) return;
-
-  if (vantaEffect) {
-    vantaEffect.destroy();
-    vantaEffect = null;
-  }
-
-  vantaEffect = window.VANTA.BIRDS({
-    el: '#vanta-bg',
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200,
-    minWidth: 200,
-    scale: 1,
-    scaleMobile: 1,
-    backgroundColor: 0x061524,
-    color1: 0x3b9eff,
-    color2: 0xffffff,
-    birdSize: 1.2,
-    wingSpan: 24,
-    speedLimit: 4,
-    separation: 45,
-    alignment: 35,
-    cohesion: 35,
-    quantity: 3
-  });
-}
+const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function stopVanta(){
-  if (vantaEffect) {
-    vantaEffect.destroy();
-    vantaEffect = null;
+  if (vantaEffect && typeof vantaEffect.destroy === 'function') {
+    try {
+      vantaEffect.destroy();
+    } catch (error) {
+      console.warn('Vanta cleanup failed:', error);
+    }
+  }
+  vantaEffect = null;
+}
+
+function startVanta(effectName, options = {}){
+  if (prefersReducedMotion) return;
+  stopVanta();
+
+  if (!window.VANTA || !window.VANTA[effectName]) {
+    console.warn('Vanta failed to load:', effectName);
+    return;
+  }
+
+  try {
+    vantaEffect = window.VANTA[effectName]({
+      el: '#vanta-bg',
+      mouseControls: window.innerWidth > 700,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200,
+      minWidth: 200,
+      scale: 1,
+      scaleMobile: 1,
+      ...options
+    });
+  } catch (error) {
+    console.warn('Vanta failed to start:', effectName, error);
+    stopVanta();
   }
 }
 
+const VANTA_OPTIONS = {
+  'vanta-halo': {
+    effect: 'HALO',
+    options: {
+      baseColor: 0x111111,
+      backgroundColor: 0x000000,
+      amplitudeFactor: window.innerWidth < 700 ? 1.05 : 1.6,
+      size: window.innerWidth < 700 ? 0.85 : 1.2
+    }
+  },
+  'vanta-waves': {
+    effect: 'WAVES',
+    options: {
+      color: 0x005f8f,
+      shininess: window.innerWidth < 700 ? 25 : 45,
+      waveHeight: window.innerWidth < 700 ? 9 : 18,
+      waveSpeed: window.innerWidth < 700 ? 0.45 : 0.9,
+      zoom: window.innerWidth < 700 ? 0.75 : 0.9
+    }
+  },
+  'vanta-clouds': {
+    effect: 'CLOUDS',
+    options: {
+      skyColor: 0x68b8d7,
+      cloudColor: 0xadc1de,
+      cloudShadowColor: 0x183550,
+      sunColor: 0xff9919,
+      sunGlareColor: 0xff6633,
+      sunlightColor: 0xff9933,
+      speed: window.innerWidth < 700 ? 0.35 : 0.8
+    }
+  },
+  'vanta-fog': {
+    effect: 'FOG',
+    options: {
+      highlightColor: 0xb89cff,
+      midtoneColor: 0x6f4bd8,
+      lowlightColor: 0x1a0f35,
+      baseColor: 0x070712,
+      blurFactor: window.innerWidth < 700 ? 0.45 : 0.65,
+      speed: window.innerWidth < 700 ? 0.6 : 1.4,
+      zoom: window.innerWidth < 700 ? 0.85 : 1.1
+    }
+  },
+  'vanta-birds': {
+    effect: 'BIRDS',
+    options: {
+      backgroundColor: 0x061524,
+      color1: 0x3b9eff,
+      color2: 0xffffff,
+      birdSize: window.innerWidth < 700 ? 0.8 : 1.2,
+      wingSpan: window.innerWidth < 700 ? 16 : 24,
+      speedLimit: window.innerWidth < 700 ? 2 : 4,
+      separation: 45,
+      alignment: 35,
+      cohesion: 35,
+      quantity: window.innerWidth < 700 ? 2 : 3
+    }
+  }
+};
+
+function startActiveVanta(){
+  const config = VANTA_OPTIONS[activeWp];
+  if (config) startVanta(config.effect, config.options);
+}
+
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (vantaEffect && typeof vantaEffect.resize === 'function') {
+      try {
+        vantaEffect.resize();
+      } catch (error) {
+        console.warn('Vanta resize failed:', error);
+      }
+    }
+  }, 250);
+});
 
 function buildColorDrop(){
   const wrap = document.getElementById('colordropWrap');
-  if (!wrap || wrap.dataset.built === 'true') return;
+  if (!wrap || wrap.dataset.built === 'true' || prefersReducedMotion) return;
 
-  const total = 144;
+  const total = window.innerWidth < 480 ? 36 : window.innerWidth < 800 ? 54 : 96;
+  const widthPercent = 100 / total;
+
+  wrap.style.setProperty('--drop-count', total);
+
   for (let i = 0; i < total; i++) {
     const col = document.createElement('div');
     const hue = (300 / total) * (i + 1);
@@ -1509,6 +1574,7 @@ function buildColorDrop(){
 
     col.className = 'color-drop-col';
     col.style.setProperty('--i', i);
+    col.style.setProperty('--drop-width', widthPercent + '%');
     col.style.setProperty('--hue', hue.toFixed(2));
     col.style.setProperty('--delay', delay.toFixed(3) + 's');
     wrap.appendChild(col);
@@ -1567,25 +1633,15 @@ const COLOR_THEMES = [
   {id:'mint',   label:'Mint',   bg:'#001510', ac:'#00b87a'},
 ];
 
+// Visible wallpaper options. Lava and all lower wallpaper options were removed from the picker.
 const WALLPAPERS = [
   {id:'none',      label:'None',       pc:'wp-p-none',      anim:false},
-  {id:'colordrop', label:'ColorDrop', pc:'wp-p-colordrop', anim:true},
+  {id:'colordrop', label:'ColorDrop',  pc:'wp-p-colordrop', anim:true},
   {id:'vanta-halo',  label:'Vanta Halo',  pc:'wp-p-vanta',       anim:true},
   {id:'vanta-waves', label:'Vanta Waves', pc:'wp-p-vanta-waves', anim:true},
   {id:'vanta-clouds', label:'Vanta Clouds', pc:'wp-p-vanta-clouds', anim:true},
   {id:'vanta-fog',   label:'Vanta Fog',   pc:'wp-p-vanta-fog',   anim:true},
   {id:'vanta-birds', label:'Vanta Birds', pc:'wp-p-vanta-birds', anim:true},
-  {id:'lava',      label:'Lava',       pc:'wp-p-lava',      anim:true},
-  {id:'aurora',    label:'Aurora',     pc:'wp-p-aurora',    anim:true},
-  {id:'sunset',    label:'Sunset',     pc:'wp-p-sunset',    anim:true},
-  {id:'deepsea',   label:'Deep Sea',   pc:'wp-p-deepsea',   anim:true},
-  {id:'neon',      label:'Neon',       pc:'wp-p-neon',      anim:true},
-  {id:'web',       label:'Web',        pc:'wp-p-web',       anim:false},
-  {id:'marble',    label:'Marble',     pc:'wp-p-marble',    anim:false},
-  {id:'botanical', label:'Botanical',  pc:'wp-p-botanical', anim:false},
-  {id:'prism',     label:'Prism Rain', pc:'wp-p-prism',     anim:true},
-  {id:'glitch',    label:'Glitch',     pc:'wp-p-glitch',    anim:true},
-  {id:'confetti',  label:'Confetti',   pc:'wp-p-confetti',  anim:false},
 ];
 
 const WALLPAPER_THEME_MAP = {
@@ -1595,18 +1651,7 @@ const WALLPAPER_THEME_MAP = {
   'vanta-waves': 'arctic',
   'vanta-clouds': 'light',
   'vanta-fog': 'sakura',
-  'vanta-birds': 'forest',
-  lava: 'ember',
-  aurora: 'forest',
-  sunset: 'sakura',
-  deepsea: 'arctic',
-  neon: 'mint',
-  web: 'dark',
-  marble: 'light',
-  botanical: 'forest',
-  prism: 'dusk',
-  glitch: 'mint',
-  confetti: 'sakura'
+  'vanta-birds': 'forest'
 };
 
 
@@ -1689,11 +1734,7 @@ function applyTheme(){
   stopVanta();
 
   if(activeWp!=='none') document.body.classList.add('wp-'+activeWp);
-  if(activeWp==='vanta-halo') startVantaHalo();
-  if(activeWp==='vanta-waves') startVantaWaves();
-  if(activeWp==='vanta-clouds') startVantaClouds();
-  if(activeWp==='vanta-fog') startVantaFog();
-  if(activeWp==='vanta-birds') startVantaBirds();
+  startActiveVanta();
 }
 
 // FAB toggle
