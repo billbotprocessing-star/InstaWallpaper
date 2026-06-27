@@ -47,9 +47,7 @@ body[class*="wp-"]::before{
 }
 body.wp-vanta-halo #vanta-bg,
 body.wp-vanta-waves #vanta-bg,
-body.wp-vanta-clouds #vanta-bg,
-body.wp-vanta-fog #vanta-bg,
-body.wp-vanta-birds #vanta-bg{opacity:1;}
+body.wp-vanta-fog #vanta-bg{opacity:1;}
 
 /* ── 1. GALAXY  (animated star drift) ── */
 @keyframes starDrift{0%{transform:translateY(0) rotate(0deg)}100%{transform:translateY(-120px) rotate(1deg)}}
@@ -243,6 +241,7 @@ body.wp-colordrop::before{
   inset:0;
   z-index:0;
   pointer-events:none;
+  display:none;
   opacity:0;
   overflow:hidden;
   background:#000;
@@ -250,6 +249,7 @@ body.wp-colordrop::before{
 }
 
 body.wp-colordrop .colordrop-wrap{
+  display:block;
   opacity:1;
 }
 
@@ -287,10 +287,260 @@ body.wp-colordrop .colordrop-wrap{
   100%{transform:translate3d(0,150vh,0);opacity:0}
 }
 
+
+
+/* ── STAINED GLASS (animated color bloom) ── */
+.stained-glass-wrap{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  display:none;
+  opacity:0;
+  overflow:hidden;
+  background:#102033;
+  transition:opacity .35s ease;
+}
+
+body.wp-stained-glass .stained-glass-wrap{
+  display:block;
+  opacity:1;
+}
+
+.stained-glass-wrap .glass-dot{
+  position:fixed;
+  top:50%;
+  left:50%;
+  width:3em;
+  height:3em;
+  color:transparent;
+  font:52px/1.3 serif;
+  content:'V';
+  mix-blend-mode:screen;
+  will-change:transform;
+  transform-origin:center;
+}
+
+.stained-glass-wrap .glass-dot::before{
+  content:'V';
+}
+
+.stained-glass-wrap .glass-dot:nth-child(1){
+  text-shadow:
+    1.066em 1.920em 2px hsla(187,100%,55%,.9),
+    0.369em 1.798em 2px hsla(276,100%,55%,.9),
+    1.484em -0.170em 2px hsla(13,100%,55%,.9),
+    0.247em 1.946em 2px hsla(214,100%,55%,.9),
+    0.257em 1.005em 2px hsla(162,100%,55%,.9),
+    1.422em 1.553em 2px hsla(205,100%,55%,.9),
+    -0.087em 1.154em 2px hsla(71,100%,55%,.9),
+    1.938em 2.126em 2px hsla(77,100%,55%,.9),
+    2.148em 1.099em 2px hsla(351,100%,55%,.9),
+    0.130em 1.120em 2px hsla(327,100%,55%,.9),
+    -0.292em 0.729em 2px hsla(259,100%,55%,.9),
+    2.319em 0.922em 2px hsla(307,100%,55%,.9),
+    -0.075em 1.937em 2px hsla(259,100%,55%,.9),
+    2.260em -0.446em 2px hsla(190,100%,55%,.9),
+    1.215em 2.191em 2px hsla(181,100%,55%,.9),
+    -0.349em 0.932em 2px hsla(296,100%,55%,.9),
+    1.823em 2.103em 2px hsla(122,100%,55%,.9),
+    -0.149em 0.142em 2px hsla(127,100%,55%,.9),
+    1.081em 0.579em 2px hsla(136,100%,55%,.9),
+    -0.307em 0.326em 2px hsla(309,100%,55%,.9),
+    1.986em 1.099em 2px hsla(66,100%,55%,.9),
+    0.251em 0.423em 2px hsla(178,100%,55%,.9),
+    0.457em 0.496em 2px hsla(294,100%,55%,.9),
+    1.235em 0.318em 2px hsla(4,100%,55%,.9),
+    -0.348em 2.472em 2px hsla(9,100%,55%,.9),
+    0.901em 0.318em 2px hsla(324,100%,55%,.9),
+    -0.338em 0.095em 2px hsla(132,100%,55%,.9),
+    -0.275em 2.460em 2px hsla(248,100%,55%,.9),
+    -0.438em 1.193em 2px hsla(351,100%,55%,.9),
+    -0.085em 0.955em 2px hsla(302,100%,55%,.9),
+    1.949em 0.050em 2px hsla(128,100%,55%,.9),
+    2.383em 1.529em 2px hsla(108,100%,55%,.9),
+    -0.349em 2.420em 2px hsla(156,100%,55%,.9),
+    1.915em 2.261em 2px hsla(161,100%,55%,.9),
+    -0.352em 2.278em 2px hsla(47,100%,55%,.9),
+    1.574em 0.436em 2px hsla(128,100%,55%,.9),
+    1.472em 0.711em 2px hsla(38,100%,55%,.9),
+    1.126em 1.129em 2px hsla(123,100%,55%,.9),
+    0.175em 2.374em 2px hsla(294,100%,55%,.9),
+    -0.010em 0.386em 2px hsla(249,100%,55%,.9),
+    1.259em 1.973em 2px hsla(113,100%,55%,.9),
+    1.162em 1.047em 2px hsla(227,100%,55%,.9),
+    -0.268em 0.878em 2px hsla(111,100%,55%,.9),
+    0.187em 0.455em 2px hsla(96,100%,55%,.9);
+  animation:stainedGlassMove 44s -27s infinite ease-in-out alternate;
+}
+
+.stained-glass-wrap .glass-dot:nth-child(2){
+  text-shadow:
+    2.409em 1.294em 2px hsla(295,100%,55%,.9),
+    1.204em 0.768em 2px hsla(168,100%,55%,.9),
+    2.393em 0.007em 2px hsla(284,100%,55%,.9),
+    0.193em 0.440em 2px hsla(88,100%,55%,.9),
+    2.494em 1.764em 2px hsla(155,100%,55%,.9),
+    0.801em 0.847em 2px hsla(47,100%,55%,.9),
+    1.056em 1.070em 2px hsla(98,100%,55%,.9),
+    2.327em 2.196em 2px hsla(283,100%,55%,.9),
+    1.795em 0.848em 2px hsla(228,100%,55%,.9),
+    2.067em -0.089em 2px hsla(281,100%,55%,.9),
+    0.925em -0.464em 2px hsla(134,100%,55%,.9),
+    0.052em -0.475em 2px hsla(239,100%,55%,.9),
+    0.512em 0.486em 2px hsla(26,100%,55%,.9),
+    0.302em 1.053em 2px hsla(358,100%,55%,.9),
+    -0.454em -0.162em 2px hsla(154,100%,55%,.9),
+    1.337em 2.479em 2px hsla(50,100%,55%,.9),
+    1.834em 1.960em 2px hsla(13,100%,55%,.9),
+    0.866em 1.964em 2px hsla(113,100%,55%,.9),
+    2.102em -0.410em 2px hsla(204,100%,55%,.9),
+    1.882em 0.784em 2px hsla(29,100%,55%,.9),
+    1.715em -0.321em 2px hsla(275,100%,55%,.9),
+    0.287em 0.571em 2px hsla(278,100%,55%,.9),
+    1.244em 2.496em 2px hsla(213,100%,55%,.9),
+    0.717em -0.478em 2px hsla(173,100%,55%,.9),
+    -0.257em 1.748em 2px hsla(17,100%,55%,.9),
+    1.379em 2.095em 2px hsla(166,100%,55%,.9),
+    0.465em 0.503em 2px hsla(275,100%,55%,.9),
+    2.011em 2.271em 2px hsla(145,100%,55%,.9),
+    0.828em 0.265em 2px hsla(37,100%,55%,.9),
+    1.543em 0.432em 2px hsla(102,100%,55%,.9),
+    0.948em -0.115em 2px hsla(258,100%,55%,.9),
+    2.453em 1.862em 2px hsla(77,100%,55%,.9),
+    1.854em -0.250em 2px hsla(224,100%,55%,.9),
+    1.084em 0.665em 2px hsla(267,100%,55%,.9),
+    1.313em 2.200em 2px hsla(339,100%,55%,.9),
+    1.178em -0.007em 2px hsla(273,100%,55%,.9),
+    2.307em 0.980em 2px hsla(144,100%,55%,.9),
+    2.370em 0.721em 2px hsla(315,100%,55%,.9),
+    0.208em 2.207em 2px hsla(77,100%,55%,.9),
+    1.834em 0.781em 2px hsla(164,100%,55%,.9),
+    1.122em 0.830em 2px hsla(256,100%,55%,.9),
+    1.898em 0.366em 2px hsla(124,100%,55%,.9),
+    0.987em 1.007em 2px hsla(190,100%,55%,.9),
+    -0.479em -0.133em 2px hsla(252,100%,55%,.9);
+  animation:stainedGlassMove 43s -32s infinite ease-in-out alternate;
+}
+
+.stained-glass-wrap .glass-dot:nth-child(3){
+  text-shadow:
+    -0.269em -0.240em 2px hsla(263,100%,55%,.9),
+    0.635em 0.011em 2px hsla(151,100%,55%,.9),
+    -0.282em 0.519em 2px hsla(236,100%,55%,.9),
+    0.464em 2.392em 2px hsla(136,100%,55%,.9),
+    0.425em 2.090em 2px hsla(294,100%,55%,.9),
+    1.042em -0.069em 2px hsla(53,100%,55%,.9),
+    2.346em 1.765em 2px hsla(334,100%,55%,.9),
+    1.377em 2.194em 2px hsla(131,100%,55%,.9),
+    0.211em 0.140em 2px hsla(189,100%,55%,.9),
+    2.018em 0.808em 2px hsla(138,100%,55%,.9),
+    2.335em 0.423em 2px hsla(331,100%,55%,.9),
+    0.110em 0.448em 2px hsla(18,100%,55%,.9),
+    2.107em 1.246em 2px hsla(180,100%,55%,.9),
+    1.525em 0.976em 2px hsla(216,100%,55%,.9),
+    1.330em 1.568em 2px hsla(230,100%,55%,.9),
+    2.179em 2.322em 2px hsla(212,100%,55%,.9),
+    0.139em 0.124em 2px hsla(185,100%,55%,.9),
+    1.711em 1.622em 2px hsla(100,100%,55%,.9),
+    0.190em 1.400em 2px hsla(194,100%,55%,.9),
+    -0.286em 1.477em 2px hsla(181,100%,55%,.9),
+    1.665em 1.846em 2px hsla(299,100%,55%,.9),
+    0.953em 0.825em 2px hsla(330,100%,55%,.9),
+    -0.236em 0.207em 2px hsla(223,100%,55%,.9),
+    1.804em 0.183em 2px hsla(205,100%,55%,.9),
+    0.635em 0.504em 2px hsla(354,100%,55%,.9),
+    1.883em 0.480em 2px hsla(197,100%,55%,.9),
+    2.290em 2.073em 2px hsla(252,100%,55%,.9),
+    -0.465em -0.206em 2px hsla(333,100%,55%,.9),
+    0.944em 2.379em 2px hsla(94,100%,55%,.9),
+    0.990em 0.294em 2px hsla(66,100%,55%,.9),
+    0.096em 0.270em 2px hsla(18,100%,55%,.9),
+    2.071em 0.373em 2px hsla(27,100%,55%,.9),
+    -0.237em 0.389em 2px hsla(313,100%,55%,.9),
+    1.439em 1.094em 2px hsla(331,100%,55%,.9),
+    0.635em 0.290em 2px hsla(288,100%,55%,.9),
+    -0.398em 1.443em 2px hsla(274,100%,55%,.9),
+    0.355em 1.335em 2px hsla(36,100%,55%,.9),
+    1.612em 0.324em 2px hsla(315,100%,55%,.9),
+    0.555em 0.945em 2px hsla(108,100%,55%,.9),
+    1.803em -0.177em 2px hsla(190,100%,55%,.9),
+    0.617em 0.839em 2px hsla(252,100%,55%,.9),
+    0.601em 0.159em 2px hsla(307,100%,55%,.9),
+    1.924em -0.159em 2px hsla(265,100%,55%,.9),
+    1.863em 2.055em 2px hsla(58,100%,55%,.9);
+  animation:stainedGlassMove 42s -23s infinite ease-in-out alternate;
+}
+
+.stained-glass-wrap .glass-dot:nth-child(4){
+  text-shadow:
+    1.334em 2.376em 2px hsla(20,100%,55%,.9),
+    1.641em 2.316em 2px hsla(346,100%,55%,.9),
+    1.729em -0.069em 2px hsla(100,100%,55%,.9),
+    1.143em 0.827em 2px hsla(347,100%,55%,.9),
+    2.156em 0.305em 2px hsla(303,100%,55%,.9),
+    -0.181em -0.212em 2px hsla(243,100%,55%,.9),
+    0.161em 1.869em 2px hsla(153,100%,55%,.9),
+    0.408em 0.492em 2px hsla(8,100%,55%,.9),
+    0.812em 0.651em 2px hsla(324,100%,55%,.9),
+    0.884em 2.128em 2px hsla(274,100%,55%,.9),
+    1.760em 1.708em 2px hsla(29,100%,55%,.9),
+    2.112em -0.221em 2px hsla(330,100%,55%,.9),
+    0.904em 1.322em 2px hsla(62,100%,55%,.9),
+    1.675em 1.270em 2px hsla(341,100%,55%,.9),
+    -0.038em 2.371em 2px hsla(346,100%,55%,.9),
+    0.467em -0.383em 2px hsla(78,100%,55%,.9),
+    2.026em 2.358em 2px hsla(347,100%,55%,.9),
+    0.101em 0.385em 2px hsla(214,100%,55%,.9),
+    1.883em -0.176em 2px hsla(195,100%,55%,.9),
+    1.902em 0.968em 2px hsla(209,100%,55%,.9),
+    0.741em 1.789em 2px hsla(134,100%,55%,.9),
+    1.231em 1.188em 2px hsla(207,100%,55%,.9),
+    1.307em 1.815em 2px hsla(113,100%,55%,.9),
+    2.098em 1.993em 2px hsla(336,100%,55%,.9),
+    0.452em 0.444em 2px hsla(108,100%,55%,.9),
+    1.361em 2.004em 2px hsla(271,100%,55%,.9),
+    0.904em 0.820em 2px hsla(187,100%,55%,.9),
+    1.938em 1.353em 2px hsla(101,100%,55%,.9),
+    2.382em 0.248em 2px hsla(132,100%,55%,.9),
+    -0.347em 0.285em 2px hsla(185,100%,55%,.9),
+    1.988em 0.659em 2px hsla(23,100%,55%,.9),
+    1.103em 1.064em 2px hsla(7,100%,55%,.9),
+    -0.429em 1.124em 2px hsla(165,100%,55%,.9),
+    1.601em 0.464em 2px hsla(341,100%,55%,.9),
+    2.155em 2.449em 2px hsla(183,100%,55%,.9),
+    1.258em 1.481em 2px hsla(306,100%,55%,.9),
+    0.216em 0.297em 2px hsla(226,100%,55%,.9),
+    2.269em -0.168em 2px hsla(12,100%,55%,.9),
+    2.194em 0.862em 2px hsla(78,100%,55%,.9),
+    1.656em 2.253em 2px hsla(3,100%,55%,.9),
+    2.168em 0.019em 2px hsla(192,100%,55%,.9),
+    1.472em 0.697em 2px hsla(143,100%,55%,.9),
+    0.074em -0.078em 2px hsla(9,100%,55%,.9),
+    1.320em 2.358em 2px hsla(167,100%,55%,.9);
+  animation:stainedGlassMove 41s -19s infinite ease-in-out alternate;
+}
+
+@keyframes stainedGlassMove{
+  from{transform:rotate(0deg) scale(10) translateX(-20px)}
+  to{transform:rotate(360deg) scale(16) translateX(20px)}
+}
+
+body.wp-stained-glass::before{
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.08),transparent 22%),
+    radial-gradient(circle at 80% 70%,rgba(255,255,255,.06),transparent 28%),
+    #102033;
+}
+
+
+
+
+
+
 /* ── READABILITY OVERRIDES ──
    Wallpapers can be brighter or busier than normal color themes.
    These rules keep text, buttons, and the nav readable automatically. */
-body.wp-vanta-clouds,
 body.wp-marble{
   --text:#111;
   --sub:#444;
@@ -305,8 +555,8 @@ body.wp-marble{
 body.wp-vanta-halo,
 body.wp-vanta-waves,
 body.wp-vanta-fog,
-body.wp-vanta-birds,
 body.wp-colordrop,
+body.wp-stained-glass,
 body.wp-lava,
 body.wp-aurora,
 body.wp-sunset,
@@ -340,16 +590,6 @@ body[class*="wp-"]:not(.wp-none) .mutual-text{
   text-shadow:0 1px 3px rgba(0,0,0,.65);
 }
 
-body.wp-vanta-clouds .profile-info,
-body.wp-vanta-clouds .nav-logo,
-body.wp-vanta-clouds .nav-icon,
-body.wp-vanta-clouds .hl-label,
-body.wp-vanta-clouds .stat-label,
-body.wp-vanta-clouds .stat-num,
-body.wp-vanta-clouds .bio-name,
-body.wp-vanta-clouds .bio-text,
-body.wp-vanta-clouds .username,
-body.wp-vanta-clouds .mutual-text,
 body.wp-marble .profile-info,
 body.wp-marble .nav-logo,
 body.wp-marble .nav-icon,
@@ -382,8 +622,8 @@ body[class*="wp-"]:not(.wp-none) .post-cell{
 body.wp-vanta-halo,
 body.wp-vanta-waves,
 body.wp-vanta-fog,
-body.wp-vanta-birds,
 body.wp-colordrop,
+body.wp-stained-glass,
 body.wp-lava,
 body.wp-aurora,
 body.wp-sunset,
@@ -398,13 +638,13 @@ body.wp-confetti{
 }
 
 body.wp-colordrop,
+body.wp-stained-glass,
 body.wp-neon,
 body.wp-prism{--busy-btn-hue:180deg;}
 body.wp-lava,
 body.wp-sunset{--busy-btn-hue:24deg;}
 body.wp-aurora,
-body.wp-botanical,
-body.wp-vanta-birds{--busy-btn-hue:135deg;}
+body.wp-botanical{--busy-btn-hue:135deg;}
 body.wp-vanta-fog,
 body.wp-vanta-halo{--busy-btn-hue:270deg;}
 body.wp-glitch{--busy-btn-hue:155deg;}
@@ -412,8 +652,8 @@ body.wp-glitch{--busy-btn-hue:155deg;}
 body.wp-vanta-halo .row-username .btn:not(.btn-more),
 body.wp-vanta-waves .row-username .btn:not(.btn-more),
 body.wp-vanta-fog .row-username .btn:not(.btn-more),
-body.wp-vanta-birds .row-username .btn:not(.btn-more),
 body.wp-colordrop .row-username .btn:not(.btn-more),
+body.wp-stained-glass .row-username .btn:not(.btn-more),
 body.wp-lava .row-username .btn:not(.btn-more),
 body.wp-aurora .row-username .btn:not(.btn-more),
 body.wp-sunset .row-username .btn:not(.btn-more),
@@ -454,8 +694,8 @@ body.wp-confetti .row-username .btn:not(.btn-more){
 body.wp-vanta-halo .row-username .btn:not(.btn-more)::before,
 body.wp-vanta-waves .row-username .btn:not(.btn-more)::before,
 body.wp-vanta-fog .row-username .btn:not(.btn-more)::before,
-body.wp-vanta-birds .row-username .btn:not(.btn-more)::before,
 body.wp-colordrop .row-username .btn:not(.btn-more)::before,
+body.wp-stained-glass .row-username .btn:not(.btn-more)::before,
 body.wp-lava .row-username .btn:not(.btn-more)::before,
 body.wp-aurora .row-username .btn:not(.btn-more)::before,
 body.wp-sunset .row-username .btn:not(.btn-more)::before,
@@ -483,8 +723,8 @@ body.wp-confetti .row-username .btn:not(.btn-more)::before{
 body.wp-vanta-halo .row-username .btn:not(.btn-more)::after,
 body.wp-vanta-waves .row-username .btn:not(.btn-more)::after,
 body.wp-vanta-fog .row-username .btn:not(.btn-more)::after,
-body.wp-vanta-birds .row-username .btn:not(.btn-more)::after,
 body.wp-colordrop .row-username .btn:not(.btn-more)::after,
+body.wp-stained-glass .row-username .btn:not(.btn-more)::after,
 body.wp-lava .row-username .btn:not(.btn-more)::after,
 body.wp-aurora .row-username .btn:not(.btn-more)::after,
 body.wp-sunset .row-username .btn:not(.btn-more)::after,
@@ -515,8 +755,8 @@ body.wp-confetti .row-username .btn:not(.btn-more)::after{
 body.wp-vanta-halo .row-username .btn:not(.btn-more) .btn-letter,
 body.wp-vanta-waves .row-username .btn:not(.btn-more) .btn-letter,
 body.wp-vanta-fog .row-username .btn:not(.btn-more) .btn-letter,
-body.wp-vanta-birds .row-username .btn:not(.btn-more) .btn-letter,
 body.wp-colordrop .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-stained-glass .row-username .btn:not(.btn-more) .btn-letter,
 body.wp-lava .row-username .btn:not(.btn-more) .btn-letter,
 body.wp-aurora .row-username .btn:not(.btn-more) .btn-letter,
 body.wp-sunset .row-username .btn:not(.btn-more) .btn-letter,
@@ -541,8 +781,8 @@ body.wp-confetti .row-username .btn:not(.btn-more) .btn-letter{
 body.wp-vanta-halo .row-username .btn:not(.btn-more):hover,
 body.wp-vanta-waves .row-username .btn:not(.btn-more):hover,
 body.wp-vanta-fog .row-username .btn:not(.btn-more):hover,
-body.wp-vanta-birds .row-username .btn:not(.btn-more):hover,
 body.wp-colordrop .row-username .btn:not(.btn-more):hover,
+body.wp-stained-glass .row-username .btn:not(.btn-more):hover,
 body.wp-lava .row-username .btn:not(.btn-more):hover,
 body.wp-aurora .row-username .btn:not(.btn-more):hover,
 body.wp-sunset .row-username .btn:not(.btn-more):hover,
@@ -561,8 +801,8 @@ body.wp-confetti .row-username .btn:not(.btn-more):hover{
 body.wp-vanta-halo .row-username .btn:not(.btn-more):hover::after,
 body.wp-vanta-waves .row-username .btn:not(.btn-more):hover::after,
 body.wp-vanta-fog .row-username .btn:not(.btn-more):hover::after,
-body.wp-vanta-birds .row-username .btn:not(.btn-more):hover::after,
 body.wp-colordrop .row-username .btn:not(.btn-more):hover::after,
+body.wp-stained-glass .row-username .btn:not(.btn-more):hover::after,
 body.wp-lava .row-username .btn:not(.btn-more):hover::after,
 body.wp-aurora .row-username .btn:not(.btn-more):hover::after,
 body.wp-sunset .row-username .btn:not(.btn-more):hover::after,
@@ -579,8 +819,8 @@ body.wp-confetti .row-username .btn:not(.btn-more):hover::after{
 body.wp-vanta-halo .row-username .btn:not(.btn-more):focus-visible .btn-letter,
 body.wp-vanta-waves .row-username .btn:not(.btn-more):focus-visible .btn-letter,
 body.wp-vanta-fog .row-username .btn:not(.btn-more):focus-visible .btn-letter,
-body.wp-vanta-birds .row-username .btn:not(.btn-more):focus-visible .btn-letter,
 body.wp-colordrop .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-stained-glass .row-username .btn:not(.btn-more):focus-visible .btn-letter,
 body.wp-lava .row-username .btn:not(.btn-more):focus-visible .btn-letter,
 body.wp-aurora .row-username .btn:not(.btn-more):focus-visible .btn-letter,
 body.wp-sunset .row-username .btn:not(.btn-more):focus-visible .btn-letter,
@@ -602,8 +842,8 @@ body.wp-confetti .row-username .btn:not(.btn-more):focus-visible .btn-letter{
 body.wp-vanta-halo .row-username .btn:not(.btn-more):active,
 body.wp-vanta-waves .row-username .btn:not(.btn-more):active,
 body.wp-vanta-fog .row-username .btn:not(.btn-more):active,
-body.wp-vanta-birds .row-username .btn:not(.btn-more):active,
 body.wp-colordrop .row-username .btn:not(.btn-more):active,
+body.wp-stained-glass .row-username .btn:not(.btn-more):active,
 body.wp-lava .row-username .btn:not(.btn-more):active,
 body.wp-aurora .row-username .btn:not(.btn-more):active,
 body.wp-sunset .row-username .btn:not(.btn-more):active,
@@ -752,16 +992,10 @@ body.wp-confetti .row-username .btn:not(.btn-more):active{
 /* Vanta Waves */
 .wp-p-vanta-waves{background:linear-gradient(180deg,#001a2f,#00456b 45%,#00a6c8);position:relative;overflow:hidden;}
 .wp-p-vanta-waves::before{content:'';position:absolute;inset:-20%;background:repeating-radial-gradient(ellipse at 50% 80%,rgba(255,255,255,.22) 0 1px,transparent 2px 9px);transform:rotate(-8deg);animation:seaP 3s ease-in-out infinite;}
-/* Vanta Clouds */
-.wp-p-vanta-clouds{background:linear-gradient(180deg,#7fb8ff 0%,#d9efff 50%,#ffffff 100%);position:relative;overflow:hidden;}
-.wp-p-vanta-clouds::before{content:'';position:absolute;inset:-15%;background:radial-gradient(ellipse at 20% 60%,rgba(255,255,255,.9) 0%,transparent 35%),radial-gradient(ellipse at 55% 45%,rgba(255,255,255,.75) 0%,transparent 38%),radial-gradient(ellipse at 80% 65%,rgba(255,255,255,.85) 0%,transparent 32%);animation:seaP 4s ease-in-out infinite;}
 /* Vanta Fog */
 .wp-p-vanta-fog{background:linear-gradient(135deg,#1c1230 0%,#725ba8 45%,#d8c8ff 100%);position:relative;overflow:hidden;}
 .wp-p-vanta-fog::before{content:'';position:absolute;inset:-20%;background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,.45) 0%,transparent 36%),radial-gradient(ellipse at 75% 55%,rgba(255,255,255,.35) 0%,transparent 42%),radial-gradient(ellipse at 45% 80%,rgba(255,255,255,.28) 0%,transparent 38%);animation:auroraP 5s ease infinite;}
 
-.wp-p-vanta-birds{background:linear-gradient(135deg,#061524 0%,#143a5a 45%,#3b9eff 100%);position:relative;overflow:hidden;}
-.wp-p-vanta-birds::before{content:'◜  ◝   ◜';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.8);font-size:1.25rem;letter-spacing:5px;animation:seaP 3.2s ease-in-out infinite;}
-.wp-p-vanta-birds::after{content:'◝   ◜';position:absolute;left:12%;right:8%;top:24%;color:rgba(255,255,255,.55);font-size:.9rem;letter-spacing:8px;animation:auroraP 5s ease infinite;}
 /* Galaxy */
 @keyframes starP{0%{transform:translateY(0)}100%{transform:translateY(-30px)}}
 .wp-p-galaxy{background:#000 radial-gradient(1px 1px at 15% 25%,#fff 0%,transparent 100%),radial-gradient(1px 1px at 40% 65%,rgba(255,255,255,.9) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 60% 15%,#fff 0%,transparent 100%),radial-gradient(1px 1px at 80% 50%,rgba(200,180,255,.9) 0%,transparent 100%),radial-gradient(1px 1px at 25% 80%,rgba(255,255,255,.8) 0%,transparent 100%),radial-gradient(ellipse at 50% 50%,rgba(100,40,180,.3) 0%,transparent 70%);background-size:80px 80px,80px 80px,80px 80px,80px 80px,80px 80px,100% 100%;animation:starP 4s linear infinite;}
@@ -794,6 +1028,27 @@ body.wp-confetti .row-username .btn:not(.btn-more):active{
 .wp-p-glitch{background:#080808;background-image:repeating-linear-gradient(0deg,rgba(0,255,180,.06) 0px,rgba(0,255,180,.06) 1px,transparent 1px,transparent 3px),radial-gradient(ellipse at 30% 40%,rgba(0,255,100,.15) 0%,transparent 50%),radial-gradient(ellipse at 70% 60%,rgba(255,0,100,.1) 0%,transparent 50%);animation:glitchP 2s steps(1) infinite;}
 /* Confetti */
 .wp-p-confetti{background:#0a0a0a;background-image:radial-gradient(circle at 15% 20%,rgba(255,80,80,.6) 1.5px,transparent 1.5px),radial-gradient(circle at 40% 60%,rgba(80,200,255,.6) 1.5px,transparent 1.5px),radial-gradient(circle at 65% 25%,rgba(255,220,0,.6) 1.5px,transparent 1.5px),radial-gradient(circle at 80% 75%,rgba(200,80,255,.6) 1.5px,transparent 1.5px),radial-gradient(circle at 55% 85%,rgba(80,255,140,.6) 1.5px,transparent 1.5px);background-size:50px 50px;}
+
+
+
+to{background-position:0 0,0 0,-80px 0}
+}
+
+
+to{background-position:180px 0}
+}
+
+/* Stained Glass */
+.wp-p-stained-glass{background:#102033;position:relative;overflow:hidden;}
+.wp-p-stained-glass::before{content:'';position:absolute;inset:-30%;background:
+  radial-gradient(circle at 20% 30%,rgba(255,0,120,.75) 0 7%,transparent 13%),
+  radial-gradient(circle at 70% 25%,rgba(0,200,255,.75) 0 8%,transparent 15%),
+  radial-gradient(circle at 50% 70%,rgba(255,210,0,.7) 0 8%,transparent 16%),
+  radial-gradient(circle at 80% 75%,rgba(0,255,130,.65) 0 7%,transparent 14%),
+  radial-gradient(circle at 30% 80%,rgba(160,80,255,.7) 0 7%,transparent 15%);
+  mix-blend-mode:screen;animation:stainedGlassPreview 6s ease-in-out infinite alternate;}
+.wp-p-stained-glass::after{content:'GLASS';position:absolute;bottom:6px;left:7px;color:#fff;font-size:.52rem;font-weight:800;letter-spacing:.08em;text-shadow:0 1px 4px #000;}
+@keyframes stainedGlassPreview{from{transform:rotate(0deg) scale(1.15)}to{transform:rotate(30deg) scale(1.35)}}
 
 /* ColorDrop */
 .wp-p-colordrop{background:#000;position:relative;overflow:hidden;}
@@ -1261,7 +1516,8 @@ button,
    Keeps the page smoother on phones and weaker GPUs. */
 @media(max-width:700px){
   #vanta-bg,
-  .colordrop-wrap{
+  .colordrop-wrap,
+  .stained-glass-wrap{
     transform:translateZ(0);
   }
 
@@ -1291,8 +1547,7 @@ button,
   body.wp-vanta-halo .row-username .btn:not(.btn-more),
   body.wp-vanta-waves .row-username .btn:not(.btn-more),
   body.wp-vanta-fog .row-username .btn:not(.btn-more),
-  body.wp-vanta-birds .row-username .btn:not(.btn-more),
-  body.wp-colordrop .row-username .btn:not(.btn-more){
+    body.wp-colordrop .row-username .btn:not(.btn-more){
     box-shadow:0 6px 14px rgba(0,0,0,.28);
   }
 }
@@ -1328,36 +1583,11 @@ button,
   }
 
   #vanta-bg,
-  .colordrop-wrap{
+  .colordrop-wrap,
+  .stained-glass-wrap{
     display:none!important;
   }
 }
-
-/* ── CLOUD THEME MOBILE OPTIMIZATION ──
-   Vanta Clouds is one of the heavier WebGL effects. On phones we shift it
-   upward/top-center and reduce costly interaction work from JS. */
-@media(max-width:700px){
-  body.wp-vanta-clouds #vanta-bg{
-    transform:translate3d(0,-14vh,0) scale(1.08);
-    transform-origin:top center;
-    opacity:.92;
-  }
-
-  body.wp-vanta-clouds #vanta-bg canvas{
-    transform:translate3d(0,-6vh,0) scale(1.06);
-    transform-origin:top center;
-  }
-
-  body.wp-vanta-clouds .profile-header-real,
-  body.wp-vanta-clouds .profile-actions-real,
-  body.wp-vanta-clouds .post-grid{
-    position:relative;
-    z-index:2;
-  }
-}
-
-
-
 
 /* ────────────────────────────────────────────────
    PROFILE HEADER: screenshot-style responsive layout
@@ -1614,11 +1844,104 @@ button,
   }
 }
 
+
+@media(max-width:700px){
+  .stained-glass-wrap .glass-dot{font-size:38px;}
+  @keyframes stainedGlassMove{
+    from{transform:rotate(0deg) scale(8) translateX(-14px)}
+    to{transform:rotate(360deg) scale(12) translateX(14px)}
+  }
+}
+
+
+
+
+
+/* ── MOBILE PERFORMANCE GUARDS ── */
+@media(max-width:700px){
+  .ig-nav,
+  .theme-panel,
+  .avatar-inner,
+  .hl-ring,
+  .hl-new,
+  .post-cell{
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+
+  .row-username .btn .btn-letter{
+    animation:none!important;
+    text-shadow:none!important;
+    color:inherit!important;
+  }
+
+  .row-username .btn::before,
+  .row-username .btn::after{
+    display:none!important;
+  }
+
+  .row-username .btn:not(.btn-more){
+    box-shadow:0 2px 10px rgba(0,0,0,.22)!important;
+    transform:none!important;
+  }
+
+  .post-bg,
+  .post-cell,
+  .theme-panel,
+  .ig-nav{
+    will-change:auto!important;
+  }
+
+  .stained-glass-wrap .glass-dot{
+    animation-duration:70s!important;
+  }
+
+  .color-drop-col{
+    --drop-height:320px;
+    --dot-size:1.25vw;
+  }
+}
+
+@media(hover:none){
+  .post-cell:hover .post-bg{
+    filter:none!important;
+    transform:none!important;
+  }
+
+  .post-cell:hover .post-stats,
+  .post-cell:hover .post-cap{
+    opacity:0!important;
+  }
+
+  .c-swatch:hover,
+  .wp-card:hover,
+  .theme-fab:hover{
+    transform:none!important;
+  }
+}
+
+@media(prefers-reduced-motion: reduce){
+  *,
+  *::before,
+  *::after{
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+
+  #vanta-bg,
+  .colordrop-wrap,
+  .stained-glass-wrap{
+    display:none!important;
+  }
+}
+
 </style>
 </head>
 <body class="theme-dark">
 <div id="vanta-bg"></div>
 <div class="colordrop-wrap" id="colordropWrap" aria-hidden="true"></div>
+<div class="stained-glass-wrap" id="stainedGlassWrap" aria-hidden="true"></div>
 
 <!-- NAV -->
 <div class="ig-nav">
@@ -1706,14 +2029,81 @@ button,
   <div class="wp-grid2" id="wpGrid"></div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.halo.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.waves.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.clouds.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.fog.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.birds.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js">
+let performanceResizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(performanceResizeTimer);
+  performanceResizeTimer = setTimeout(() => {
+    if(isSmallMobile()){
+      stopVanta();
+    }else if(activeWp && activeWp.startsWith('vanta-') && !vantaEffect){
+      startActiveVanta();
+    }else if(vantaEffect && typeof vantaEffect.resize === 'function'){
+      vantaEffect.resize();
+    }
+
+    if(activeWp === 'colordrop') buildColorDrop();
+  }, 250);
+}, {passive:true});
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.halo.min.js">
+let performanceResizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(performanceResizeTimer);
+  performanceResizeTimer = setTimeout(() => {
+    if(isSmallMobile()){
+      stopVanta();
+    }else if(activeWp && activeWp.startsWith('vanta-') && !vantaEffect){
+      startActiveVanta();
+    }else if(vantaEffect && typeof vantaEffect.resize === 'function'){
+      vantaEffect.resize();
+    }
+
+    if(activeWp === 'colordrop') buildColorDrop();
+  }, 250);
+}, {passive:true});
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.waves.min.js">
+let performanceResizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(performanceResizeTimer);
+  performanceResizeTimer = setTimeout(() => {
+    if(isSmallMobile()){
+      stopVanta();
+    }else if(activeWp && activeWp.startsWith('vanta-') && !vantaEffect){
+      startActiveVanta();
+    }else if(vantaEffect && typeof vantaEffect.resize === 'function'){
+      vantaEffect.resize();
+    }
+
+    if(activeWp === 'colordrop') buildColorDrop();
+  }, 250);
+}, {passive:true});
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.fog.min.js">
+let performanceResizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(performanceResizeTimer);
+  performanceResizeTimer = setTimeout(() => {
+    if(isSmallMobile()){
+      stopVanta();
+    }else if(activeWp && activeWp.startsWith('vanta-') && !vantaEffect){
+      startActiveVanta();
+    }else if(vantaEffect && typeof vantaEffect.resize === 'function'){
+      vantaEffect.resize();
+    }
+
+    if(activeWp === 'colordrop') buildColorDrop();
+  }, 250);
+}, {passive:true});
+
+</script>
 <script>
 
+const isSmallMobile = () => window.matchMedia('(max-width: 700px)').matches;
 let vantaEffect = null;
 let resizeTimer = null;
 
@@ -1777,23 +2167,6 @@ const VANTA_OPTIONS = {
       zoom: window.innerWidth < 700 ? 0.75 : 0.9
     }
   },
-  'vanta-clouds': {
-    effect: 'CLOUDS',
-    options: {
-      skyColor: 0x68b8d7,
-      cloudColor: 0xadc1de,
-      cloudShadowColor: 0x183550,
-      sunColor: 0xff9919,
-      sunGlareColor: 0xff6633,
-      sunlightColor: 0xff9933,
-      // Clouds is heavier than the other Vanta effects, so keep it calmer on mobile.
-      mouseControls: window.innerWidth >= 700,
-      touchControls: false,
-      speed: window.innerWidth < 700 ? 0.12 : 0.55,
-      scale: window.innerWidth < 700 ? 0.82 : 1,
-      scaleMobile: 0.58
-    }
-  },
   'vanta-fog': {
     effect: 'FOG',
     options: {
@@ -1805,27 +2178,41 @@ const VANTA_OPTIONS = {
       speed: window.innerWidth < 700 ? 0.6 : 1.4,
       zoom: window.innerWidth < 700 ? 0.85 : 1.1
     }
-  },
-  'vanta-birds': {
-    effect: 'BIRDS',
-    options: {
-      backgroundColor: 0x061524,
-      color1: 0x3b9eff,
-      color2: 0xffffff,
-      birdSize: window.innerWidth < 700 ? 0.8 : 1.2,
-      wingSpan: window.innerWidth < 700 ? 16 : 24,
-      speedLimit: window.innerWidth < 700 ? 2 : 4,
-      separation: 45,
-      alignment: 35,
-      cohesion: 35,
-      quantity: window.innerWidth < 700 ? 2 : 3
-    }
   }
 };
 
 function startActiveVanta(){
-  const config = VANTA_OPTIONS[activeWp];
-  if (config) startVanta(config.effect, config.options);
+  if(isSmallMobile()){
+    stopVanta();
+    return;
+  }
+
+  const cfg = VANTA_OPTIONS[activeWp];
+  if(!cfg || !window.VANTA || !window.VANTA[cfg.effect]){
+    if(activeWp && activeWp.startsWith('vanta-')){
+      console.warn('Vanta effect unavailable:', activeWp);
+    }
+    return;
+  }
+
+  stopVanta();
+
+  try{
+    vantaEffect = window.VANTA[cfg.effect]({
+      el:'#vanta-bg',
+      mouseControls:true,
+      touchControls:false,
+      gyroControls:false,
+      minHeight:200,
+      minWidth:200,
+      scale:1,
+      scaleMobile:.75,
+      ...cfg.options
+    });
+  }catch(err){
+    console.warn('Vanta failed to start:', err);
+    vantaEffect = null;
+  }
 }
 
 window.addEventListener('resize', () => {
@@ -1841,29 +2228,50 @@ window.addEventListener('resize', () => {
   }, 250);
 });
 
+
+function buildStainedGlass(){
+  const wrap = document.getElementById('stainedGlassWrap');
+  if(!wrap || wrap.childElementCount) return;
+
+  for(let i = 0; i < 4; i++){
+    const dot = document.createElement('span');
+    dot.className = 'glass-dot';
+    wrap.appendChild(dot);
+  }
+}
+
+function getDropCount(){
+  const w = window.innerWidth || document.documentElement.clientWidth || 1024;
+  if(w <= 480) return 24;
+  if(w <= 700) return 36;
+  if(w <= 1000) return 54;
+  return 84;
+}
+
 function buildColorDrop(){
   const wrap = document.getElementById('colordropWrap');
-  if (!wrap || wrap.dataset.built === 'true' || prefersReducedMotion) return;
+  if(!wrap) return;
 
-  const total = window.innerWidth < 480 ? 36 : window.innerWidth < 800 ? 54 : 96;
-  const widthPercent = 100 / total;
+  const total = getDropCount();
+  if(wrap.dataset.total === String(total) && wrap.childElementCount) return;
 
-  wrap.style.setProperty('--drop-count', total);
+  wrap.innerHTML = '';
+  wrap.dataset.total = String(total);
 
-  for (let i = 0; i < total; i++) {
-    const col = document.createElement('div');
-    const hue = (300 / total) * (i + 1);
-    const delay = -(((i * 37) % total) * (4 / total));
+  for(let i = 0; i < total; i++){
+    const col = document.createElement('span');
+    const hue = Math.round((300 / total) * (i + 1));
+    const delay = -(((i * 37) % total) * (4 / total)).toFixed(3) + 's';
 
     col.className = 'color-drop-col';
     col.style.setProperty('--i', i);
-    col.style.setProperty('--drop-width', widthPercent + '%');
-    col.style.setProperty('--hue', hue.toFixed(2));
-    col.style.setProperty('--delay', delay.toFixed(3) + 's');
+    col.style.setProperty('--hue', hue);
+    col.style.setProperty('--delay', delay);
+    col.style.width = (100 / total) + '%';
+    col.style.left = ((i * 100) / total) + '%';
+
     wrap.appendChild(col);
   }
-
-  wrap.dataset.built = 'true';
 }
 
 const POSTS = [
@@ -1884,7 +2292,7 @@ const POSTS = [
   {type:'video', cls:'thumb-macros', label:'Macro talk', cap:"Macros. Let's talk about it.", likes:540, cmts:39},
   {type:'video', cls:'thumb-bigback', label:'Hot take reel', cap:"We get it. You're a fucking big back.", likes:1650, cmts:118},
   {type:'video', cls:'thumb-reset', label:'Deficit reset', cap:'Your deficit needs a reset', likes:480, cmts:29},
-  {type:'image', cls:'thumb-snack', label:'Snack carousel', cap:'High protein snack ideas', likes:610, cmts:44},
+  {type:'image', cls:'thumb-snack', label:'Snack carousel', cap:'High protein snack ideas', likes:610, cmts:44}
 ];
 
 const grid = document.getElementById('postGrid');
@@ -1913,29 +2321,23 @@ const COLOR_THEMES = [
   {id:'sand',   label:'Mocha',   bg:'#3a2a1d', ac:'#f59e0b'},
   {id:'arctic', label:'Ocean',   bg:'#102a43', ac:'#38bdf8'},
   {id:'ember',  label:'Copper',  bg:'#3a1b12', ac:'#fb923c'},
-  {id:'mint',   label:'Jade',    bg:'#102d2a', ac:'#2dd4bf'},
+  {id:'mint',   label:'Jade',    bg:'#102d2a', ac:'#2dd4bf'}
 ];
 
 // Visible wallpaper options. Lava and all lower wallpaper options were removed from the picker.
 const WALLPAPERS = [
   {id:'none',      label:'None',       pc:'wp-p-none',      anim:false},
   {id:'colordrop', label:'ColorDrop',  pc:'wp-p-colordrop', anim:true},
+  {id:'stained-glass', label:'Stained Glass', pc:'wp-p-stained-glass', anim:true},
   {id:'vanta-halo',  label:'Vanta Halo',  pc:'wp-p-vanta',       anim:true},
   {id:'vanta-waves', label:'Vanta Waves', pc:'wp-p-vanta-waves', anim:true},
-  {id:'vanta-clouds', label:'Vanta Clouds', pc:'wp-p-vanta-clouds', anim:true},
-  {id:'vanta-fog',   label:'Vanta Fog',   pc:'wp-p-vanta-fog',   anim:true},
-  {id:'vanta-birds', label:'Vanta Birds', pc:'wp-p-vanta-birds', anim:true},
-];
+  {id:'vanta-fog',   label:'Vanta Fog',   pc:'wp-p-vanta-fog',   anim:true},];
 
 const WALLPAPER_THEME_MAP = {
   none: 'dark',
   colordrop: 'mint',
   'vanta-halo': 'dusk',
-  'vanta-waves': 'arctic',
-  'vanta-clouds': 'light',
-  'vanta-fog': 'sakura',
-  'vanta-birds': 'forest'
-};
+  'vanta-waves': 'arctic',  'vanta-fog': 'sakura',};
 
 
 function wrapActionButtonLetters(){
@@ -1963,6 +2365,7 @@ let activeWp    = 'none';
 wrapActionButtonLetters();
 
 buildColorDrop();
+buildStainedGlass();
 
 // Build colour swatches
 const cg = document.getElementById('colorGrid');
@@ -2041,5 +2444,22 @@ document.querySelectorAll('.tab').forEach(tab=>{
     tab.classList.add('active');
   });
 });
+
+let performanceResizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(performanceResizeTimer);
+  performanceResizeTimer = setTimeout(() => {
+    if(isSmallMobile()){
+      stopVanta();
+    }else if(activeWp && activeWp.startsWith('vanta-') && !vantaEffect){
+      startActiveVanta();
+    }else if(vantaEffect && typeof vantaEffect.resize === 'function'){
+      vantaEffect.resize();
+    }
+
+    if(activeWp === 'colordrop') buildColorDrop();
+  }, 250);
+}, {passive:true});
+
 </script>
 </html>
