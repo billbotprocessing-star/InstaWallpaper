@@ -1,515 +1,549 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Profile · WallpaperGram</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>thisisabbs · Instagram</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-    /* ── Theme variables ── */
-    body {
-      --bg: #fafafa;
-      --surface: #ffffff;
-      --border: #dbdbdb;
-      --text: #262626;
-      --sub: #737373;
-      --accent: #0095f6;
-      --overlay: rgba(0,0,0,0.04);
-      --btn-bg: #efefef;
-      --btn-text: #262626;
-      --story-ring: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      transition: background 0.5s ease, color 0.4s ease;
-    }
+/* ── CSS THEME TOKENS ── */
+body {
+  --bg:#000;
+  --surface:#000;
+  --nav-bg:rgba(0,0,0,0.92);
+  --border:#262626;
+  --text:#f5f5f5;
+  --sub:#a8a8a8;
+  --accent:#0095f6;
+  --btn-bg:#262626;
+  --btn-text:#f5f5f5;
+  --btn-border:#363636;
+  --story-ring:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  transition:background .5s,color .4s;
+}
 
-    /* ────────────────────────────────────────── THEMES ─── */
+/* ── LIGHT THEME ── */
+body.theme-light{
+  --bg:#fafafa;--surface:#fff;--nav-bg:rgba(255,255,255,0.95);
+  --border:#dbdbdb;--text:#262626;--sub:#737373;
+  --btn-bg:#efefef;--btn-text:#262626;--btn-border:#dbdbdb;
+}
+/* ── SAKURA ── */
+body.theme-sakura{
+  --bg:#1a0010;--surface:#200015;--nav-bg:rgba(26,0,16,0.95);
+  --border:#4a0030;--text:#ffe0f0;--sub:#c080a0;
+  --btn-bg:#300020;--btn-text:#ffe0f0;--btn-border:#5a0040;
+}
+/* ── FOREST ── */
+body.theme-forest{
+  --bg:#030f06;--surface:#061409;--nav-bg:rgba(3,15,6,0.95);
+  --border:#1a3520;--text:#c8f0d8;--sub:#6aaa80;
+  --btn-bg:#0e2415;--btn-text:#c8f0d8;--btn-border:#245030;
+}
+/* ── DUSK ── */
+body.theme-dusk{
+  --bg:#0a0020;--surface:#100030;--nav-bg:rgba(10,0,32,0.95);
+  --border:#2a1060;--text:#e8d8ff;--sub:#9070c0;
+  --btn-bg:#1a0850;--btn-text:#e8d8ff;--btn-border:#3a1880;
+}
+/* ── SAND ── */
+body.theme-sand{
+  --bg:#1e1608;--surface:#261c0a;--nav-bg:rgba(30,22,8,0.95);
+  --border:#4a3818;--text:#f0ddb0;--sub:#a08860;
+  --btn-bg:#352808;--btn-text:#f0ddb0;--btn-border:#5a4828;
+}
+/* ── ARCTIC ── */
+body.theme-arctic{
+  --bg:#020d1a;--surface:#051525;--nav-bg:rgba(2,13,26,0.95);
+  --border:#0e3060;--text:#cce8ff;--sub:#6090c0;
+  --btn-bg:#0a2040;--btn-text:#cce8ff;--btn-border:#144080;
+}
+/* ── EMBER ── */
+body.theme-ember{
+  --bg:#150300;--surface:#200500;--nav-bg:rgba(21,3,0,0.95);
+  --border:#4a1000;--text:#ffe0cc;--sub:#c06040;
+  --btn-bg:#300800;--btn-text:#ffe0cc;--btn-border:#5a1800;
+}
+/* ── MINT ── */
+body.theme-mint{
+  --bg:#001510;--surface:#001e18;--nav-bg:rgba(0,21,16,0.95);
+  --border:#004030;--text:#c0ffe8;--sub:#40c090;
+  --btn-bg:#003028;--btn-text:#c0ffe8;--btn-border:#005040;
+}
 
-    body.theme-night {
-      --bg: #0d0d0d;
-      --surface: #1a1a1a;
-      --border: #2a2a2a;
-      --text: #f1f1f1;
-      --sub: #888;
-      --accent: #3b9eff;
-      --overlay: rgba(255,255,255,0.04);
-      --btn-bg: #2a2a2a;
-      --btn-text: #f1f1f1;
-    }
+/* ── WALLPAPER OVERLAYS ── */
+body.wp-bokeh::before,body.wp-aurora::before,body.wp-geo::before,
+body.wp-rain::before,body.wp-confetti::before,body.wp-neon::before,body.wp-marble::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+}
+body.wp-bokeh::before{background:radial-gradient(ellipse at 20% 30%,rgba(255,180,60,.22) 0%,transparent 50%),radial-gradient(ellipse at 80% 70%,rgba(80,160,255,.22) 0%,transparent 50%),radial-gradient(ellipse at 50% 90%,rgba(255,80,180,.16) 0%,transparent 48%);}
+body.wp-aurora::before{background:linear-gradient(160deg,rgba(0,200,140,.18) 0%,transparent 40%),linear-gradient(200deg,rgba(80,0,200,.22) 0%,transparent 50%),linear-gradient(120deg,rgba(0,160,255,.16) 30%,transparent 70%);}
+body.wp-geo::before{background-image:repeating-linear-gradient(60deg,transparent,transparent 28px,rgba(255,255,255,.04) 28px,rgba(255,255,255,.04) 29px),repeating-linear-gradient(-60deg,transparent,transparent 28px,rgba(255,255,255,.04) 28px,rgba(255,255,255,.04) 29px);}
+body.wp-rain::before{background-image:repeating-linear-gradient(90deg,transparent,transparent 38px,rgba(120,180,255,.07) 38px,rgba(120,180,255,.07) 39px),repeating-linear-gradient(180deg,transparent,transparent 18px,rgba(120,180,255,.04) 18px,rgba(120,180,255,.04) 19px);}
+body.wp-confetti::before{background-image:radial-gradient(circle at 15% 20%,rgba(255,100,100,.18) 2px,transparent 2px),radial-gradient(circle at 40% 60%,rgba(100,200,255,.18) 2px,transparent 2px),radial-gradient(circle at 70% 30%,rgba(200,255,100,.18) 2px,transparent 2px),radial-gradient(circle at 85% 80%,rgba(255,200,50,.18) 2px,transparent 2px);background-size:180px 180px;}
+body.wp-neon::before{background:radial-gradient(ellipse at 0% 50%,rgba(255,0,150,.15) 0%,transparent 50%),radial-gradient(ellipse at 100% 50%,rgba(0,255,200,.15) 0%,transparent 50%),radial-gradient(ellipse at 50% 0%,rgba(100,0,255,.12) 0%,transparent 50%);}
+body.wp-marble::before{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0px,rgba(255,255,255,.03) 1px,transparent 1px,transparent 40px),repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0px,rgba(255,255,255,.02) 1px,transparent 1px,transparent 60px);}
 
-    body.theme-sakura {
-      --bg: #fff0f5;
-      --surface: #fff5f8;
-      --border: #f9c0d0;
-      --text: #4a1628;
-      --sub: #b0607a;
-      --accent: #e63f75;
-      --overlay: rgba(230,63,117,0.06);
-      --btn-bg: #ffdde8;
-      --btn-text: #4a1628;
-    }
+/* everything above the pseudo-element */
+.ig-nav,.ig-app,.theme-fab,.theme-panel{position:relative;z-index:1;}
 
-    body.theme-forest {
-      --bg: #0e1a12;
-      --surface: #142019;
-      --border: #1f3225;
-      --text: #d6f0e0;
-      --sub: #7bb592;
-      --accent: #4dd47a;
-      --overlay: rgba(77,212,122,0.06);
-      --btn-bg: #1f3225;
-      --btn-text: #d6f0e0;
-    }
+/* ── NAV ── */
+.ig-nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--nav-bg);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  height:44px;display:flex;align-items:center;
+  transition:background .4s,border-color .4s;
+}
+.ig-nav-inner{
+  max-width:935px;margin:0 auto;width:100%;
+  padding:0 16px;display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{font-size:1.2rem;font-weight:700;letter-spacing:-.5px;color:var(--text);}
+.nav-right{display:flex;gap:20px;align-items:center;}
+.nav-icon{width:24px;height:24px;fill:none;stroke:var(--text);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
-    body.theme-dusk {
-      --bg: #1a0a2e;
-      --surface: #241240;
-      --border: #3a1f60;
-      --text: #ede0ff;
-      --sub: #b08fd6;
-      --accent: #c17cf4;
-      --overlay: rgba(193,124,244,0.07);
-      --btn-bg: #3a1f60;
-      --btn-text: #ede0ff;
-    }
+/* ── MAIN WRAP ── */
+.ig-app{max-width:935px;margin:0 auto;padding:0 16px;}
 
-    body.theme-sand {
-      --bg: #f5ede0;
-      --surface: #faf5ee;
-      --border: #d9c8b4;
-      --text: #3b2e1e;
-      --sub: #8a7060;
-      --accent: #c47a2e;
-      --overlay: rgba(196,122,46,0.06);
-      --btn-bg: #e8d9c4;
-      --btn-text: #3b2e1e;
-    }
+/* ── PROFILE HEADER ── */
+.profile-header{
+  display:flex;align-items:flex-start;gap:28px;
+  padding:24px 0 20px;
+}
+/* Avatar */
+.avatar-col{flex-shrink:0;}
+.avatar-ring-wrap{
+  width:90px;height:90px;border-radius:50%;
+  background:var(--story-ring);padding:2px;cursor:pointer;
+  transition:opacity .15s;
+}
+.avatar-ring-wrap:hover{opacity:.9;}
+.avatar-inner{
+  width:100%;height:100%;border-radius:50%;
+  border:2px solid var(--surface);
+  background:var(--btn-bg);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.6rem;overflow:hidden;
+}
+.avatar-inner img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 
-    body.theme-arctic {
-      --bg: #e8f4ff;
-      --surface: #f0f8ff;
-      --border: #b8d8f4;
-      --text: #0a2a4a;
-      --sub: #5080a0;
-      --accent: #006fd0;
-      --overlay: rgba(0,111,208,0.05);
-      --btn-bg: #cce4f8;
-      --btn-text: #0a2a4a;
-    }
+/* Info col */
+.profile-info{flex:1;min-width:0;}
+.row-username{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.username{font-size:1.18rem;font-weight:300;color:var(--text);letter-spacing:.2px;}
+.btn{
+  padding:5px 14px;border-radius:8px;font-size:.82rem;font-weight:600;
+  border:1px solid var(--btn-border);cursor:pointer;
+  background:var(--btn-bg);color:var(--btn-text);
+  transition:opacity .15s;white-space:nowrap;
+}
+.btn:hover{opacity:.75;}
+.btn-follow{background:var(--accent);color:#fff;border-color:var(--accent);}
+.btn-more{padding:5px 8px;font-size:1rem;}
 
-    body.theme-ember {
-      --bg: #1c0a00;
-      --surface: #2a1000;
-      --border: #4a2010;
-      --text: #ffe5cc;
-      --sub: #c0804a;
-      --accent: #ff6820;
-      --overlay: rgba(255,104,32,0.07);
-      --btn-bg: #4a2010;
-      --btn-text: #ffe5cc;
-    }
+.stats-row{display:flex;gap:0;margin-bottom:12px;}
+.stat{margin-right:40px;}
+.stat-num{font-size:.93rem;font-weight:700;color:var(--text);}
+.stat-label{font-size:.93rem;color:var(--text);}
+.bio-name{font-size:.87rem;font-weight:700;color:var(--text);margin-bottom:2px;}
+.bio-text{font-size:.87rem;color:var(--text);line-height:1.4;}
+.bio-link-row{margin-top:4px;}
+.bio-link{font-size:.87rem;color:#e0f0ff;font-weight:600;text-decoration:none;}
 
-    body.theme-mint {
-      --bg: #eafaf4;
-      --surface: #f3fdf8;
-      --border: #b4e8d2;
-      --text: #0a3324;
-      --sub: #3a8060;
-      --accent: #00b87a;
-      --overlay: rgba(0,184,122,0.05);
-      --btn-bg: #c4eedd;
-      --btn-text: #0a3324;
-    }
+/* mutual followers row */
+.mutual-row{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.mutual-avatars{display:flex;}
+.mutual-avatar{
+  width:20px;height:20px;border-radius:50%;
+  border:1.5px solid var(--surface);margin-right:-6px;
+  background:linear-gradient(135deg,#888,#555);
+  font-size:.6rem;display:flex;align-items:center;justify-content:center;color:#fff;
+}
+.mutual-text{font-size:.74rem;color:var(--sub);margin-left:10px;}
+.mutual-text strong{color:var(--text);}
 
-    /* ────────────────────────────────────────── WALLPAPER BG ─── */
+/* ── HIGHLIGHTS ── */
+.highlights-row{
+  display:flex;gap:16px;padding:14px 0;
+  overflow-x:auto;scrollbar-width:none;
+}
+.highlights-row::-webkit-scrollbar{display:none;}
+.hl-item{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;flex-shrink:0;}
+.hl-ring{
+  width:64px;height:64px;border-radius:50%;
+  border:1px solid var(--border);
+  background:var(--btn-bg);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;
+}
+.hl-new{
+  width:64px;height:64px;border-radius:50%;
+  border:1px solid var(--border);
+  background:var(--surface);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.hl-plus{
+  position:absolute;bottom:0;right:0;
+  width:20px;height:20px;border-radius:50%;
+  background:var(--accent);color:#fff;
+  font-size:1rem;line-height:20px;text-align:center;
+  border:2px solid var(--surface);
+}
+.hl-label{font-size:.7rem;color:var(--text);max-width:68px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
-    body.wp-bokeh    { background-image: radial-gradient(ellipse at 20% 30%, rgba(255,200,80,0.35) 0%, transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(100,180,255,0.35) 0%, transparent 55%), radial-gradient(ellipse at 50% 90%, rgba(255,100,200,0.25) 0%, transparent 50%); }
-    body.wp-aurora   { background-image: linear-gradient(160deg, rgba(0,200,150,0.4) 0%, transparent 40%), linear-gradient(200deg, rgba(80,0,200,0.5) 0%, transparent 50%), linear-gradient(120deg, rgba(0,180,255,0.3) 30%, transparent 70%); }
-    body.wp-geo      { background-image: repeating-linear-gradient(60deg, transparent, transparent 28px, rgba(var(--accent-raw,.5,.5,.5),.07) 28px, rgba(.5,.5,.5,.07) 29px), repeating-linear-gradient(-60deg, transparent, transparent 28px, rgba(.5,.5,.5,.07) 28px, rgba(.5,.5,.5,.07) 29px); }
-    body.wp-rain     { background-image: repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(100,180,255,.08) 38px, rgba(100,180,255,.08) 39px), repeating-linear-gradient(180deg, transparent, transparent 20px, rgba(100,180,255,.05) 20px, rgba(100,180,255,.05) 21px); }
-    body.wp-confetti { background-image: radial-gradient(circle at 15% 20%, rgba(255,100,100,.2) 2px, transparent 2px), radial-gradient(circle at 40% 60%, rgba(100,200,255,.2) 2px, transparent 2px), radial-gradient(circle at 70% 30%, rgba(200,255,100,.2) 2px, transparent 2px), radial-gradient(circle at 85% 80%, rgba(255,200,50,.2) 2px, transparent 2px); background-size: 200px 200px; }
+/* ── TABS ── */
+.profile-tabs{display:flex;border-top:1px solid var(--border);}
+.tab{
+  flex:1;padding:11px 0;display:flex;align-items:center;justify-content:center;
+  border-top:1px solid transparent;margin-top:-1px;cursor:pointer;
+  transition:border-color .15s;
+}
+.tab.active{border-color:var(--text);}
+.tab svg{width:22px;height:22px;fill:none;stroke:var(--sub);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .15s;}
+.tab.active svg{stroke:var(--text);}
 
-    /* ────────────────────────────────────────── LAYOUT ─── */
+/* ── POST GRID ── */
+.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding-bottom:80px;}
+.post-cell{
+  aspect-ratio:1;background:var(--btn-bg);
+  position:relative;overflow:hidden;cursor:pointer;
+}
+.post-bg{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;
+  background:var(--btn-bg);
+  transition:filter .2s;
+}
+.post-cell:hover .post-bg{filter:brightness(.7);}
+/* video play icon */
+.post-reel-icon{
+  position:absolute;top:7px;right:7px;
+  color:#fff;opacity:.9;
+  width:16px;height:16px;
+}
+/* caption overlay */
+.post-cap{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:22px 8px 7px;
+  background:linear-gradient(transparent,rgba(0,0,0,.55));
+  font-size:.68rem;font-weight:500;color:#fff;
+  line-height:1.3;
+  opacity:0;transition:opacity .2s;
+}
+.post-cell:hover .post-cap{opacity:1;}
+/* hover stats */
+.post-stats{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;gap:18px;
+  color:#fff;font-size:.82rem;font-weight:700;
+  opacity:0;transition:opacity .2s;pointer-events:none;
+}
+.post-cell:hover .post-stats{opacity:1;}
 
-    .ig-app { max-width: 935px; margin: 0 auto; padding: 0 20px; }
+/* ── THEME FAB ── */
+.theme-fab{
+  position:fixed;bottom:22px;right:22px;z-index:200;
+  width:50px;height:50px;border-radius:50%;
+  background:var(--accent);color:#fff;border:none;cursor:pointer;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;transition:transform .2s;
+}
+.theme-fab:hover{transform:scale(1.1);}
 
-    /* Top nav */
-    .ig-nav {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px; border-bottom: 1px solid var(--border);
-      background: var(--surface); position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(12px);
-      transition: background 0.4s, border-color 0.4s;
-    }
-    .nav-logo { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; color: var(--text); }
-    .nav-icons { display: flex; gap: 18px; color: var(--text); }
-    .nav-icons svg { width: 24px; height: 24px; fill: none; stroke: var(--text); stroke-width: 1.8; }
+/* ── THEME PANEL ── */
+.theme-panel{
+  position:fixed;bottom:82px;right:18px;z-index:199;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:16px;
+  width:288px;max-height:80vh;overflow-y:auto;
+  box-shadow:0 12px 40px rgba(0,0,0,.5);
+  transform:translateY(16px) scale(.96);
+  opacity:0;pointer-events:none;
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1),opacity .2s;
+  scrollbar-width:thin;
+}
+.theme-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all;}
+.p-title{font-size:.65rem;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:var(--sub);margin-bottom:10px;margin-top:4px;}
 
-    /* Profile header */
-    .profile-header {
-      display: flex; align-items: flex-start; gap: 40px;
-      padding: 36px 0 28px; border-bottom: 1px solid var(--border);
-    }
-    .avatar-wrap { position: relative; flex-shrink: 0; }
-    .avatar-ring {
-      width: 90px; height: 90px; border-radius: 50%;
-      background: var(--story-ring); padding: 3px; cursor: pointer;
-    }
-    .avatar-ring img {
-      width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--surface);
-      object-fit: cover; display: block;
-    }
-    .avatar-placeholder {
-      width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--surface);
-      background: var(--btn-bg);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.2rem;
-    }
-    .profile-info { flex: 1; }
-    .profile-row1 { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
-    .username { font-size: 1.25rem; font-weight: 400; color: var(--text); }
-    .btn {
-      padding: 6px 16px; border-radius: 8px; font-size: 0.82rem; font-weight: 600;
-      border: 1px solid var(--border); cursor: pointer;
-      background: var(--btn-bg); color: var(--btn-text);
-      transition: opacity 0.15s;
-    }
-    .btn:hover { opacity: 0.75; }
-    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .stats { display: flex; gap: 32px; margin-bottom: 14px; }
-    .stat-num { font-size: 1rem; font-weight: 700; color: var(--text); }
-    .stat-label { font-size: 0.85rem; color: var(--text); }
-    .bio-name { font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 4px; }
-    .bio-text { font-size: 0.88rem; color: var(--text); line-height: 1.5; }
-    .bio-link { font-size: 0.88rem; color: var(--accent); font-weight: 600; }
+.color-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:16px;}
+.c-swatch{
+  aspect-ratio:1;border-radius:8px;cursor:pointer;
+  border:2px solid transparent;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding-bottom:3px;
+  transition:transform .15s,border-color .15s;position:relative;
+}
+.c-swatch:hover{transform:scale(1.1);}
+.c-swatch.active{border-color:var(--accent);}
+.c-swatch.active::after{content:'✓';position:absolute;top:3px;right:4px;font-size:.65rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6);}
+.c-label{font-size:.48rem;font-weight:700;color:rgba(255,255,255,.85);text-shadow:0 1px 3px rgba(0,0,0,.6);text-transform:uppercase;letter-spacing:.4px;}
 
-    /* Stories row */
-    .stories-row {
-      display: flex; gap: 20px; padding: 18px 0;
-      border-bottom: 1px solid var(--border); overflow-x: auto;
-    }
-    .story-item { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; }
-    .story-circle {
-      width: 56px; height: 56px; border-radius: 50%;
-      background: var(--btn-bg); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem;
-    }
-    .story-plus {
-      width: 56px; height: 56px; border-radius: 50%;
-      background: var(--btn-bg); border: 2px dashed var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; color: var(--sub); cursor: pointer;
-    }
-    .story-label { font-size: 0.7rem; color: var(--text); max-width: 56px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wp-grid2{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.wp-card{
+  aspect-ratio:1;border-radius:8px;cursor:pointer;
+  border:2px solid transparent;
+  overflow:hidden;position:relative;
+  transition:transform .15s,border-color .15s;
+}
+.wp-card:hover{transform:scale(1.07);}
+.wp-card.active{border-color:var(--accent);}
+.wp-card.active::after{content:'✓';position:absolute;top:3px;right:4px;font-size:.65rem;color:#fff;background:var(--accent);width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:14px;text-align:center;}
+.wp-preview{position:absolute;inset:0;}
+.wp-name2{position:absolute;bottom:0;left:0;right:0;font-size:.46rem;font-weight:700;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7);padding:3px 4px;background:linear-gradient(transparent,rgba(0,0,0,.5));text-transform:uppercase;letter-spacing:.4px;}
 
-    /* Tabs */
-    .profile-tabs { display: flex; border-bottom: 1px solid var(--border); margin-top: 2px; }
-    .tab {
-      flex: 1; text-align: center; padding: 14px 0;
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 1px;
-      text-transform: uppercase; color: var(--sub);
-      border-bottom: 2px solid transparent; cursor: pointer;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .tab.active { color: var(--text); border-color: var(--text); }
-    .tab:hover:not(.active) { color: var(--text); }
+/* wallpaper preview swatches */
+.wp-p-none    {background:#111;}
+.wp-p-bokeh   {background:#1a1a2e;background-image:radial-gradient(ellipse at 20% 30%,rgba(255,180,60,.6) 0%,transparent 50%),radial-gradient(ellipse at 80% 70%,rgba(80,160,255,.6) 0%,transparent 50%);}
+.wp-p-aurora  {background:#0d1b2a;background-image:linear-gradient(160deg,rgba(0,200,140,.7) 0%,transparent 40%),linear-gradient(200deg,rgba(80,0,200,.8) 0%,transparent 50%);}
+.wp-p-geo     {background:#111;background-image:repeating-linear-gradient(60deg,transparent,transparent 7px,rgba(255,255,255,.1) 7px,rgba(255,255,255,.1) 8px),repeating-linear-gradient(-60deg,transparent,transparent 7px,rgba(255,255,255,.1) 7px,rgba(255,255,255,.1) 8px);}
+.wp-p-rain    {background:#0a1628;background-image:repeating-linear-gradient(90deg,transparent,transparent 9px,rgba(100,180,255,.2) 9px,rgba(100,180,255,.2) 10px),repeating-linear-gradient(180deg,transparent,transparent 5px,rgba(100,180,255,.1) 5px,rgba(100,180,255,.1) 6px);}
+.wp-p-confetti{background:#fafafa;background-image:radial-gradient(circle at 15% 20%,rgba(255,100,100,.8) 2px,transparent 2px),radial-gradient(circle at 50% 60%,rgba(100,200,255,.8) 2px,transparent 2px),radial-gradient(circle at 80% 30%,rgba(200,255,100,.8) 2px,transparent 2px);background-size:40px 40px;}
+.wp-p-neon    {background:#050510;background-image:radial-gradient(ellipse at 0% 50%,rgba(255,0,150,.5) 0%,transparent 50%),radial-gradient(ellipse at 100% 50%,rgba(0,255,200,.5) 0%,transparent 50%);}
+.wp-p-marble  {background:#1a1a1a;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.08) 0px,rgba(255,255,255,.08) 1px,transparent 1px,transparent 20px),repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0px,rgba(255,255,255,.05) 1px,transparent 1px,transparent 30px);}
 
-    /* Grid */
-    .post-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; padding: 3px 0 80px; }
-    .post-cell {
-      aspect-ratio: 1; background: var(--btn-bg);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; cursor: pointer; position: relative; overflow: hidden;
-      transition: filter 0.2s;
-    }
-    .post-cell:hover .post-overlay { opacity: 1; }
-    .post-overlay {
-      position: absolute; inset: 0; background: rgba(0,0,0,0.3);
-      display: flex; align-items: center; justify-content: center;
-      gap: 18px; opacity: 0; transition: opacity 0.2s; color: #fff;
-      font-size: 0.85rem; font-weight: 700;
-    }
-    .post-emoji { font-size: 2.5rem; pointer-events: none; user-select: none; }
-
-    /* ────────────────────────────────────────── THEME PANEL ─── */
-
-    .theme-fab {
-      position: fixed; bottom: 24px; right: 24px; z-index: 200;
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--accent); color: #fff;
-      border: none; cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; transition: transform 0.2s;
-    }
-    .theme-fab:hover { transform: scale(1.08); }
-
-    .theme-panel {
-      position: fixed; bottom: 88px; right: 20px; z-index: 199;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 18px; padding: 18px;
-      width: 300px; max-height: 80vh; overflow-y: auto;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
-      transform: translateY(20px) scale(0.95);
-      opacity: 0; pointer-events: none;
-      transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), opacity 0.2s;
-    }
-    .theme-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
-    .panel-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--sub); margin-bottom: 12px; }
-
-    .theme-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 18px; }
-    .theme-swatch {
-      aspect-ratio: 1; border-radius: 10px; cursor: pointer;
-      border: 2px solid transparent; display: flex; align-items: center; justify-content: center;
-      font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-      transition: transform 0.15s, border-color 0.15s;
-      position: relative; overflow: hidden;
-    }
-    .theme-swatch:hover { transform: scale(1.08); }
-    .theme-swatch.active { border-color: var(--accent); }
-    .theme-swatch.active::after {
-      content: '✓'; position: absolute; bottom: 3px; right: 5px;
-      font-size: 0.7rem; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    }
-    .swatch-label { color: rgba(255,255,255,0.9); text-shadow: 0 1px 4px rgba(0,0,0,0.5); font-size: 0.55rem; text-align: center; padding: 2px; }
-
-    /* Wallpaper options */
-    .wp-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
-    .wp-card {
-      aspect-ratio: 1.2; border-radius: 10px; cursor: pointer;
-      border: 2px solid transparent; overflow: hidden;
-      transition: transform 0.15s, border-color 0.15s;
-      position: relative; display: flex; align-items: flex-end;
-    }
-    .wp-card:hover { transform: scale(1.05); }
-    .wp-card.active { border-color: var(--accent); }
-    .wp-card.active::after {
-      content: '✓'; position: absolute; top: 6px; right: 7px;
-      font-size: 0.75rem; color: #fff; background: var(--accent);
-      width: 18px; height: 18px; border-radius: 50%; display: flex;
-      align-items: center; justify-content: center; text-align: center; line-height: 18px;
-    }
-    .wp-name { font-size: 0.58rem; font-weight: 700; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.6); padding: 5px 6px; background: linear-gradient(transparent, rgba(0,0,0,0.4)); width: 100%; text-transform: uppercase; letter-spacing: 0.5px; }
-
-    /* Previews for wp cards */
-    .wp-preview { position: absolute; inset: 0; }
-    .wp-prev-none    { background: var(--bg); }
-    .wp-prev-bokeh   { background: #1a1a2e; background-image: radial-gradient(ellipse at 20% 30%, rgba(255,200,80,.5) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(100,180,255,.5) 0%, transparent 50%), radial-gradient(ellipse at 50% 90%, rgba(255,100,200,.4) 0%, transparent 45%); }
-    .wp-prev-aurora  { background: #0d1b2a; background-image: linear-gradient(160deg, rgba(0,200,150,.6) 0%, transparent 40%), linear-gradient(200deg, rgba(80,0,200,.7) 0%, transparent 50%), linear-gradient(120deg, rgba(0,180,255,.4) 30%, transparent 70%); }
-    .wp-prev-geo     { background: #1a1a1a; background-image: repeating-linear-gradient(60deg, transparent, transparent 8px, rgba(255,255,255,.07) 8px, rgba(255,255,255,.07) 9px), repeating-linear-gradient(-60deg, transparent, transparent 8px, rgba(255,255,255,.07) 8px, rgba(255,255,255,.07) 9px); }
-    .wp-prev-rain    { background: #0a1628; background-image: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(100,180,255,.15) 10px, rgba(100,180,255,.15) 11px), repeating-linear-gradient(180deg, transparent, transparent 6px, rgba(100,180,255,.08) 6px, rgba(100,180,255,.08) 7px); }
-    .wp-prev-confetti{ background: #fff8f8; background-image: radial-gradient(circle at 15% 20%, rgba(255,100,100,.6) 2px, transparent 2px), radial-gradient(circle at 40% 60%, rgba(100,200,255,.6) 2px, transparent 2px), radial-gradient(circle at 70% 30%, rgba(200,255,100,.6) 2px, transparent 2px), radial-gradient(circle at 85% 80%, rgba(255,200,50,.6) 2px, transparent 2px); background-size: 50px 50px; }
-
-    /* ────────────────────────────────────────── RESPONSIVE ─── */
-    @media (max-width: 600px) {
-      .profile-header { gap: 20px; }
-      .avatar-ring { width: 72px; height: 72px; }
-      .stats { gap: 18px; }
-      .username { font-size: 1rem; }
-      .theme-panel { width: calc(100vw - 32px); right: 16px; }
-    }
-  </style>
+@media(max-width:600px){
+  .profile-header{gap:16px;}
+  .avatar-ring-wrap{width:76px;height:76px;}
+  .stats-row{gap:0;}
+  .stat{margin-right:22px;}
+  .username{font-size:1rem;}
+  .theme-panel{width:calc(100vw - 28px);right:14px;}
+}
+</style>
 </head>
-<body class="theme-default">
+<body class="theme-dark">
 
-<!-- ── Nav ── -->
+<!-- NAV -->
 <div class="ig-nav">
-  <div class="ig-app" style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:935px;margin:0 auto;">
-    <span class="nav-logo">WallpaperGram</span>
-    <div class="nav-icons">
-      <svg viewBox="0 0 24 24"><path d="M21 21l-5-5m0 0A7 7 0 1 0 6 6a7 7 0 0 0 10 10z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+  <div class="ig-nav-inner">
+    <span class="nav-logo">thisisabbs</span>
+    <div class="nav-right">
+      <svg class="nav-icon" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </div>
   </div>
 </div>
 
 <div class="ig-app">
 
-  <!-- ── Profile Header ── -->
+  <!-- PROFILE HEADER -->
   <div class="profile-header">
-    <div class="avatar-wrap">
-      <div class="avatar-ring">
-        <div class="avatar-placeholder">🧑‍🎨</div>
+    <div class="avatar-col">
+      <div class="avatar-ring-wrap">
+        <div class="avatar-inner">🏋️‍♀️</div>
       </div>
     </div>
     <div class="profile-info">
-      <div class="profile-row1">
-        <span class="username">wallpaper_studio</span>
-        <button class="btn btn-primary">Follow</button>
+      <div class="row-username">
+        <span class="username">thisisabbs</span>
+        <span style="color:var(--sub);font-size:.9rem;">···</span>
+        <button class="btn btn-follow">Follow</button>
         <button class="btn">Message</button>
-        <button class="btn">⋯</button>
+        <button class="btn btn-more">⌄</button>
       </div>
-      <div class="stats">
-        <div><span class="stat-num">148</span>&nbsp;<span class="stat-label">posts</span></div>
-        <div><span class="stat-num">12.4K</span>&nbsp;<span class="stat-label">followers</span></div>
-        <div><span class="stat-num">394</span>&nbsp;<span class="stat-label">following</span></div>
+      <div class="stats-row">
+        <div class="stat"><span class="stat-num">21 </span><span class="stat-label">posts</span></div>
+        <div class="stat"><span class="stat-num" style="font-weight:700">610 </span><span class="stat-label">followers</span></div>
+        <div class="stat"><span class="stat-num">49 </span><span class="stat-label">following</span></div>
       </div>
-      <div class="bio-name">Wallpaper Studio ✦</div>
-      <div class="bio-text">Turning profiles into art 🎨<br>Themes · Textures · Vibes<br>Pick your wallpaper below 👇</div>
-      <a class="bio-link" href="#">wallpaperstudio.co</a>
+      <div class="bio-name">abbey</div>
+      <div class="bio-text">I help autistic women lose <strong>20lbs</strong> in 24 weeks</div>
+      <div class="mutual-row">
+        <div class="mutual-avatars">
+          <div class="mutual-avatar">😊</div>
+          <div class="mutual-avatar">😎</div>
+          <div class="mutual-avatar">🙂</div>
+        </div>
+        <span class="mutual-text">Followed by <strong>mrs_rjacob</strong>, <strong>danyscday_</strong> + 9 more</span>
+      </div>
     </div>
   </div>
 
-  <!-- ── Highlights ── -->
-  <div class="stories-row">
-    <div class="story-item">
-      <div class="story-plus">＋</div>
-      <span class="story-label">New</span>
+  <!-- HIGHLIGHTS -->
+  <div class="highlights-row">
+    <div class="hl-item">
+      <div class="hl-new">
+        <span style="font-size:2rem;color:var(--sub);">🏋️</span>
+        <div class="hl-plus">+</div>
+      </div>
+      <span class="hl-label">New</span>
     </div>
-    <div class="story-item"><div class="story-circle">🌸</div><span class="story-label">Sakura</span></div>
-    <div class="story-item"><div class="story-circle">🌲</div><span class="story-label">Forest</span></div>
-    <div class="story-item"><div class="story-circle">🌌</div><span class="story-label">Dusk</span></div>
-    <div class="story-item"><div class="story-circle">🏜️</div><span class="story-label">Sand</span></div>
-    <div class="story-item"><div class="story-circle">🧊</div><span class="story-label">Arctic</span></div>
-    <div class="story-item"><div class="story-circle">🔥</div><span class="story-label">Ember</span></div>
-    <div class="story-item"><div class="story-circle">🍃</div><span class="story-label">Mint</span></div>
+    <div class="hl-item"><div class="hl-ring">🥣</div><span class="hl-label">Meals</span></div>
+    <div class="hl-item"><div class="hl-ring">💪</div><span class="hl-label">Workouts</span></div>
+    <div class="hl-item"><div class="hl-ring">🧠</div><span class="hl-label">Autism</span></div>
+    <div class="hl-item"><div class="hl-ring">📉</div><span class="hl-label">Progress</span></div>
+    <div class="hl-item"><div class="hl-ring">🛒</div><span class="hl-label">Grocery</span></div>
   </div>
 
-  <!-- ── Tabs ── -->
+  <!-- TABS -->
   <div class="profile-tabs">
-    <div class="tab active">▦ Posts</div>
-    <div class="tab">⊞ Reels</div>
-    <div class="tab">🏷 Tagged</div>
+    <div class="tab active" data-tab="posts">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    </div>
+    <div class="tab" data-tab="reels">
+      <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </div>
+    <div class="tab" data-tab="collab">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div class="tab" data-tab="tagged">
+      <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+    </div>
   </div>
 
-  <!-- ── Post Grid ── -->
+  <!-- POST GRID -->
   <div class="post-grid" id="postGrid"></div>
 
-</div><!-- end ig-app -->
+</div><!-- /ig-app -->
 
-<!-- ── Theme FAB ── -->
-<button class="theme-fab" id="themeFab" title="Change wallpaper">🎨</button>
+<!-- FAB -->
+<button class="theme-fab" id="themeFab" title="Change theme & wallpaper">🎨</button>
 
-<!-- ── Theme Panel ── -->
+<!-- PANEL -->
 <div class="theme-panel" id="themePanel">
-
-  <div class="panel-title">🎨 Color Theme</div>
-  <div class="theme-grid" id="colorGrid">
-    <!-- injected by JS -->
-  </div>
-
-  <div class="panel-title">🖼 Background Wallpaper</div>
-  <div class="wp-grid" id="wpGrid">
-    <!-- injected by JS -->
-  </div>
-
+  <div class="p-title">Color Theme</div>
+  <div class="color-grid" id="colorGrid"></div>
+  <div class="p-title">Background Wallpaper</div>
+  <div class="wp-grid2" id="wpGrid"></div>
 </div>
 
 <script>
-  /* ── DATA ── */
-  const COLOR_THEMES = [
-    { id:'default',  label:'Clean',   bg:'#fafafa',  accent:'#0095f6' },
-    { id:'night',    label:'Night',   bg:'#0d0d0d',  accent:'#3b9eff' },
-    { id:'sakura',   label:'Sakura',  bg:'#fff0f5',  accent:'#e63f75' },
-    { id:'forest',   label:'Forest',  bg:'#0e1a12',  accent:'#4dd47a' },
-    { id:'dusk',     label:'Dusk',    bg:'#1a0a2e',  accent:'#c17cf4' },
-    { id:'sand',     label:'Sand',    bg:'#f5ede0',  accent:'#c47a2e' },
-    { id:'arctic',   label:'Arctic',  bg:'#e8f4ff',  accent:'#006fd0' },
-    { id:'ember',    label:'Ember',   bg:'#1c0a00',  accent:'#ff6820' },
-    { id:'mint',     label:'Mint',    bg:'#eafaf4',  accent:'#00b87a' },
-  ];
+/* ── POST DATA ── */
+const POSTS = [
+  {e:'🍱',cap:'Meal prep slop 🤙',reel:true,likes:312,cmts:18},
+  {e:'🛒',cap:'Calorie deficit grocery haul as an autistic woman.',reel:true,likes:520,cmts:34},
+  {e:'💪',cap:'I lost 20lbs & never gained it back.',reel:false,likes:1840,cmts:92},
+  {e:'🥣',cap:'Best overnight oats',reel:true,likes:430,cmts:27},
+  {e:'🚗',cap:'This is your hack to fatloss 🥴',reel:true,likes:670,cmts:41},
+  {e:'🥗',cap:'Lunch for fatloss',reel:true,likes:290,cmts:15},
+  {e:'🐕',cap:'International Dachshund Day',reel:true,likes:850,cmts:63},
+  {e:'📸',cap:'Progress check',reel:true,likes:1200,cmts:88},
+  {e:'💉',cap:'Botox recommendations?',reel:true,likes:380,cmts:52},
+  {e:'⚖️',cap:'System for weightloss',reel:true,likes:920,cmts:74},
+  {e:'🐶',cap:'Meet Bruno!',reel:true,likes:1100,cmts:95},
+  {e:'🧊',cap:'Fridge tour',reel:true,likes:460,cmts:31},
+  {e:'🦆',cap:'POV: you sound like Daffy Duck',reel:true,likes:2100,cmts:143},
+  {e:'✨',cap:"You're never gonna feel ready",reel:true,likes:730,cmts:58},
+  {e:'🚗',cap:'Macros. Let\'s talk about it.',reel:true,likes:540,cmts:39},
+  {e:'🧢',cap:"We get it. You're a fucking big back.",reel:true,likes:1650,cmts:118},
+  {e:'🎯',cap:'Your deficit needs a reset',reel:true,likes:480,cmts:29},
+  {e:'🥑',cap:'High protein snack ideas',reel:true,likes:610,cmts:44},
+];
 
-  const WALLPAPERS = [
-    { id:'none',     label:'None',    previewClass:'wp-prev-none' },
-    { id:'bokeh',    label:'Bokeh',   previewClass:'wp-prev-bokeh' },
-    { id:'aurora',   label:'Aurora',  previewClass:'wp-prev-aurora' },
-    { id:'geo',      label:'Geo',     previewClass:'wp-prev-geo' },
-    { id:'rain',     label:'Rain',    previewClass:'wp-prev-rain' },
-    { id:'confetti', label:'Confetti',previewClass:'wp-prev-confetti' },
-  ];
+/* Build grid */
+const grid = document.getElementById('postGrid');
+POSTS.forEach(p => {
+  const cell = document.createElement('div');
+  cell.className = 'post-cell';
+  cell.innerHTML = `
+    <div class="post-bg">${p.e}</div>
+    ${p.reel ? `<svg class="post-reel-icon" viewBox="0 0 24 24" fill="white" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>` : ''}
+    <div class="post-stats">
+      <span>♥ ${p.likes.toLocaleString()}</span>
+      <span>💬 ${p.cmts}</span>
+    </div>
+    <div class="post-cap">${p.cap}</div>
+  `;
+  grid.appendChild(cell);
+});
 
-  const POSTS = [
-    '🌸','🌌','🏜️','🔥','🌲','🧊','🌊','🌈','🌙','🎆','🍂','🌺','🌃','⛰️','🌅','🏔️','🌻','🌿'
-  ];
+/* ── THEMES ── */
+const COLOR_THEMES = [
+  {id:'dark',    label:'Dark',   bg:'#000',      ac:'#3b9eff'},
+  {id:'light',   label:'Light',  bg:'#fafafa',   ac:'#0095f6'},
+  {id:'sakura',  label:'Sakura', bg:'#1a0010',   ac:'#e63f75'},
+  {id:'forest',  label:'Forest', bg:'#030f06',   ac:'#4dd47a'},
+  {id:'dusk',    label:'Dusk',   bg:'#0a0020',   ac:'#c17cf4'},
+  {id:'sand',    label:'Sand',   bg:'#1e1608',   ac:'#c47a2e'},
+  {id:'arctic',  label:'Arctic', bg:'#020d1a',   ac:'#3b9eff'},
+  {id:'ember',   label:'Ember',  bg:'#150300',   ac:'#ff6820'},
+  {id:'mint',    label:'Mint',   bg:'#001510',   ac:'#00b87a'},
+  {id:'default', label:'IG',     bg:'#fafafa',   ac:'#0095f6'},
+];
 
-  /* ── STATE ── */
-  let activeColor = 'default';
-  let activeWp    = 'none';
+const WALLPAPERS = [
+  {id:'none',     label:'None',     pc:'wp-p-none'},
+  {id:'bokeh',    label:'Bokeh',    pc:'wp-p-bokeh'},
+  {id:'aurora',   label:'Aurora',   pc:'wp-p-aurora'},
+  {id:'geo',      label:'Geo',      pc:'wp-p-geo'},
+  {id:'rain',     label:'Rain',     pc:'wp-p-rain'},
+  {id:'confetti', label:'Confetti', pc:'wp-p-confetti'},
+  {id:'neon',     label:'Neon',     pc:'wp-p-neon'},
+  {id:'marble',   label:'Marble',   pc:'wp-p-marble'},
+];
 
-  /* ── BUILD POST GRID ── */
-  const grid = document.getElementById('postGrid');
-  POSTS.forEach((emoji, i) => {
-    const cell = document.createElement('div');
-    cell.className = 'post-cell';
-    const ov = document.createElement('div');
-    ov.className = 'post-overlay';
-    ov.innerHTML = `♥ ${Math.floor(Math.random()*9+1)*100}&nbsp;&nbsp;💬 ${Math.floor(Math.random()*50+5)}`;
-    const em = document.createElement('div');
-    em.className = 'post-emoji';
-    em.textContent = emoji;
-    cell.appendChild(em);
-    cell.appendChild(ov);
-    grid.appendChild(cell);
+let activeColor = 'dark';
+let activeWp    = 'none';
+
+/* Build color swatches */
+const cg = document.getElementById('colorGrid');
+COLOR_THEMES.forEach(t => {
+  const sw = document.createElement('div');
+  sw.className = 'c-swatch' + (t.id===activeColor?' active':'');
+  sw.style.background = `linear-gradient(135deg,${t.bg} 30%,${t.ac})`;
+  sw.innerHTML = `<span class="c-label">${t.label}</span>`;
+  sw.addEventListener('click',()=>{
+    document.querySelectorAll('.c-swatch').forEach(s=>s.classList.remove('active'));
+    sw.classList.add('active');
+    activeColor = t.id;
+    applyTheme();
   });
+  cg.appendChild(sw);
+});
 
-  /* ── BUILD COLOR SWATCHES ── */
-  const colorGrid = document.getElementById('colorGrid');
-  COLOR_THEMES.forEach(t => {
-    const sw = document.createElement('div');
-    sw.className = 'theme-swatch' + (t.id === activeColor ? ' active' : '');
-    sw.style.background = `linear-gradient(135deg, ${t.bg} 40%, ${t.accent} 100%)`;
-    sw.innerHTML = `<span class="swatch-label">${t.label}</span>`;
-    sw.title = t.label;
-    sw.addEventListener('click', () => {
-      document.querySelectorAll('.theme-swatch').forEach(s => s.classList.remove('active'));
-      sw.classList.add('active');
-      activeColor = t.id;
-      applyTheme();
-    });
-    colorGrid.appendChild(sw);
+/* Build wallpaper cards */
+const wg = document.getElementById('wpGrid');
+WALLPAPERS.forEach(w => {
+  const card = document.createElement('div');
+  card.className = 'wp-card' + (w.id===activeWp?' active':'');
+  card.innerHTML = `<div class="wp-preview ${w.pc}"></div><span class="wp-name2">${w.label}</span>`;
+  card.addEventListener('click',()=>{
+    document.querySelectorAll('.wp-card').forEach(c=>c.classList.remove('active'));
+    card.classList.add('active');
+    activeWp = w.id;
+    applyTheme();
   });
+  wg.appendChild(card);
+});
 
-  /* ── BUILD WALLPAPER CARDS ── */
-  const wpGrid = document.getElementById('wpGrid');
-  WALLPAPERS.forEach(w => {
-    const card = document.createElement('div');
-    card.className = 'wp-card' + (w.id === activeWp ? ' active' : '');
-    card.innerHTML = `<div class="wp-preview ${w.previewClass}"></div><span class="wp-name">${w.label}</span>`;
-    card.addEventListener('click', () => {
-      document.querySelectorAll('.wp-card').forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-      activeWp = w.id;
-      applyTheme();
-    });
-    wpGrid.appendChild(card);
-  });
+function applyTheme(){
+  document.body.className = '';
+  document.body.classList.add('theme-'+activeColor);
+  if(activeWp!=='none') document.body.classList.add('wp-'+activeWp);
+}
 
-  /* ── APPLY THEME ── */
-  function applyTheme() {
-    const body = document.body;
-    // remove old classes
-    body.className = '';
-    body.classList.add(`theme-${activeColor}`);
-    if (activeWp !== 'none') body.classList.add(`wp-${activeWp}`);
+/* FAB */
+const fab   = document.getElementById('themeFab');
+const panel = document.getElementById('themePanel');
+fab.addEventListener('click',e=>{
+  e.stopPropagation();
+  panel.classList.toggle('open');
+  fab.style.transform = panel.classList.contains('open') ? 'rotate(25deg) scale(1.1)' : '';
+});
+document.addEventListener('click',e=>{
+  if(!panel.contains(e.target)&&e.target!==fab){
+    panel.classList.remove('open');
+    fab.style.transform = '';
   }
+});
 
-  /* ── FAB TOGGLE ── */
-  const fab   = document.getElementById('themeFab');
-  const panel = document.getElementById('themePanel');
-  fab.addEventListener('click', () => {
-    panel.classList.toggle('open');
-    fab.style.transform = panel.classList.contains('open') ? 'rotate(30deg) scale(1.08)' : '';
+/* Tabs */
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
   });
-  document.addEventListener('click', e => {
-    if (!panel.contains(e.target) && e.target !== fab) {
-      panel.classList.remove('open');
-      fab.style.transform = '';
-    }
-  });
-
-  /* ── TABS ── */
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-    });
-  });
+});
 </script>
 </body>
 </html>
