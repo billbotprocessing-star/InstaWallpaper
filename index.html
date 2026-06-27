@@ -19,15 +19,15 @@ body{
   transition:background .5s,color .4s;
 }
 
-body.theme-dark{--bg:#000;--surface:#000;--nav-bg:rgba(0,0,0,.92);--border:#262626;--text:#f5f5f5;--sub:#a8a8a8;--accent:#0095f6;--btn-bg:#262626;--btn-text:#f5f5f5;--btn-border:#363636;}
-body.theme-light{--bg:#fafafa;--surface:#fff;--nav-bg:rgba(255,255,255,.95);--border:#dbdbdb;--text:#262626;--sub:#737373;--accent:#0095f6;--btn-bg:#efefef;--btn-text:#262626;--btn-border:#dbdbdb;}
-body.theme-sakura{--bg:#1a0010;--surface:#200015;--nav-bg:rgba(26,0,16,.95);--border:#4a0030;--text:#ffeaf4;--sub:#f0a8c8;--accent:#e63f75;--btn-bg:#300020;--btn-text:#ffeaf4;--btn-border:#5a0040;}
-body.theme-forest{--bg:#030f06;--surface:#061409;--nav-bg:rgba(3,15,6,.95);--border:#1a3520;--text:#d9ffe6;--sub:#8fd8a8;--accent:#4dd47a;--btn-bg:#0e2415;--btn-text:#d9ffe6;--btn-border:#245030;}
-body.theme-dusk{--bg:#0a0020;--surface:#100030;--nav-bg:rgba(10,0,32,.95);--border:#2a1060;--text:#f0e6ff;--sub:#b99be6;--accent:#c17cf4;--btn-bg:#1a0850;--btn-text:#f0e6ff;--btn-border:#3a1880;}
-body.theme-sand{--bg:#1e1608;--surface:#261c0a;--nav-bg:rgba(30,22,8,.95);--border:#4a3818;--text:#fff0c8;--sub:#c9a76f;--accent:#c47a2e;--btn-bg:#352808;--btn-text:#fff0c8;--btn-border:#5a4828;}
-body.theme-arctic{--bg:#020d1a;--surface:#051525;--nav-bg:rgba(2,13,26,.95);--border:#0e3060;--text:#e6f6ff;--sub:#8fc9f5;--accent:#3b9eff;--btn-bg:#0a2040;--btn-text:#e6f6ff;--btn-border:#144080;}
-body.theme-ember{--bg:#150300;--surface:#200500;--nav-bg:rgba(21,3,0,.95);--border:#4a1000;--text:#ffe2d1;--sub:#ff9a74;--accent:#ff6820;--btn-bg:#300800;--btn-text:#ffe2d1;--btn-border:#5a1800;}
-body.theme-mint{--bg:#001510;--surface:#001e18;--nav-bg:rgba(0,21,16,.95);--border:#004030;--text:#d8fff2;--sub:#79e6bd;--accent:#00b87a;--btn-bg:#003028;--btn-text:#d8fff2;--btn-border:#005040;}
+body.theme-dark{--bg:#111827;--surface:#161f2e;--nav-bg:rgba(17,24,39,.92);--border:#2b3648;--text:#f8fafc;--sub:#aab6c5;--accent:#60a5fa;--btn-bg:#243044;--btn-text:#f8fafc;--btn-border:#344258;}
+body.theme-light{--bg:#f3f4f6;--surface:#ffffff;--nav-bg:rgba(255,255,255,.94);--border:#d1d5db;--text:#1f2937;--sub:#6b7280;--accent:#2563eb;--btn-bg:#e5e7eb;--btn-text:#1f2937;--btn-border:#d1d5db;}
+body.theme-sakura{--bg:#3b1728;--surface:#4a1f33;--nav-bg:rgba(59,23,40,.92);--border:#70344f;--text:#fff1f6;--sub:#e9a9bf;--accent:#f472b6;--btn-bg:#5c2940;--btn-text:#fff1f6;--btn-border:#793a57;}
+body.theme-forest{--bg:#13251a;--surface:#1b3324;--nav-bg:rgba(19,37,26,.92);--border:#31543d;--text:#effaf1;--sub:#9fcfaa;--accent:#4ade80;--btn-bg:#254532;--btn-text:#effaf1;--btn-border:#3a6047;}
+body.theme-dusk{--bg:#211a3d;--surface:#2d2452;--nav-bg:rgba(33,26,61,.92);--border:#4c3f78;--text:#f5f0ff;--sub:#c4b5fd;--accent:#a78bfa;--btn-bg:#3a3064;--btn-text:#f5f0ff;--btn-border:#5b4a86;}
+body.theme-sand{--bg:#3a2a1d;--surface:#493524;--nav-bg:rgba(58,42,29,.92);--border:#6f5238;--text:#fff7ed;--sub:#d8b38a;--accent:#f59e0b;--btn-bg:#5a422d;--btn-text:#fff7ed;--btn-border:#76583d;}
+body.theme-arctic{--bg:#102a43;--surface:#173957;--nav-bg:rgba(16,42,67,.92);--border:#2f5f83;--text:#eff8ff;--sub:#9cc9e6;--accent:#38bdf8;--btn-bg:#214d70;--btn-text:#eff8ff;--btn-border:#35698d;}
+body.theme-ember{--bg:#3a1b12;--surface:#4a2518;--nav-bg:rgba(58,27,18,.92);--border:#743c29;--text:#fff1e8;--sub:#f0a37e;--accent:#fb923c;--btn-bg:#5d3020;--btn-text:#fff1e8;--btn-border:#7c4631;}
+body.theme-mint{--bg:#102d2a;--surface:#173c38;--nav-bg:rgba(16,45,42,.92);--border:#2d625b;--text:#ecfffb;--sub:#8ed6cc;--accent:#2dd4bf;--btn-bg:#214f49;--btn-text:#ecfffb;--btn-border:#367169;}
 
 /* ════════════════════════════════════════════════
    WALLPAPER LAYER  (::before = static/animated bg)
@@ -732,7 +732,8 @@ body.wp-confetti .row-username .btn:not(.btn-more):active{
 .c-swatch:hover{transform:scale(1.1);}
 .c-swatch.active{border-color:var(--accent);}
 .c-swatch.active::after{content:'✓';position:absolute;top:3px;right:4px;font-size:.6rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7);}
-.c-label{font-size:.44rem;font-weight:700;color:rgba(255,255,255,.85);text-shadow:0 1px 3px rgba(0,0,0,.6);text-transform:uppercase;letter-spacing:.3px;}
+.c-label{font-size:.44rem;font-weight:800;color:rgba(15,23,42,.88);text-shadow:0 1px 2px rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.3px;}
+.c-swatch:first-child .c-label{color:rgba(255,255,255,.9);text-shadow:0 1px 3px rgba(0,0,0,.7);}
 
 /* wallpaper cards */
 .wp-grid2{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
@@ -1332,6 +1333,30 @@ button,
   }
 }
 
+/* ── CLOUD THEME MOBILE OPTIMIZATION ──
+   Vanta Clouds is one of the heavier WebGL effects. On phones we shift it
+   upward/top-center and reduce costly interaction work from JS. */
+@media(max-width:700px){
+  body.wp-vanta-clouds #vanta-bg{
+    transform:translate3d(0,-14vh,0) scale(1.08);
+    transform-origin:top center;
+    opacity:.92;
+  }
+
+  body.wp-vanta-clouds #vanta-bg canvas{
+    transform:translate3d(0,-6vh,0) scale(1.06);
+    transform-origin:top center;
+  }
+
+  body.wp-vanta-clouds .profile-header-real,
+  body.wp-vanta-clouds .profile-actions-real,
+  body.wp-vanta-clouds .post-grid{
+    position:relative;
+    z-index:2;
+  }
+}
+
+
 
 
 /* ────────────────────────────────────────────────
@@ -1544,6 +1569,51 @@ button,
   .profile-header-real .stat-label{font-size:.72rem;}
 }
 
+
+
+/* ── PAINT / THEME BUTTON TOP-RIGHT PLACEMENT ── */
+.theme-fab{
+  top:calc(16px + env(safe-area-inset-top))!important;
+  right:clamp(12px,3vw,22px)!important;
+  bottom:auto!important;
+  left:auto!important;
+  z-index:300!important;
+}
+
+.theme-panel{
+  top:calc(74px + env(safe-area-inset-top))!important;
+  right:clamp(10px,3vw,18px)!important;
+  bottom:auto!important;
+  left:auto!important;
+  width:min(320px,calc(100vw - 20px))!important;
+  max-height:calc(100dvh - 96px - env(safe-area-inset-top))!important;
+  transform-origin:top right!important;
+  transform:translateY(-12px) scale(.96)!important;
+}
+
+.theme-panel.open{
+  transform:translateY(0) scale(1)!important;
+}
+
+@media(max-width:700px){
+  .theme-fab{
+    top:calc(12px + env(safe-area-inset-top))!important;
+    right:12px!important;
+    width:44px!important;
+    height:44px!important;
+    font-size:1.05rem!important;
+  }
+
+  .theme-panel{
+    top:calc(64px + env(safe-area-inset-top))!important;
+    right:10px!important;
+    left:auto!important;
+    width:min(330px,calc(100vw - 20px))!important;
+    max-height:calc(100dvh - 82px - env(safe-area-inset-top))!important;
+    border-radius:16px!important;
+  }
+}
+
 </style>
 </head>
 <body class="theme-dark">
@@ -1716,7 +1786,12 @@ const VANTA_OPTIONS = {
       sunColor: 0xff9919,
       sunGlareColor: 0xff6633,
       sunlightColor: 0xff9933,
-      speed: window.innerWidth < 700 ? 0.35 : 0.8
+      // Clouds is heavier than the other Vanta effects, so keep it calmer on mobile.
+      mouseControls: window.innerWidth >= 700,
+      touchControls: false,
+      speed: window.innerWidth < 700 ? 0.12 : 0.55,
+      scale: window.innerWidth < 700 ? 0.82 : 1,
+      scaleMobile: 0.58
     }
   },
   'vanta-fog': {
@@ -1830,15 +1905,15 @@ POSTS.forEach(p => {
 });
 
 const COLOR_THEMES = [
-  {id:'dark',   label:'Dark',   bg:'#000',    ac:'#3b9eff'},
-  {id:'light',  label:'Light',  bg:'#fafafa', ac:'#0095f6'},
-  {id:'sakura', label:'Sakura', bg:'#1a0010', ac:'#e63f75'},
-  {id:'forest', label:'Forest', bg:'#030f06', ac:'#4dd47a'},
-  {id:'dusk',   label:'Dusk',   bg:'#0a0020', ac:'#c17cf4'},
-  {id:'sand',   label:'Sand',   bg:'#1e1608', ac:'#c47a2e'},
-  {id:'arctic', label:'Arctic', bg:'#020d1a', ac:'#3b9eff'},
-  {id:'ember',  label:'Ember',  bg:'#150300', ac:'#ff6820'},
-  {id:'mint',   label:'Mint',   bg:'#001510', ac:'#00b87a'},
+  {id:'dark',   label:'Slate',   bg:'#111827', ac:'#60a5fa'},
+  {id:'light',  label:'Clean',   bg:'#f3f4f6', ac:'#2563eb'},
+  {id:'sakura', label:'Rosewood',bg:'#3b1728', ac:'#f472b6'},
+  {id:'forest', label:'Sage',    bg:'#13251a', ac:'#4ade80'},
+  {id:'dusk',   label:'Indigo',  bg:'#211a3d', ac:'#a78bfa'},
+  {id:'sand',   label:'Mocha',   bg:'#3a2a1d', ac:'#f59e0b'},
+  {id:'arctic', label:'Ocean',   bg:'#102a43', ac:'#38bdf8'},
+  {id:'ember',  label:'Copper',  bg:'#3a1b12', ac:'#fb923c'},
+  {id:'mint',   label:'Jade',    bg:'#102d2a', ac:'#2dd4bf'},
 ];
 
 // Visible wallpaper options. Lava and all lower wallpaper options were removed from the picker.
