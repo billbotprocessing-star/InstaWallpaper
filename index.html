@@ -8,317 +8,344 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-/* ── CSS THEME TOKENS ── */
-body {
-  --bg:#000;
-  --surface:#000;
-  --nav-bg:rgba(0,0,0,0.92);
-  --border:#262626;
-  --text:#f5f5f5;
-  --sub:#a8a8a8;
-  --accent:#0095f6;
-  --btn-bg:#262626;
-  --btn-text:#f5f5f5;
-  --btn-border:#363636;
+/* ── THEME TOKENS ── */
+body{
+  --bg:#000;--surface:#000;--nav-bg:rgba(0,0,0,.92);
+  --border:#262626;--text:#f5f5f5;--sub:#a8a8a8;--accent:#0095f6;
+  --btn-bg:#262626;--btn-text:#f5f5f5;--btn-border:#363636;
   --story-ring:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
   font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
+  background:var(--bg);color:var(--text);min-height:100vh;
   transition:background .5s,color .4s;
 }
+body.theme-light{--bg:#fafafa;--surface:#fff;--nav-bg:rgba(255,255,255,.95);--border:#dbdbdb;--text:#262626;--sub:#737373;--btn-bg:#efefef;--btn-text:#262626;--btn-border:#dbdbdb;}
+body.theme-sakura{--bg:#1a0010;--surface:#200015;--nav-bg:rgba(26,0,16,.95);--border:#4a0030;--text:#ffe0f0;--sub:#c080a0;--btn-bg:#300020;--btn-text:#ffe0f0;--btn-border:#5a0040;}
+body.theme-forest{--bg:#030f06;--surface:#061409;--nav-bg:rgba(3,15,6,.95);--border:#1a3520;--text:#c8f0d8;--sub:#6aaa80;--btn-bg:#0e2415;--btn-text:#c8f0d8;--btn-border:#245030;}
+body.theme-dusk{--bg:#0a0020;--surface:#100030;--nav-bg:rgba(10,0,32,.95);--border:#2a1060;--text:#e8d8ff;--sub:#9070c0;--btn-bg:#1a0850;--btn-text:#e8d8ff;--btn-border:#3a1880;}
+body.theme-sand{--bg:#1e1608;--surface:#261c0a;--nav-bg:rgba(30,22,8,.95);--border:#4a3818;--text:#f0ddb0;--sub:#a08860;--btn-bg:#352808;--btn-text:#f0ddb0;--btn-border:#5a4828;}
+body.theme-arctic{--bg:#020d1a;--surface:#051525;--nav-bg:rgba(2,13,26,.95);--border:#0e3060;--text:#cce8ff;--sub:#6090c0;--btn-bg:#0a2040;--btn-text:#cce8ff;--btn-border:#144080;}
+body.theme-ember{--bg:#150300;--surface:#200500;--nav-bg:rgba(21,3,0,.95);--border:#4a1000;--text:#ffe0cc;--sub:#c06040;--btn-bg:#300800;--btn-text:#ffe0cc;--btn-border:#5a1800;}
+body.theme-mint{--bg:#001510;--surface:#001e18;--nav-bg:rgba(0,21,16,.95);--border:#004030;--text:#c0ffe8;--sub:#40c090;--btn-bg:#003028;--btn-text:#c0ffe8;--btn-border:#005040;}
 
-/* ── LIGHT THEME ── */
-body.theme-light{
-  --bg:#fafafa;--surface:#fff;--nav-bg:rgba(255,255,255,0.95);
-  --border:#dbdbdb;--text:#262626;--sub:#737373;
-  --btn-bg:#efefef;--btn-text:#262626;--btn-border:#dbdbdb;
-}
-/* ── SAKURA ── */
-body.theme-sakura{
-  --bg:#1a0010;--surface:#200015;--nav-bg:rgba(26,0,16,0.95);
-  --border:#4a0030;--text:#ffe0f0;--sub:#c080a0;
-  --btn-bg:#300020;--btn-text:#ffe0f0;--btn-border:#5a0040;
-}
-/* ── FOREST ── */
-body.theme-forest{
-  --bg:#030f06;--surface:#061409;--nav-bg:rgba(3,15,6,0.95);
-  --border:#1a3520;--text:#c8f0d8;--sub:#6aaa80;
-  --btn-bg:#0e2415;--btn-text:#c8f0d8;--btn-border:#245030;
-}
-/* ── DUSK ── */
-body.theme-dusk{
-  --bg:#0a0020;--surface:#100030;--nav-bg:rgba(10,0,32,0.95);
-  --border:#2a1060;--text:#e8d8ff;--sub:#9070c0;
-  --btn-bg:#1a0850;--btn-text:#e8d8ff;--btn-border:#3a1880;
-}
-/* ── SAND ── */
-body.theme-sand{
-  --bg:#1e1608;--surface:#261c0a;--nav-bg:rgba(30,22,8,0.95);
-  --border:#4a3818;--text:#f0ddb0;--sub:#a08860;
-  --btn-bg:#352808;--btn-text:#f0ddb0;--btn-border:#5a4828;
-}
-/* ── ARCTIC ── */
-body.theme-arctic{
-  --bg:#020d1a;--surface:#051525;--nav-bg:rgba(2,13,26,0.95);
-  --border:#0e3060;--text:#cce8ff;--sub:#6090c0;
-  --btn-bg:#0a2040;--btn-text:#cce8ff;--btn-border:#144080;
-}
-/* ── EMBER ── */
-body.theme-ember{
-  --bg:#150300;--surface:#200500;--nav-bg:rgba(21,3,0,0.95);
-  --border:#4a1000;--text:#ffe0cc;--sub:#c06040;
-  --btn-bg:#300800;--btn-text:#ffe0cc;--btn-border:#5a1800;
-}
-/* ── MINT ── */
-body.theme-mint{
-  --bg:#001510;--surface:#001e18;--nav-bg:rgba(0,21,16,0.95);
-  --border:#004030;--text:#c0ffe8;--sub:#40c090;
-  --btn-bg:#003028;--btn-text:#c0ffe8;--btn-border:#005040;
-}
-
-/* ── WALLPAPER OVERLAYS ── */
-body.wp-bokeh::before,body.wp-aurora::before,body.wp-geo::before,
-body.wp-rain::before,body.wp-confetti::before,body.wp-neon::before,body.wp-marble::before{
+/* ════════════════════════════════════════════════
+   WALLPAPER LAYER  (::before = static/animated bg)
+   ════════════════════════════════════════════════ */
+body[class*="wp-"]::before{
   content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 }
-body.wp-bokeh::before{background:radial-gradient(ellipse at 20% 30%,rgba(255,180,60,.22) 0%,transparent 50%),radial-gradient(ellipse at 80% 70%,rgba(80,160,255,.22) 0%,transparent 50%),radial-gradient(ellipse at 50% 90%,rgba(255,80,180,.16) 0%,transparent 48%);}
-body.wp-aurora::before{background:linear-gradient(160deg,rgba(0,200,140,.18) 0%,transparent 40%),linear-gradient(200deg,rgba(80,0,200,.22) 0%,transparent 50%),linear-gradient(120deg,rgba(0,160,255,.16) 30%,transparent 70%);}
-body.wp-geo::before{background-image:repeating-linear-gradient(60deg,transparent,transparent 28px,rgba(255,255,255,.04) 28px,rgba(255,255,255,.04) 29px),repeating-linear-gradient(-60deg,transparent,transparent 28px,rgba(255,255,255,.04) 28px,rgba(255,255,255,.04) 29px);}
-body.wp-rain::before{background-image:repeating-linear-gradient(90deg,transparent,transparent 38px,rgba(120,180,255,.07) 38px,rgba(120,180,255,.07) 39px),repeating-linear-gradient(180deg,transparent,transparent 18px,rgba(120,180,255,.04) 18px,rgba(120,180,255,.04) 19px);}
-body.wp-confetti::before{background-image:radial-gradient(circle at 15% 20%,rgba(255,100,100,.18) 2px,transparent 2px),radial-gradient(circle at 40% 60%,rgba(100,200,255,.18) 2px,transparent 2px),radial-gradient(circle at 70% 30%,rgba(200,255,100,.18) 2px,transparent 2px),radial-gradient(circle at 85% 80%,rgba(255,200,50,.18) 2px,transparent 2px);background-size:180px 180px;}
-body.wp-neon::before{background:radial-gradient(ellipse at 0% 50%,rgba(255,0,150,.15) 0%,transparent 50%),radial-gradient(ellipse at 100% 50%,rgba(0,255,200,.15) 0%,transparent 50%),radial-gradient(ellipse at 50% 0%,rgba(100,0,255,.12) 0%,transparent 50%);}
-body.wp-marble::before{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0px,rgba(255,255,255,.03) 1px,transparent 1px,transparent 40px),repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0px,rgba(255,255,255,.02) 1px,transparent 1px,transparent 60px);}
 
-/* everything above the pseudo-element */
+/* ── 1. GALAXY  (animated star drift) ── */
+@keyframes starDrift{0%{transform:translateY(0) rotate(0deg)}100%{transform:translateY(-120px) rotate(1deg)}}
+body.wp-galaxy::before{
+  background:#000
+    radial-gradient(1px 1px at 10% 20%,#fff 0%,transparent 100%),
+    radial-gradient(1px 1px at 30% 60%,rgba(255,255,255,.9) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 50% 10%,#fff 0%,transparent 100%),
+    radial-gradient(1px 1px at 70% 40%,rgba(255,255,255,.7) 0%,transparent 100%),
+    radial-gradient(2px 2px at 85% 75%,rgba(200,180,255,.9) 0%,transparent 100%),
+    radial-gradient(1px 1px at 20% 85%,rgba(255,255,255,.8) 0%,transparent 100%),
+    radial-gradient(1px 1px at 60% 55%,rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 90% 25%,rgba(180,200,255,.9) 0%,transparent 100%),
+    radial-gradient(1px 1px at 40% 90%,rgba(255,255,255,.7) 0%,transparent 100%),
+    radial-gradient(ellipse at 40% 50%,rgba(100,40,180,.25) 0%,transparent 60%),
+    radial-gradient(ellipse at 70% 30%,rgba(40,80,200,.2) 0%,transparent 50%);
+  background-size:400px 400px,400px 400px,400px 400px,400px 400px,400px 400px,400px 400px,400px 400px,400px 400px,400px 400px,100% 100%,100% 100%;
+  animation:starDrift 18s linear infinite;
+}
+
+/* ── 2. LAVA  (pulsing molten cracks) ── */
+@keyframes lavaPulse{0%,100%{opacity:.9;filter:brightness(1)}50%{opacity:1;filter:brightness(1.3)}}
+@keyframes lavaShift{0%{background-position:0% 0%}50%{background-position:100% 100%}100%{background-position:0% 0%}}
+body.wp-lava::before{
+  background:#1a0000;
+  background-image:
+    radial-gradient(ellipse at 50% 100%,rgba(255,60,0,.5) 0%,transparent 60%),
+    radial-gradient(ellipse at 20% 80%,rgba(255,120,0,.35) 0%,transparent 40%),
+    radial-gradient(ellipse at 80% 90%,rgba(200,30,0,.4) 0%,transparent 40%),
+    repeating-linear-gradient(80deg,transparent 0px,transparent 18px,rgba(255,80,0,.07) 18px,rgba(255,80,0,.07) 19px),
+    repeating-linear-gradient(170deg,transparent 0px,transparent 22px,rgba(255,40,0,.05) 22px,rgba(255,40,0,.05) 23px);
+  background-size:100% 100%,100% 100%,100% 100%,100% 100%,100% 100%;
+  animation:lavaPulse 3s ease-in-out infinite, lavaShift 12s ease-in-out infinite;
+}
+
+/* ── 3. AURORA BOREALIS  (slow colour sweep) ── */
+@keyframes aurora{
+  0%  {background-position:0% 50%}
+  50% {background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+body.wp-aurora::before{
+  background:linear-gradient(270deg,
+    #001a00,#003020,#004840,#006060,
+    #004080,#0020a0,#200060,#400040,
+    #001a00);
+  background-size:600% 600%;
+  animation:aurora 14s ease infinite;
+  opacity:.75;
+}
+
+/* ── 4. SUNSET DRIFT  (warm animated gradient) ── */
+@keyframes sunsetDrift{
+  0%  {background-position:0% 50%}
+  50% {background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+body.wp-sunset::before{
+  background:linear-gradient(270deg,#0d0030,#3a0060,#800080,#c0304a,#e85020,#ff9000,#ffe060,#ff9000,#e85020,#c0304a,#800080,#3a0060,#0d0030);
+  background-size:600% 600%;
+  animation:sunsetDrift 16s ease infinite;
+  opacity:.55;
+}
+
+/* ── 5. DEEP SEA  (wave shimmer) ── */
+@keyframes seaWave{
+  0%  {transform:scaleX(1)   translateY(0)}
+  50% {transform:scaleX(1.04) translateY(-8px)}
+  100%{transform:scaleX(1)   translateY(0)}
+}
+body.wp-deepsea::before{
+  background:
+    radial-gradient(ellipse at 50% 120%,rgba(0,180,200,.35) 0%,transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(0,100,180,.3)  0%,transparent 50%),
+    radial-gradient(ellipse at 80% 60%, rgba(0,60,140,.25)  0%,transparent 50%),
+    repeating-linear-gradient(180deg,transparent 0,transparent 18px,rgba(0,200,230,.05) 18px,rgba(0,200,230,.05) 19px),
+    linear-gradient(180deg,#000d1a 0%,#00203a 60%,#001830 100%);
+  animation:seaWave 7s ease-in-out infinite;
+}
+
+/* ── 6. NEON PULSE  (colour-cycling glow) ── */
+@keyframes neonCycle{
+  0%  {filter:hue-rotate(0deg)  brightness(1)}
+  50% {filter:hue-rotate(180deg) brightness(1.15)}
+  100%{filter:hue-rotate(360deg) brightness(1)}
+}
+body.wp-neon::before{
+  background:
+    radial-gradient(ellipse at 0%   50%,rgba(255,0,150,.22)  0%,transparent 55%),
+    radial-gradient(ellipse at 100% 50%,rgba(0,255,200,.22)  0%,transparent 55%),
+    radial-gradient(ellipse at 50%  0%, rgba(100,0,255,.18)  0%,transparent 50%),
+    radial-gradient(ellipse at 50% 100%,rgba(0,200,255,.15)  0%,transparent 50%);
+  animation:neonCycle 8s linear infinite;
+}
+
+/* ── 7. SPIDER WEB  (static geometric) ── */
+body.wp-web::before{
+  background-image:
+    repeating-radial-gradient(circle at 50% 50%,transparent 0,transparent 38px,rgba(255,255,255,.04) 38px,rgba(255,255,255,.04) 39px),
+    repeating-linear-gradient(0deg,  transparent,transparent 38px,rgba(255,255,255,.03) 38px,rgba(255,255,255,.03) 39px),
+    repeating-linear-gradient(90deg, transparent,transparent 38px,rgba(255,255,255,.03) 38px,rgba(255,255,255,.03) 39px),
+    repeating-linear-gradient(45deg, transparent,transparent 27px,rgba(255,255,255,.025) 27px,rgba(255,255,255,.025) 28px),
+    repeating-linear-gradient(-45deg,transparent,transparent 27px,rgba(255,255,255,.025) 27px,rgba(255,255,255,.025) 28px);
+}
+
+/* ── 8. MARBLE  (fine veins) ── */
+body.wp-marble::before{
+  background:#111;
+  background-image:
+    repeating-linear-gradient(135deg,rgba(255,255,255,.045) 0px,rgba(255,255,255,.045) 1px,transparent 1px,transparent 44px),
+    repeating-linear-gradient( 45deg,rgba(255,255,255,.03)  0px,rgba(255,255,255,.03)  1px,transparent 1px,transparent 66px),
+    repeating-linear-gradient(160deg,rgba(255,255,255,.02)  0px,rgba(255,255,255,.02)  1px,transparent 1px,transparent 90px),
+    radial-gradient(ellipse at 30% 40%,rgba(200,200,220,.08) 0%,transparent 60%),
+    radial-gradient(ellipse at 70% 60%,rgba(180,180,200,.06) 0%,transparent 50%);
+}
+
+/* ── 9. BOTANICAL (leaf pattern) ── */
+body.wp-botanical::before{
+  background:
+    radial-gradient(ellipse 40px 70px at 15% 20%, rgba(40,140,60,.18) 0%,transparent 100%),
+    radial-gradient(ellipse 30px 55px at 35% 70%, rgba(20,120,50,.14) 0%,transparent 100%),
+    radial-gradient(ellipse 45px 80px at 60% 35%, rgba(50,160,70,.16) 0%,transparent 100%),
+    radial-gradient(ellipse 35px 60px at 80% 75%, rgba(30,130,55,.15) 0%,transparent 100%),
+    radial-gradient(ellipse 25px 50px at 90% 20%, rgba(40,150,65,.12) 0%,transparent 100%),
+    radial-gradient(ellipse 50px 90px at 50% 90%, rgba(20,110,45,.13) 0%,transparent 100%);
+  background-size:300px 300px;
+}
+
+/* ── 10. PRISM RAIN  (animated diagonal colour streaks) ── */
+@keyframes prismRain{0%{background-position:0 0}100%{background-position:0 200px}}
+body.wp-prism::before{
+  background-image:
+    repeating-linear-gradient(90deg,
+      rgba(255,0,100,.07)   0px, rgba(255,0,100,.07)   2px,
+      rgba(255,120,0,.06)   4px, rgba(255,120,0,.06)   6px,
+      rgba(255,230,0,.05)   8px, rgba(255,230,0,.05)  10px,
+      rgba(0,220,100,.06)  12px, rgba(0,220,100,.06)  14px,
+      rgba(0,160,255,.07)  16px, rgba(0,160,255,.07)  18px,
+      rgba(140,0,255,.06)  20px, rgba(140,0,255,.06)  22px,
+      transparent          22px, transparent          60px),
+    repeating-linear-gradient(180deg,
+      transparent 0px, transparent 8px,
+      rgba(255,255,255,.02) 8px, rgba(255,255,255,.02) 9px);
+  animation:prismRain 4s linear infinite;
+}
+
+/* ── 11. GLITCH  (horizontal scan-line flicker) ── */
+@keyframes glitch1{0%,90%,100%{clip-path:inset(0 0 98% 0);transform:translate(-4px)}45%{clip-path:inset(30% 0 60% 0);transform:translate(4px)}}
+@keyframes glitch2{0%,80%,100%{clip-path:inset(50% 0 40% 0);transform:translate(3px)}40%{clip-path:inset(70% 0 15% 0);transform:translate(-3px)}}
+@keyframes scanline{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+body.wp-glitch::before{
+  background:
+    repeating-linear-gradient(0deg,rgba(0,255,180,.03) 0px,rgba(0,255,180,.03) 1px,transparent 1px,transparent 4px),
+    radial-gradient(ellipse at 20% 40%,rgba(0,255,100,.1) 0%,transparent 40%),
+    radial-gradient(ellipse at 80% 60%,rgba(255,0,100,.08) 0%,transparent 40%),
+    #080808;
+}
+body.wp-glitch::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:linear-gradient(transparent 50%,rgba(0,255,180,.015) 50%);
+  background-size:100% 4px;
+  animation:scanline 8s linear infinite;
+  opacity:.6;
+}
+
+/* ── 12. CONFETTI  (static colour dots) ── */
+body.wp-confetti::before{
+  background-image:
+    radial-gradient(circle at 10% 15%,rgba(255,80,80,.22)  2px,transparent 2px),
+    radial-gradient(circle at 25% 55%,rgba(80,200,255,.2)  2px,transparent 2px),
+    radial-gradient(circle at 45% 25%,rgba(255,220,0,.2)   2px,transparent 2px),
+    radial-gradient(circle at 65% 70%,rgba(200,80,255,.2)  2px,transparent 2px),
+    radial-gradient(circle at 80% 35%,rgba(80,255,140,.2)  2px,transparent 2px),
+    radial-gradient(circle at 90% 80%,rgba(255,140,0,.2)   2px,transparent 2px),
+    radial-gradient(circle at 55% 90%,rgba(255,80,160,.18) 2px,transparent 2px),
+    radial-gradient(circle at 35% 80%,rgba(80,160,255,.2)  2px,transparent 2px);
+  background-size:220px 220px;
+}
+
+/* everything above the pseudo-elements */
 .ig-nav,.ig-app,.theme-fab,.theme-panel{position:relative;z-index:1;}
 
 /* ── NAV ── */
-.ig-nav{
-  position:sticky;top:0;z-index:100;
-  background:var(--nav-bg);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-  height:44px;display:flex;align-items:center;
-  transition:background .4s,border-color .4s;
-}
-.ig-nav-inner{
-  max-width:935px;margin:0 auto;width:100%;
-  padding:0 16px;display:flex;align-items:center;justify-content:space-between;
-}
+.ig-nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:44px;display:flex;align-items:center;transition:background .4s,border-color .4s;}
+.ig-nav-inner{max-width:935px;margin:0 auto;width:100%;padding:0 16px;display:flex;align-items:center;justify-content:space-between;}
 .nav-logo{font-size:1.2rem;font-weight:700;letter-spacing:-.5px;color:var(--text);}
 .nav-right{display:flex;gap:20px;align-items:center;}
 .nav-icon{width:24px;height:24px;fill:none;stroke:var(--text);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
-/* ── MAIN WRAP ── */
+/* ── MAIN ── */
 .ig-app{max-width:935px;margin:0 auto;padding:0 16px;}
 
 /* ── PROFILE HEADER ── */
-.profile-header{
-  display:flex;align-items:flex-start;gap:28px;
-  padding:24px 0 20px;
-}
-/* Avatar */
+.profile-header{display:flex;align-items:flex-start;gap:28px;padding:24px 0 20px;}
 .avatar-col{flex-shrink:0;}
-.avatar-ring-wrap{
-  width:90px;height:90px;border-radius:50%;
-  background:var(--story-ring);padding:2px;cursor:pointer;
-  transition:opacity .15s;
-}
+.avatar-ring-wrap{width:90px;height:90px;border-radius:50%;background:var(--story-ring);padding:2px;cursor:pointer;transition:opacity .15s;}
 .avatar-ring-wrap:hover{opacity:.9;}
-.avatar-inner{
-  width:100%;height:100%;border-radius:50%;
-  border:2px solid var(--surface);
-  background:var(--btn-bg);
-  display:flex;align-items:center;justify-content:center;
-  font-size:2.6rem;overflow:hidden;
-}
+.avatar-inner{width:100%;height:100%;border-radius:50%;border:2px solid var(--surface);background:var(--btn-bg);display:flex;align-items:center;justify-content:center;font-size:2.6rem;overflow:hidden;}
 .avatar-inner img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
-
-/* Info col */
 .profile-info{flex:1;min-width:0;}
 .row-username{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
 .username{font-size:1.18rem;font-weight:300;color:var(--text);letter-spacing:.2px;}
-.btn{
-  padding:5px 14px;border-radius:8px;font-size:.82rem;font-weight:600;
-  border:1px solid var(--btn-border);cursor:pointer;
-  background:var(--btn-bg);color:var(--btn-text);
-  transition:opacity .15s;white-space:nowrap;
-}
+.btn{padding:5px 14px;border-radius:8px;font-size:.82rem;font-weight:600;border:1px solid var(--btn-border);cursor:pointer;background:var(--btn-bg);color:var(--btn-text);transition:opacity .15s;white-space:nowrap;}
 .btn:hover{opacity:.75;}
 .btn-follow{background:var(--accent);color:#fff;border-color:var(--accent);}
 .btn-more{padding:5px 8px;font-size:1rem;}
-
 .stats-row{display:flex;gap:0;margin-bottom:12px;}
 .stat{margin-right:40px;}
 .stat-num{font-size:.93rem;font-weight:700;color:var(--text);}
 .stat-label{font-size:.93rem;color:var(--text);}
 .bio-name{font-size:.87rem;font-weight:700;color:var(--text);margin-bottom:2px;}
 .bio-text{font-size:.87rem;color:var(--text);line-height:1.4;}
-.bio-link-row{margin-top:4px;}
-.bio-link{font-size:.87rem;color:#e0f0ff;font-weight:600;text-decoration:none;}
-
-/* mutual followers row */
 .mutual-row{display:flex;align-items:center;gap:8px;margin-top:10px;}
 .mutual-avatars{display:flex;}
-.mutual-avatar{
-  width:20px;height:20px;border-radius:50%;
-  border:1.5px solid var(--surface);margin-right:-6px;
-  background:linear-gradient(135deg,#888,#555);
-  font-size:.6rem;display:flex;align-items:center;justify-content:center;color:#fff;
-}
+.mutual-avatar{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--surface);margin-right:-6px;background:linear-gradient(135deg,#888,#555);font-size:.6rem;display:flex;align-items:center;justify-content:center;color:#fff;}
 .mutual-text{font-size:.74rem;color:var(--sub);margin-left:10px;}
 .mutual-text strong{color:var(--text);}
 
 /* ── HIGHLIGHTS ── */
-.highlights-row{
-  display:flex;gap:16px;padding:14px 0;
-  overflow-x:auto;scrollbar-width:none;
-}
+.highlights-row{display:flex;gap:16px;padding:14px 0;overflow-x:auto;scrollbar-width:none;}
 .highlights-row::-webkit-scrollbar{display:none;}
 .hl-item{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;flex-shrink:0;}
-.hl-ring{
-  width:64px;height:64px;border-radius:50%;
-  border:1px solid var(--border);
-  background:var(--btn-bg);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.6rem;
-}
-.hl-new{
-  width:64px;height:64px;border-radius:50%;
-  border:1px solid var(--border);
-  background:var(--surface);
-  display:flex;align-items:center;justify-content:center;
-  position:relative;
-}
-.hl-plus{
-  position:absolute;bottom:0;right:0;
-  width:20px;height:20px;border-radius:50%;
-  background:var(--accent);color:#fff;
-  font-size:1rem;line-height:20px;text-align:center;
-  border:2px solid var(--surface);
-}
+.hl-ring{width:64px;height:64px;border-radius:50%;border:1px solid var(--border);background:var(--btn-bg);display:flex;align-items:center;justify-content:center;font-size:1.6rem;}
+.hl-new{width:64px;height:64px;border-radius:50%;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;position:relative;}
+.hl-plus{position:absolute;bottom:0;right:0;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-size:1rem;line-height:20px;text-align:center;border:2px solid var(--surface);}
 .hl-label{font-size:.7rem;color:var(--text);max-width:68px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
 /* ── TABS ── */
 .profile-tabs{display:flex;border-top:1px solid var(--border);}
-.tab{
-  flex:1;padding:11px 0;display:flex;align-items:center;justify-content:center;
-  border-top:1px solid transparent;margin-top:-1px;cursor:pointer;
-  transition:border-color .15s;
-}
+.tab{flex:1;padding:11px 0;display:flex;align-items:center;justify-content:center;border-top:1px solid transparent;margin-top:-1px;cursor:pointer;transition:border-color .15s;}
 .tab.active{border-color:var(--text);}
 .tab svg{width:22px;height:22px;fill:none;stroke:var(--sub);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .15s;}
 .tab.active svg{stroke:var(--text);}
 
 /* ── POST GRID ── */
 .post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding-bottom:80px;}
-.post-cell{
-  aspect-ratio:1;background:var(--btn-bg);
-  position:relative;overflow:hidden;cursor:pointer;
-}
-.post-bg{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:3rem;
-  background:var(--btn-bg);
-  transition:filter .2s;
-}
-.post-cell:hover .post-bg{filter:brightness(.7);}
-/* video play icon */
-.post-reel-icon{
-  position:absolute;top:7px;right:7px;
-  color:#fff;opacity:.9;
-  width:16px;height:16px;
-}
-/* caption overlay */
-.post-cap{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:22px 8px 7px;
-  background:linear-gradient(transparent,rgba(0,0,0,.55));
-  font-size:.68rem;font-weight:500;color:#fff;
-  line-height:1.3;
-  opacity:0;transition:opacity .2s;
-}
-.post-cell:hover .post-cap{opacity:1;}
-/* hover stats */
-.post-stats{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;gap:18px;
-  color:#fff;font-size:.82rem;font-weight:700;
-  opacity:0;transition:opacity .2s;pointer-events:none;
-}
+.post-cell{aspect-ratio:1;background:var(--btn-bg);position:relative;overflow:hidden;cursor:pointer;}
+.post-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem;background:var(--btn-bg);transition:filter .2s;}
+.post-cell:hover .post-bg{filter:brightness(.65);}
+.post-reel-icon{position:absolute;top:7px;right:7px;color:#fff;opacity:.9;width:16px;height:16px;}
+.post-stats{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:18px;color:#fff;font-size:.82rem;font-weight:700;opacity:0;transition:opacity .2s;pointer-events:none;}
 .post-cell:hover .post-stats{opacity:1;}
+.post-cap{position:absolute;bottom:0;left:0;right:0;padding:22px 8px 7px;background:linear-gradient(transparent,rgba(0,0,0,.55));font-size:.68rem;font-weight:500;color:#fff;line-height:1.3;opacity:0;transition:opacity .2s;}
+.post-cell:hover .post-cap{opacity:1;}
 
 /* ── THEME FAB ── */
-.theme-fab{
-  position:fixed;bottom:22px;right:22px;z-index:200;
-  width:50px;height:50px;border-radius:50%;
-  background:var(--accent);color:#fff;border:none;cursor:pointer;
-  box-shadow:0 4px 20px rgba(0,0,0,.4);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;transition:transform .2s;
-}
+.theme-fab{position:fixed;bottom:22px;right:22px;z-index:200;width:50px;height:50px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:transform .2s;}
 .theme-fab:hover{transform:scale(1.1);}
 
 /* ── THEME PANEL ── */
-.theme-panel{
-  position:fixed;bottom:82px;right:18px;z-index:199;
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:16px;padding:16px;
-  width:288px;max-height:80vh;overflow-y:auto;
-  box-shadow:0 12px 40px rgba(0,0,0,.5);
-  transform:translateY(16px) scale(.96);
-  opacity:0;pointer-events:none;
-  transition:transform .25s cubic-bezier(.34,1.56,.64,1),opacity .2s;
-  scrollbar-width:thin;
-}
+.theme-panel{position:fixed;bottom:82px;right:18px;z-index:199;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;width:300px;max-height:82vh;overflow-y:auto;box-shadow:0 12px 40px rgba(0,0,0,.55);transform:translateY(16px) scale(.96);opacity:0;pointer-events:none;transition:transform .25s cubic-bezier(.34,1.56,.64,1),opacity .2s;scrollbar-width:thin;}
 .theme-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all;}
-.p-title{font-size:.65rem;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:var(--sub);margin-bottom:10px;margin-top:4px;}
+.p-title{font-size:.62rem;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:var(--sub);margin-bottom:9px;margin-top:6px;}
 
-.color-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:16px;}
-.c-swatch{
-  aspect-ratio:1;border-radius:8px;cursor:pointer;
-  border:2px solid transparent;
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  padding-bottom:3px;
-  transition:transform .15s,border-color .15s;position:relative;
-}
+/* colour swatches */
+.color-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:14px;}
+.c-swatch{aspect-ratio:1;border-radius:8px;cursor:pointer;border:2px solid transparent;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:3px;transition:transform .15s,border-color .15s;position:relative;}
 .c-swatch:hover{transform:scale(1.1);}
 .c-swatch.active{border-color:var(--accent);}
-.c-swatch.active::after{content:'✓';position:absolute;top:3px;right:4px;font-size:.65rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6);}
-.c-label{font-size:.48rem;font-weight:700;color:rgba(255,255,255,.85);text-shadow:0 1px 3px rgba(0,0,0,.6);text-transform:uppercase;letter-spacing:.4px;}
+.c-swatch.active::after{content:'✓';position:absolute;top:3px;right:4px;font-size:.6rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7);}
+.c-label{font-size:.44rem;font-weight:700;color:rgba(255,255,255,.85);text-shadow:0 1px 3px rgba(0,0,0,.6);text-transform:uppercase;letter-spacing:.3px;}
 
-.wp-grid2{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
-.wp-card{
-  aspect-ratio:1;border-radius:8px;cursor:pointer;
-  border:2px solid transparent;
-  overflow:hidden;position:relative;
-  transition:transform .15s,border-color .15s;
-}
-.wp-card:hover{transform:scale(1.07);}
+/* wallpaper cards */
+.wp-grid2{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
+.wp-card{aspect-ratio:1;border-radius:9px;cursor:pointer;border:2px solid transparent;overflow:hidden;position:relative;transition:transform .15s,border-color .15s;}
+.wp-card:hover{transform:scale(1.06);}
 .wp-card.active{border-color:var(--accent);}
-.wp-card.active::after{content:'✓';position:absolute;top:3px;right:4px;font-size:.65rem;color:#fff;background:var(--accent);width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:14px;text-align:center;}
+.wp-card.active::after{content:'✓';position:absolute;top:4px;right:5px;font-size:.6rem;color:#fff;background:var(--accent);width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:15px;text-align:center;}
 .wp-preview{position:absolute;inset:0;}
-.wp-name2{position:absolute;bottom:0;left:0;right:0;font-size:.46rem;font-weight:700;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7);padding:3px 4px;background:linear-gradient(transparent,rgba(0,0,0,.5));text-transform:uppercase;letter-spacing:.4px;}
+.wp-anim-badge{position:absolute;top:4px;left:5px;font-size:.42rem;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#fff;background:rgba(255,200,0,.75);padding:1px 4px;border-radius:3px;}
+.wp-name2{position:absolute;bottom:0;left:0;right:0;font-size:.48rem;font-weight:700;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7);padding:4px 5px;background:linear-gradient(transparent,rgba(0,0,0,.55));text-transform:uppercase;letter-spacing:.3px;}
 
-/* wallpaper preview swatches */
-.wp-p-none    {background:#111;}
-.wp-p-bokeh   {background:#1a1a2e;background-image:radial-gradient(ellipse at 20% 30%,rgba(255,180,60,.6) 0%,transparent 50%),radial-gradient(ellipse at 80% 70%,rgba(80,160,255,.6) 0%,transparent 50%);}
-.wp-p-aurora  {background:#0d1b2a;background-image:linear-gradient(160deg,rgba(0,200,140,.7) 0%,transparent 40%),linear-gradient(200deg,rgba(80,0,200,.8) 0%,transparent 50%);}
-.wp-p-geo     {background:#111;background-image:repeating-linear-gradient(60deg,transparent,transparent 7px,rgba(255,255,255,.1) 7px,rgba(255,255,255,.1) 8px),repeating-linear-gradient(-60deg,transparent,transparent 7px,rgba(255,255,255,.1) 7px,rgba(255,255,255,.1) 8px);}
-.wp-p-rain    {background:#0a1628;background-image:repeating-linear-gradient(90deg,transparent,transparent 9px,rgba(100,180,255,.2) 9px,rgba(100,180,255,.2) 10px),repeating-linear-gradient(180deg,transparent,transparent 5px,rgba(100,180,255,.1) 5px,rgba(100,180,255,.1) 6px);}
-.wp-p-confetti{background:#fafafa;background-image:radial-gradient(circle at 15% 20%,rgba(255,100,100,.8) 2px,transparent 2px),radial-gradient(circle at 50% 60%,rgba(100,200,255,.8) 2px,transparent 2px),radial-gradient(circle at 80% 30%,rgba(200,255,100,.8) 2px,transparent 2px);background-size:40px 40px;}
-.wp-p-neon    {background:#050510;background-image:radial-gradient(ellipse at 0% 50%,rgba(255,0,150,.5) 0%,transparent 50%),radial-gradient(ellipse at 100% 50%,rgba(0,255,200,.5) 0%,transparent 50%);}
-.wp-p-marble  {background:#1a1a1a;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.08) 0px,rgba(255,255,255,.08) 1px,transparent 1px,transparent 20px),repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0px,rgba(255,255,255,.05) 1px,transparent 1px,transparent 30px);}
+/* ── WALLPAPER MINI-PREVIEWS (inside panel cards) ── */
+/* Galaxy */
+@keyframes starP{0%{transform:translateY(0)}100%{transform:translateY(-30px)}}
+.wp-p-galaxy{background:#000 radial-gradient(1px 1px at 15% 25%,#fff 0%,transparent 100%),radial-gradient(1px 1px at 40% 65%,rgba(255,255,255,.9) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 60% 15%,#fff 0%,transparent 100%),radial-gradient(1px 1px at 80% 50%,rgba(200,180,255,.9) 0%,transparent 100%),radial-gradient(1px 1px at 25% 80%,rgba(255,255,255,.8) 0%,transparent 100%),radial-gradient(ellipse at 50% 50%,rgba(100,40,180,.3) 0%,transparent 70%);background-size:80px 80px,80px 80px,80px 80px,80px 80px,80px 80px,100% 100%;animation:starP 4s linear infinite;}
+/* Lava */
+@keyframes lavaP{0%,100%{filter:brightness(1)}50%{filter:brightness(1.4)}}
+.wp-p-lava{background:#2a0000;background-image:radial-gradient(ellipse at 50% 100%,rgba(255,60,0,.7) 0%,transparent 65%),radial-gradient(ellipse at 20% 80%,rgba(255,120,0,.5) 0%,transparent 45%),repeating-linear-gradient(80deg,transparent 0px,transparent 8px,rgba(255,80,0,.1) 8px,rgba(255,80,0,.1) 9px);animation:lavaP 1.5s ease-in-out infinite;}
+/* Aurora */
+@keyframes auroraP{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.wp-p-aurora{background:linear-gradient(270deg,#001a00,#004840,#004080,#200060,#001a00);background-size:400% 100%;animation:auroraP 4s ease infinite;}
+/* Sunset */
+@keyframes sunsetP{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.wp-p-sunset{background:linear-gradient(270deg,#0d0030,#800080,#c0304a,#e85020,#ff9000,#ffe060,#e85020,#800080,#0d0030);background-size:400% 100%;animation:sunsetP 5s ease infinite;}
+/* Deep Sea */
+@keyframes seaP{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.wp-p-deepsea{background:linear-gradient(180deg,#000d1a,#003060);background-image:repeating-linear-gradient(180deg,transparent 0,transparent 6px,rgba(0,200,230,.08) 6px,rgba(0,200,230,.08) 7px),radial-gradient(ellipse at 50% 120%,rgba(0,180,200,.4) 0%,transparent 60%);animation:seaP 3s ease-in-out infinite;}
+/* Neon */
+@keyframes neonP{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
+.wp-p-neon{background:#050510;background-image:radial-gradient(ellipse at 0% 50%,rgba(255,0,150,.5) 0%,transparent 60%),radial-gradient(ellipse at 100% 50%,rgba(0,255,200,.5) 0%,transparent 60%);animation:neonP 4s linear infinite;}
+/* Web */
+.wp-p-web{background:#0a0a0a;background-image:repeating-radial-gradient(circle at 50% 50%,transparent 0,transparent 12px,rgba(255,255,255,.08) 12px,rgba(255,255,255,.08) 13px),repeating-linear-gradient(0deg,transparent,transparent 12px,rgba(255,255,255,.05) 12px,rgba(255,255,255,.05) 13px),repeating-linear-gradient(90deg,transparent,transparent 12px,rgba(255,255,255,.05) 12px,rgba(255,255,255,.05) 13px);}
+/* Marble */
+.wp-p-marble{background:#111;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0px,rgba(255,255,255,.06) 1px,transparent 1px,transparent 14px),repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0px,rgba(255,255,255,.04) 1px,transparent 1px,transparent 20px);}
+/* Botanical */
+.wp-p-botanical{background:#050f07;background-image:radial-gradient(ellipse 14px 24px at 20% 30%,rgba(40,160,70,.5) 0%,transparent 100%),radial-gradient(ellipse 10px 18px at 50% 70%,rgba(30,140,55,.4) 0%,transparent 100%),radial-gradient(ellipse 16px 28px at 75% 40%,rgba(50,170,75,.45) 0%,transparent 100%);background-size:80px 80px;}
+/* Prism Rain */
+@keyframes prismP{0%{background-position:0 0}100%{background-position:0 40px}}
+.wp-p-prism{background:#080808;background-image:repeating-linear-gradient(90deg,rgba(255,0,100,.15) 0px,rgba(255,0,100,.15) 1px,rgba(255,120,0,.12) 2px,rgba(255,120,0,.12) 3px,rgba(255,230,0,.1) 4px,rgba(255,230,0,.1) 5px,rgba(0,220,100,.12) 6px,rgba(0,220,100,.12) 7px,rgba(0,160,255,.15) 8px,rgba(0,160,255,.15) 9px,rgba(140,0,255,.12) 10px,rgba(140,0,255,.12) 11px,transparent 11px,transparent 20px);animation:prismP 1s linear infinite;}
+/* Glitch */
+@keyframes glitchP{0%,85%,100%{opacity:1}86%{opacity:.4}87%{opacity:1}90%{opacity:.2}91%{opacity:1}}
+.wp-p-glitch{background:#080808;background-image:repeating-linear-gradient(0deg,rgba(0,255,180,.06) 0px,rgba(0,255,180,.06) 1px,transparent 1px,transparent 3px),radial-gradient(ellipse at 30% 40%,rgba(0,255,100,.15) 0%,transparent 50%),radial-gradient(ellipse at 70% 60%,rgba(255,0,100,.1) 0%,transparent 50%);animation:glitchP 2s steps(1) infinite;}
+/* Confetti */
+.wp-p-confetti{background:#0a0a0a;background-image:radial-gradient(circle at 15% 20%,rgba(255,80,80,.6) 1.5px,transparent 1.5px),radial-gradient(circle at 40% 60%,rgba(80,200,255,.6) 1.5px,transparent 1.5px),radial-gradient(circle at 65% 25%,rgba(255,220,0,.6) 1.5px,transparent 1.5px),radial-gradient(circle at 80% 75%,rgba(200,80,255,.6) 1.5px,transparent 1.5px),radial-gradient(circle at 55% 85%,rgba(80,255,140,.6) 1.5px,transparent 1.5px);background-size:50px 50px;}
 
 @media(max-width:600px){
   .profile-header{gap:16px;}
   .avatar-ring-wrap{width:76px;height:76px;}
-  .stats-row{gap:0;}
   .stat{margin-right:22px;}
   .username{font-size:1rem;}
   .theme-panel{width:calc(100vw - 28px);right:14px;}
+  .wp-grid2{grid-template-columns:repeat(3,1fr);}
 }
 </style>
 </head>
@@ -372,10 +399,7 @@ body.wp-marble::before{background-image:repeating-linear-gradient(135deg,rgba(25
   <!-- HIGHLIGHTS -->
   <div class="highlights-row">
     <div class="hl-item">
-      <div class="hl-new">
-        <span style="font-size:2rem;color:var(--sub);">🏋️</span>
-        <div class="hl-plus">+</div>
-      </div>
+      <div class="hl-new"><span style="font-size:2rem;color:var(--sub);">🏋️</span><div class="hl-plus">+</div></div>
       <span class="hl-label">New</span>
     </div>
     <div class="hl-item"><div class="hl-ring">🥣</div><span class="hl-label">Meals</span></div>
@@ -404,21 +428,20 @@ body.wp-marble::before{background-image:repeating-linear-gradient(135deg,rgba(25
   <!-- POST GRID -->
   <div class="post-grid" id="postGrid"></div>
 
-</div><!-- /ig-app -->
+</div>
 
 <!-- FAB -->
 <button class="theme-fab" id="themeFab" title="Change theme & wallpaper">🎨</button>
 
 <!-- PANEL -->
 <div class="theme-panel" id="themePanel">
-  <div class="p-title">Color Theme</div>
+  <div class="p-title">🎨 Color Theme</div>
   <div class="color-grid" id="colorGrid"></div>
-  <div class="p-title">Background Wallpaper</div>
+  <div class="p-title">🖼 Wallpaper</div>
   <div class="wp-grid2" id="wpGrid"></div>
 </div>
 
 <script>
-/* ── POST DATA ── */
 const POSTS = [
   {e:'🍱',cap:'Meal prep slop 🤙',reel:true,likes:312,cmts:18},
   {e:'🛒',cap:'Calorie deficit grocery haul as an autistic woman.',reel:true,likes:520,cmts:34},
@@ -434,13 +457,12 @@ const POSTS = [
   {e:'🧊',cap:'Fridge tour',reel:true,likes:460,cmts:31},
   {e:'🦆',cap:'POV: you sound like Daffy Duck',reel:true,likes:2100,cmts:143},
   {e:'✨',cap:"You're never gonna feel ready",reel:true,likes:730,cmts:58},
-  {e:'🚗',cap:'Macros. Let\'s talk about it.',reel:true,likes:540,cmts:39},
+  {e:'🚗',cap:"Macros. Let's talk about it.",reel:true,likes:540,cmts:39},
   {e:'🧢',cap:"We get it. You're a fucking big back.",reel:true,likes:1650,cmts:118},
   {e:'🎯',cap:'Your deficit needs a reset',reel:true,likes:480,cmts:29},
   {e:'🥑',cap:'High protein snack ideas',reel:true,likes:610,cmts:44},
 ];
 
-/* Build grid */
 const grid = document.getElementById('postGrid');
 POSTS.forEach(p => {
   const cell = document.createElement('div');
@@ -448,44 +470,43 @@ POSTS.forEach(p => {
   cell.innerHTML = `
     <div class="post-bg">${p.e}</div>
     ${p.reel ? `<svg class="post-reel-icon" viewBox="0 0 24 24" fill="white" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>` : ''}
-    <div class="post-stats">
-      <span>♥ ${p.likes.toLocaleString()}</span>
-      <span>💬 ${p.cmts}</span>
-    </div>
-    <div class="post-cap">${p.cap}</div>
-  `;
+    <div class="post-stats"><span>♥ ${p.likes.toLocaleString()}</span><span>💬 ${p.cmts}</span></div>
+    <div class="post-cap">${p.cap}</div>`;
   grid.appendChild(cell);
 });
 
-/* ── THEMES ── */
 const COLOR_THEMES = [
-  {id:'dark',    label:'Dark',   bg:'#000',      ac:'#3b9eff'},
-  {id:'light',   label:'Light',  bg:'#fafafa',   ac:'#0095f6'},
-  {id:'sakura',  label:'Sakura', bg:'#1a0010',   ac:'#e63f75'},
-  {id:'forest',  label:'Forest', bg:'#030f06',   ac:'#4dd47a'},
-  {id:'dusk',    label:'Dusk',   bg:'#0a0020',   ac:'#c17cf4'},
-  {id:'sand',    label:'Sand',   bg:'#1e1608',   ac:'#c47a2e'},
-  {id:'arctic',  label:'Arctic', bg:'#020d1a',   ac:'#3b9eff'},
-  {id:'ember',   label:'Ember',  bg:'#150300',   ac:'#ff6820'},
-  {id:'mint',    label:'Mint',   bg:'#001510',   ac:'#00b87a'},
-  {id:'default', label:'IG',     bg:'#fafafa',   ac:'#0095f6'},
+  {id:'dark',   label:'Dark',   bg:'#000',    ac:'#3b9eff'},
+  {id:'light',  label:'Light',  bg:'#fafafa', ac:'#0095f6'},
+  {id:'sakura', label:'Sakura', bg:'#1a0010', ac:'#e63f75'},
+  {id:'forest', label:'Forest', bg:'#030f06', ac:'#4dd47a'},
+  {id:'dusk',   label:'Dusk',   bg:'#0a0020', ac:'#c17cf4'},
+  {id:'sand',   label:'Sand',   bg:'#1e1608', ac:'#c47a2e'},
+  {id:'arctic', label:'Arctic', bg:'#020d1a', ac:'#3b9eff'},
+  {id:'ember',  label:'Ember',  bg:'#150300', ac:'#ff6820'},
+  {id:'mint',   label:'Mint',   bg:'#001510', ac:'#00b87a'},
 ];
 
 const WALLPAPERS = [
-  {id:'none',     label:'None',     pc:'wp-p-none'},
-  {id:'bokeh',    label:'Bokeh',    pc:'wp-p-bokeh'},
-  {id:'aurora',   label:'Aurora',   pc:'wp-p-aurora'},
-  {id:'geo',      label:'Geo',      pc:'wp-p-geo'},
-  {id:'rain',     label:'Rain',     pc:'wp-p-rain'},
-  {id:'confetti', label:'Confetti', pc:'wp-p-confetti'},
-  {id:'neon',     label:'Neon',     pc:'wp-p-neon'},
-  {id:'marble',   label:'Marble',   pc:'wp-p-marble'},
+  {id:'none',      label:'None',       pc:'wp-p-none',      anim:false},
+  {id:'galaxy',    label:'Galaxy',     pc:'wp-p-galaxy',    anim:true},
+  {id:'lava',      label:'Lava',       pc:'wp-p-lava',      anim:true},
+  {id:'aurora',    label:'Aurora',     pc:'wp-p-aurora',    anim:true},
+  {id:'sunset',    label:'Sunset',     pc:'wp-p-sunset',    anim:true},
+  {id:'deepsea',   label:'Deep Sea',   pc:'wp-p-deepsea',   anim:true},
+  {id:'neon',      label:'Neon',       pc:'wp-p-neon',      anim:true},
+  {id:'web',       label:'Web',        pc:'wp-p-web',       anim:false},
+  {id:'marble',    label:'Marble',     pc:'wp-p-marble',    anim:false},
+  {id:'botanical', label:'Botanical',  pc:'wp-p-botanical', anim:false},
+  {id:'prism',     label:'Prism Rain', pc:'wp-p-prism',     anim:true},
+  {id:'glitch',    label:'Glitch',     pc:'wp-p-glitch',    anim:true},
+  {id:'confetti',  label:'Confetti',   pc:'wp-p-confetti',  anim:false},
 ];
 
 let activeColor = 'dark';
 let activeWp    = 'none';
 
-/* Build color swatches */
+// Build colour swatches
 const cg = document.getElementById('colorGrid');
 COLOR_THEMES.forEach(t => {
   const sw = document.createElement('div');
@@ -494,35 +515,38 @@ COLOR_THEMES.forEach(t => {
   sw.innerHTML = `<span class="c-label">${t.label}</span>`;
   sw.addEventListener('click',()=>{
     document.querySelectorAll('.c-swatch').forEach(s=>s.classList.remove('active'));
-    sw.classList.add('active');
-    activeColor = t.id;
-    applyTheme();
+    sw.classList.add('active'); activeColor=t.id; applyTheme();
   });
   cg.appendChild(sw);
 });
 
-/* Build wallpaper cards */
+// Build wallpaper cards — "None" is a plain swatch, rest are mini-preview cards
 const wg = document.getElementById('wpGrid');
 WALLPAPERS.forEach(w => {
   const card = document.createElement('div');
   card.className = 'wp-card' + (w.id===activeWp?' active':'');
-  card.innerHTML = `<div class="wp-preview ${w.pc}"></div><span class="wp-name2">${w.label}</span>`;
+  if(w.id==='none'){
+    card.innerHTML = `<div class="wp-preview" style="background:#111;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#444;">✕</div><span class="wp-name2">${w.label}</span>`;
+  } else {
+    card.innerHTML = `
+      <div class="wp-preview ${w.pc}"></div>
+      ${w.anim ? `<span class="wp-anim-badge">LIVE</span>` : ''}
+      <span class="wp-name2">${w.label}</span>`;
+  }
   card.addEventListener('click',()=>{
     document.querySelectorAll('.wp-card').forEach(c=>c.classList.remove('active'));
-    card.classList.add('active');
-    activeWp = w.id;
-    applyTheme();
+    card.classList.add('active'); activeWp=w.id; applyTheme();
   });
   wg.appendChild(card);
 });
 
 function applyTheme(){
-  document.body.className = '';
+  document.body.className='';
   document.body.classList.add('theme-'+activeColor);
   if(activeWp!=='none') document.body.classList.add('wp-'+activeWp);
 }
 
-/* FAB */
+// FAB toggle
 const fab   = document.getElementById('themeFab');
 const panel = document.getElementById('themePanel');
 fab.addEventListener('click',e=>{
@@ -532,12 +556,11 @@ fab.addEventListener('click',e=>{
 });
 document.addEventListener('click',e=>{
   if(!panel.contains(e.target)&&e.target!==fab){
-    panel.classList.remove('open');
-    fab.style.transform = '';
+    panel.classList.remove('open'); fab.style.transform='';
   }
 });
 
-/* Tabs */
+// Tabs
 document.querySelectorAll('.tab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
