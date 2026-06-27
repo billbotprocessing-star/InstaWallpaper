@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile · WallpaperGram</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Theme variables ── */
+    body {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --border: #dbdbdb;
+      --text: #262626;
+      --sub: #737373;
+      --accent: #0095f6;
+      --overlay: rgba(0,0,0,0.04);
+      --btn-bg: #efefef;
+      --btn-text: #262626;
+      --story-ring: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: background 0.5s ease, color 0.4s ease;
+    }
+
+    /* ────────────────────────────────────────── THEMES ─── */
+
+    body.theme-night {
+      --bg: #0d0d0d;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #f1f1f1;
+      --sub: #888;
+      --accent: #3b9eff;
+      --overlay: rgba(255,255,255,0.04);
+      --btn-bg: #2a2a2a;
+      --btn-text: #f1f1f1;
+    }
+
+    body.theme-sakura {
+      --bg: #fff0f5;
+      --surface: #fff5f8;
+      --border: #f9c0d0;
+      --text: #4a1628;
+      --sub: #b0607a;
+      --accent: #e63f75;
+      --overlay: rgba(230,63,117,0.06);
+      --btn-bg: #ffdde8;
+      --btn-text: #4a1628;
+    }
+
+    body.theme-forest {
+      --bg: #0e1a12;
+      --surface: #142019;
+      --border: #1f3225;
+      --text: #d6f0e0;
+      --sub: #7bb592;
+      --accent: #4dd47a;
+      --overlay: rgba(77,212,122,0.06);
+      --btn-bg: #1f3225;
+      --btn-text: #d6f0e0;
+    }
+
+    body.theme-dusk {
+      --bg: #1a0a2e;
+      --surface: #241240;
+      --border: #3a1f60;
+      --text: #ede0ff;
+      --sub: #b08fd6;
+      --accent: #c17cf4;
+      --overlay: rgba(193,124,244,0.07);
+      --btn-bg: #3a1f60;
+      --btn-text: #ede0ff;
+    }
+
+    body.theme-sand {
+      --bg: #f5ede0;
+      --surface: #faf5ee;
+      --border: #d9c8b4;
+      --text: #3b2e1e;
+      --sub: #8a7060;
+      --accent: #c47a2e;
+      --overlay: rgba(196,122,46,0.06);
+      --btn-bg: #e8d9c4;
+      --btn-text: #3b2e1e;
+    }
+
+    body.theme-arctic {
+      --bg: #e8f4ff;
+      --surface: #f0f8ff;
+      --border: #b8d8f4;
+      --text: #0a2a4a;
+      --sub: #5080a0;
+      --accent: #006fd0;
+      --overlay: rgba(0,111,208,0.05);
+      --btn-bg: #cce4f8;
+      --btn-text: #0a2a4a;
+    }
+
+    body.theme-ember {
+      --bg: #1c0a00;
+      --surface: #2a1000;
+      --border: #4a2010;
+      --text: #ffe5cc;
+      --sub: #c0804a;
+      --accent: #ff6820;
+      --overlay: rgba(255,104,32,0.07);
+      --btn-bg: #4a2010;
+      --btn-text: #ffe5cc;
+    }
+
+    body.theme-mint {
+      --bg: #eafaf4;
+      --surface: #f3fdf8;
+      --border: #b4e8d2;
+      --text: #0a3324;
+      --sub: #3a8060;
+      --accent: #00b87a;
+      --overlay: rgba(0,184,122,0.05);
+      --btn-bg: #c4eedd;
+      --btn-text: #0a3324;
+    }
+
+    /* ────────────────────────────────────────── WALLPAPER BG ─── */
+
+    body.wp-bokeh    { background-image: radial-gradient(ellipse at 20% 30%, rgba(255,200,80,0.35) 0%, transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(100,180,255,0.35) 0%, transparent 55%), radial-gradient(ellipse at 50% 90%, rgba(255,100,200,0.25) 0%, transparent 50%); }
+    body.wp-aurora   { background-image: linear-gradient(160deg, rgba(0,200,150,0.4) 0%, transparent 40%), linear-gradient(200deg, rgba(80,0,200,0.5) 0%, transparent 50%), linear-gradient(120deg, rgba(0,180,255,0.3) 30%, transparent 70%); }
+    body.wp-geo      { background-image: repeating-linear-gradient(60deg, transparent, transparent 28px, rgba(var(--accent-raw,.5,.5,.5),.07) 28px, rgba(.5,.5,.5,.07) 29px), repeating-linear-gradient(-60deg, transparent, transparent 28px, rgba(.5,.5,.5,.07) 28px, rgba(.5,.5,.5,.07) 29px); }
+    body.wp-rain     { background-image: repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(100,180,255,.08) 38px, rgba(100,180,255,.08) 39px), repeating-linear-gradient(180deg, transparent, transparent 20px, rgba(100,180,255,.05) 20px, rgba(100,180,255,.05) 21px); }
+    body.wp-confetti { background-image: radial-gradient(circle at 15% 20%, rgba(255,100,100,.2) 2px, transparent 2px), radial-gradient(circle at 40% 60%, rgba(100,200,255,.2) 2px, transparent 2px), radial-gradient(circle at 70% 30%, rgba(200,255,100,.2) 2px, transparent 2px), radial-gradient(circle at 85% 80%, rgba(255,200,50,.2) 2px, transparent 2px); background-size: 200px 200px; }
+
+    /* ────────────────────────────────────────── LAYOUT ─── */
+
+    .ig-app { max-width: 935px; margin: 0 auto; padding: 0 20px; }
+
+    /* Top nav */
+    .ig-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px; border-bottom: 1px solid var(--border);
+      background: var(--surface); position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(12px);
+      transition: background 0.4s, border-color 0.4s;
+    }
+    .nav-logo { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; color: var(--text); }
+    .nav-icons { display: flex; gap: 18px; color: var(--text); }
+    .nav-icons svg { width: 24px; height: 24px; fill: none; stroke: var(--text); stroke-width: 1.8; }
+
+    /* Profile header */
+    .profile-header {
+      display: flex; align-items: flex-start; gap: 40px;
+      padding: 36px 0 28px; border-bottom: 1px solid var(--border);
+    }
+    .avatar-wrap { position: relative; flex-shrink: 0; }
+    .avatar-ring {
+      width: 90px; height: 90px; border-radius: 50%;
+      background: var(--story-ring); padding: 3px; cursor: pointer;
+    }
+    .avatar-ring img {
+      width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--surface);
+      object-fit: cover; display: block;
+    }
+    .avatar-placeholder {
+      width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--surface);
+      background: var(--btn-bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem;
+    }
+    .profile-info { flex: 1; }
+    .profile-row1 { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+    .username { font-size: 1.25rem; font-weight: 400; color: var(--text); }
+    .btn {
+      padding: 6px 16px; border-radius: 8px; font-size: 0.82rem; font-weight: 600;
+      border: 1px solid var(--border); cursor: pointer;
+      background: var(--btn-bg); color: var(--btn-text);
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.75; }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .stats { display: flex; gap: 32px; margin-bottom: 14px; }
+    .stat-num { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .stat-label { font-size: 0.85rem; color: var(--text); }
+    .bio-name { font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 4px; }
+    .bio-text { font-size: 0.88rem; color: var(--text); line-height: 1.5; }
+    .bio-link { font-size: 0.88rem; color: var(--accent); font-weight: 600; }
+
+    /* Stories row */
+    .stories-row {
+      display: flex; gap: 20px; padding: 18px 0;
+      border-bottom: 1px solid var(--border); overflow-x: auto;
+    }
+    .story-item { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; }
+    .story-circle {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--btn-bg); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .story-plus {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--btn-bg); border: 2px dashed var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: var(--sub); cursor: pointer;
+    }
+    .story-label { font-size: 0.7rem; color: var(--text); max-width: 56px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* Tabs */
+    .profile-tabs { display: flex; border-bottom: 1px solid var(--border); margin-top: 2px; }
+    .tab {
+      flex: 1; text-align: center; padding: 14px 0;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--sub);
+      border-bottom: 2px solid transparent; cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab.active { color: var(--text); border-color: var(--text); }
+    .tab:hover:not(.active) { color: var(--text); }
+
+    /* Grid */
+    .post-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; padding: 3px 0 80px; }
+    .post-cell {
+      aspect-ratio: 1; background: var(--btn-bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; cursor: pointer; position: relative; overflow: hidden;
+      transition: filter 0.2s;
+    }
+    .post-cell:hover .post-overlay { opacity: 1; }
+    .post-overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,0.3);
+      display: flex; align-items: center; justify-content: center;
+      gap: 18px; opacity: 0; transition: opacity 0.2s; color: #fff;
+      font-size: 0.85rem; font-weight: 700;
+    }
+    .post-emoji { font-size: 2.5rem; pointer-events: none; user-select: none; }
+
+    /* ────────────────────────────────────────── THEME PANEL ─── */
+
+    .theme-fab {
+      position: fixed; bottom: 24px; right: 24px; z-index: 200;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      border: none; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; transition: transform 0.2s;
+    }
+    .theme-fab:hover { transform: scale(1.08); }
+
+    .theme-panel {
+      position: fixed; bottom: 88px; right: 20px; z-index: 199;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 18px;
+      width: 300px; max-height: 80vh; overflow-y: auto;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+      transform: translateY(20px) scale(0.95);
+      opacity: 0; pointer-events: none;
+      transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), opacity 0.2s;
+    }
+    .theme-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
+    .panel-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--sub); margin-bottom: 12px; }
+
+    .theme-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 18px; }
+    .theme-swatch {
+      aspect-ratio: 1; border-radius: 10px; cursor: pointer;
+      border: 2px solid transparent; display: flex; align-items: center; justify-content: center;
+      font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+      transition: transform 0.15s, border-color 0.15s;
+      position: relative; overflow: hidden;
+    }
+    .theme-swatch:hover { transform: scale(1.08); }
+    .theme-swatch.active { border-color: var(--accent); }
+    .theme-swatch.active::after {
+      content: '✓'; position: absolute; bottom: 3px; right: 5px;
+      font-size: 0.7rem; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    .swatch-label { color: rgba(255,255,255,0.9); text-shadow: 0 1px 4px rgba(0,0,0,0.5); font-size: 0.55rem; text-align: center; padding: 2px; }
+
+    /* Wallpaper options */
+    .wp-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .wp-card {
+      aspect-ratio: 1.2; border-radius: 10px; cursor: pointer;
+      border: 2px solid transparent; overflow: hidden;
+      transition: transform 0.15s, border-color 0.15s;
+      position: relative; display: flex; align-items: flex-end;
+    }
+    .wp-card:hover { transform: scale(1.05); }
+    .wp-card.active { border-color: var(--accent); }
+    .wp-card.active::after {
+      content: '✓'; position: absolute; top: 6px; right: 7px;
+      font-size: 0.75rem; color: #fff; background: var(--accent);
+      width: 18px; height: 18px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; text-align: center; line-height: 18px;
+    }
+    .wp-name { font-size: 0.58rem; font-weight: 700; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.6); padding: 5px 6px; background: linear-gradient(transparent, rgba(0,0,0,0.4)); width: 100%; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Previews for wp cards */
+    .wp-preview { position: absolute; inset: 0; }
+    .wp-prev-none    { background: var(--bg); }
+    .wp-prev-bokeh   { background: #1a1a2e; background-image: radial-gradient(ellipse at 20% 30%, rgba(255,200,80,.5) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(100,180,255,.5) 0%, transparent 50%), radial-gradient(ellipse at 50% 90%, rgba(255,100,200,.4) 0%, transparent 45%); }
+    .wp-prev-aurora  { background: #0d1b2a; background-image: linear-gradient(160deg, rgba(0,200,150,.6) 0%, transparent 40%), linear-gradient(200deg, rgba(80,0,200,.7) 0%, transparent 50%), linear-gradient(120deg, rgba(0,180,255,.4) 30%, transparent 70%); }
+    .wp-prev-geo     { background: #1a1a1a; background-image: repeating-linear-gradient(60deg, transparent, transparent 8px, rgba(255,255,255,.07) 8px, rgba(255,255,255,.07) 9px), repeating-linear-gradient(-60deg, transparent, transparent 8px, rgba(255,255,255,.07) 8px, rgba(255,255,255,.07) 9px); }
+    .wp-prev-rain    { background: #0a1628; background-image: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(100,180,255,.15) 10px, rgba(100,180,255,.15) 11px), repeating-linear-gradient(180deg, transparent, transparent 6px, rgba(100,180,255,.08) 6px, rgba(100,180,255,.08) 7px); }
+    .wp-prev-confetti{ background: #fff8f8; background-image: radial-gradient(circle at 15% 20%, rgba(255,100,100,.6) 2px, transparent 2px), radial-gradient(circle at 40% 60%, rgba(100,200,255,.6) 2px, transparent 2px), radial-gradient(circle at 70% 30%, rgba(200,255,100,.6) 2px, transparent 2px), radial-gradient(circle at 85% 80%, rgba(255,200,50,.6) 2px, transparent 2px); background-size: 50px 50px; }
+
+    /* ────────────────────────────────────────── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      .profile-header { gap: 20px; }
+      .avatar-ring { width: 72px; height: 72px; }
+      .stats { gap: 18px; }
+      .username { font-size: 1rem; }
+      .theme-panel { width: calc(100vw - 32px); right: 16px; }
+    }
+  </style>
+</head>
+<body class="theme-default">
+
+<!-- ── Nav ── -->
+<div class="ig-nav">
+  <div class="ig-app" style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:935px;margin:0 auto;">
+    <span class="nav-logo">WallpaperGram</span>
+    <div class="nav-icons">
+      <svg viewBox="0 0 24 24"><path d="M21 21l-5-5m0 0A7 7 0 1 0 6 6a7 7 0 0 0 10 10z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    </div>
+  </div>
+</div>
+
+<div class="ig-app">
+
+  <!-- ── Profile Header ── -->
+  <div class="profile-header">
+    <div class="avatar-wrap">
+      <div class="avatar-ring">
+        <div class="avatar-placeholder">🧑‍🎨</div>
+      </div>
+    </div>
+    <div class="profile-info">
+      <div class="profile-row1">
+        <span class="username">wallpaper_studio</span>
+        <button class="btn btn-primary">Follow</button>
+        <button class="btn">Message</button>
+        <button class="btn">⋯</button>
+      </div>
+      <div class="stats">
+        <div><span class="stat-num">148</span>&nbsp;<span class="stat-label">posts</span></div>
+        <div><span class="stat-num">12.4K</span>&nbsp;<span class="stat-label">followers</span></div>
+        <div><span class="stat-num">394</span>&nbsp;<span class="stat-label">following</span></div>
+      </div>
+      <div class="bio-name">Wallpaper Studio ✦</div>
+      <div class="bio-text">Turning profiles into art 🎨<br>Themes · Textures · Vibes<br>Pick your wallpaper below 👇</div>
+      <a class="bio-link" href="#">wallpaperstudio.co</a>
+    </div>
+  </div>
+
+  <!-- ── Highlights ── -->
+  <div class="stories-row">
+    <div class="story-item">
+      <div class="story-plus">＋</div>
+      <span class="story-label">New</span>
+    </div>
+    <div class="story-item"><div class="story-circle">🌸</div><span class="story-label">Sakura</span></div>
+    <div class="story-item"><div class="story-circle">🌲</div><span class="story-label">Forest</span></div>
+    <div class="story-item"><div class="story-circle">🌌</div><span class="story-label">Dusk</span></div>
+    <div class="story-item"><div class="story-circle">🏜️</div><span class="story-label">Sand</span></div>
+    <div class="story-item"><div class="story-circle">🧊</div><span class="story-label">Arctic</span></div>
+    <div class="story-item"><div class="story-circle">🔥</div><span class="story-label">Ember</span></div>
+    <div class="story-item"><div class="story-circle">🍃</div><span class="story-label">Mint</span></div>
+  </div>
+
+  <!-- ── Tabs ── -->
+  <div class="profile-tabs">
+    <div class="tab active">▦ Posts</div>
+    <div class="tab">⊞ Reels</div>
+    <div class="tab">🏷 Tagged</div>
+  </div>
+
+  <!-- ── Post Grid ── -->
+  <div class="post-grid" id="postGrid"></div>
+
+</div><!-- end ig-app -->
+
+<!-- ── Theme FAB ── -->
+<button class="theme-fab" id="themeFab" title="Change wallpaper">🎨</button>
+
+<!-- ── Theme Panel ── -->
+<div class="theme-panel" id="themePanel">
+
+  <div class="panel-title">🎨 Color Theme</div>
+  <div class="theme-grid" id="colorGrid">
+    <!-- injected by JS -->
+  </div>
+
+  <div class="panel-title">🖼 Background Wallpaper</div>
+  <div class="wp-grid" id="wpGrid">
+    <!-- injected by JS -->
+  </div>
+
+</div>
+
+<script>
+  /* ── DATA ── */
+  const COLOR_THEMES = [
+    { id:'default',  label:'Clean',   bg:'#fafafa',  accent:'#0095f6' },
+    { id:'night',    label:'Night',   bg:'#0d0d0d',  accent:'#3b9eff' },
+    { id:'sakura',   label:'Sakura',  bg:'#fff0f5',  accent:'#e63f75' },
+    { id:'forest',   label:'Forest',  bg:'#0e1a12',  accent:'#4dd47a' },
+    { id:'dusk',     label:'Dusk',    bg:'#1a0a2e',  accent:'#c17cf4' },
+    { id:'sand',     label:'Sand',    bg:'#f5ede0',  accent:'#c47a2e' },
+    { id:'arctic',   label:'Arctic',  bg:'#e8f4ff',  accent:'#006fd0' },
+    { id:'ember',    label:'Ember',   bg:'#1c0a00',  accent:'#ff6820' },
+    { id:'mint',     label:'Mint',    bg:'#eafaf4',  accent:'#00b87a' },
+  ];
+
+  const WALLPAPERS = [
+    { id:'none',     label:'None',    previewClass:'wp-prev-none' },
+    { id:'bokeh',    label:'Bokeh',   previewClass:'wp-prev-bokeh' },
+    { id:'aurora',   label:'Aurora',  previewClass:'wp-prev-aurora' },
+    { id:'geo',      label:'Geo',     previewClass:'wp-prev-geo' },
+    { id:'rain',     label:'Rain',    previewClass:'wp-prev-rain' },
+    { id:'confetti', label:'Confetti',previewClass:'wp-prev-confetti' },
+  ];
+
+  const POSTS = [
+    '🌸','🌌','🏜️','🔥','🌲','🧊','🌊','🌈','🌙','🎆','🍂','🌺','🌃','⛰️','🌅','🏔️','🌻','🌿'
+  ];
+
+  /* ── STATE ── */
+  let activeColor = 'default';
+  let activeWp    = 'none';
+
+  /* ── BUILD POST GRID ── */
+  const grid = document.getElementById('postGrid');
+  POSTS.forEach((emoji, i) => {
+    const cell = document.createElement('div');
+    cell.className = 'post-cell';
+    const ov = document.createElement('div');
+    ov.className = 'post-overlay';
+    ov.innerHTML = `♥ ${Math.floor(Math.random()*9+1)*100}&nbsp;&nbsp;💬 ${Math.floor(Math.random()*50+5)}`;
+    const em = document.createElement('div');
+    em.className = 'post-emoji';
+    em.textContent = emoji;
+    cell.appendChild(em);
+    cell.appendChild(ov);
+    grid.appendChild(cell);
+  });
+
+  /* ── BUILD COLOR SWATCHES ── */
+  const colorGrid = document.getElementById('colorGrid');
+  COLOR_THEMES.forEach(t => {
+    const sw = document.createElement('div');
+    sw.className = 'theme-swatch' + (t.id === activeColor ? ' active' : '');
+    sw.style.background = `linear-gradient(135deg, ${t.bg} 40%, ${t.accent} 100%)`;
+    sw.innerHTML = `<span class="swatch-label">${t.label}</span>`;
+    sw.title = t.label;
+    sw.addEventListener('click', () => {
+      document.querySelectorAll('.theme-swatch').forEach(s => s.classList.remove('active'));
+      sw.classList.add('active');
+      activeColor = t.id;
+      applyTheme();
+    });
+    colorGrid.appendChild(sw);
+  });
+
+  /* ── BUILD WALLPAPER CARDS ── */
+  const wpGrid = document.getElementById('wpGrid');
+  WALLPAPERS.forEach(w => {
+    const card = document.createElement('div');
+    card.className = 'wp-card' + (w.id === activeWp ? ' active' : '');
+    card.innerHTML = `<div class="wp-preview ${w.previewClass}"></div><span class="wp-name">${w.label}</span>`;
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.wp-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      activeWp = w.id;
+      applyTheme();
+    });
+    wpGrid.appendChild(card);
+  });
+
+  /* ── APPLY THEME ── */
+  function applyTheme() {
+    const body = document.body;
+    // remove old classes
+    body.className = '';
+    body.classList.add(`theme-${activeColor}`);
+    if (activeWp !== 'none') body.classList.add(`wp-${activeWp}`);
+  }
+
+  /* ── FAB TOGGLE ── */
+  const fab   = document.getElementById('themeFab');
+  const panel = document.getElementById('themePanel');
+  fab.addEventListener('click', () => {
+    panel.classList.toggle('open');
+    fab.style.transform = panel.classList.contains('open') ? 'rotate(30deg) scale(1.08)' : '';
+  });
+  document.addEventListener('click', e => {
+    if (!panel.contains(e.target) && e.target !== fab) {
+      panel.classList.remove('open');
+      fab.style.transform = '';
+    }
+  });
+
+  /* ── TABS ── */
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
