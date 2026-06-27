@@ -18,14 +18,16 @@ body{
   background:var(--bg);color:var(--text);min-height:100vh;
   transition:background .5s,color .4s;
 }
-body.theme-light{--bg:#fafafa;--surface:#fff;--nav-bg:rgba(255,255,255,.95);--border:#dbdbdb;--text:#262626;--sub:#737373;--btn-bg:#efefef;--btn-text:#262626;--btn-border:#dbdbdb;}
-body.theme-sakura{--bg:#1a0010;--surface:#200015;--nav-bg:rgba(26,0,16,.95);--border:#4a0030;--text:#ffe0f0;--sub:#c080a0;--btn-bg:#300020;--btn-text:#ffe0f0;--btn-border:#5a0040;}
-body.theme-forest{--bg:#030f06;--surface:#061409;--nav-bg:rgba(3,15,6,.95);--border:#1a3520;--text:#c8f0d8;--sub:#6aaa80;--btn-bg:#0e2415;--btn-text:#c8f0d8;--btn-border:#245030;}
-body.theme-dusk{--bg:#0a0020;--surface:#100030;--nav-bg:rgba(10,0,32,.95);--border:#2a1060;--text:#e8d8ff;--sub:#9070c0;--btn-bg:#1a0850;--btn-text:#e8d8ff;--btn-border:#3a1880;}
-body.theme-sand{--bg:#1e1608;--surface:#261c0a;--nav-bg:rgba(30,22,8,.95);--border:#4a3818;--text:#f0ddb0;--sub:#a08860;--btn-bg:#352808;--btn-text:#f0ddb0;--btn-border:#5a4828;}
-body.theme-arctic{--bg:#020d1a;--surface:#051525;--nav-bg:rgba(2,13,26,.95);--border:#0e3060;--text:#cce8ff;--sub:#6090c0;--btn-bg:#0a2040;--btn-text:#cce8ff;--btn-border:#144080;}
-body.theme-ember{--bg:#150300;--surface:#200500;--nav-bg:rgba(21,3,0,.95);--border:#4a1000;--text:#ffe0cc;--sub:#c06040;--btn-bg:#300800;--btn-text:#ffe0cc;--btn-border:#5a1800;}
-body.theme-mint{--bg:#001510;--surface:#001e18;--nav-bg:rgba(0,21,16,.95);--border:#004030;--text:#c0ffe8;--sub:#40c090;--btn-bg:#003028;--btn-text:#c0ffe8;--btn-border:#005040;}
+
+body.theme-dark{--bg:#000;--surface:#000;--nav-bg:rgba(0,0,0,.92);--border:#262626;--text:#f5f5f5;--sub:#a8a8a8;--accent:#0095f6;--btn-bg:#262626;--btn-text:#f5f5f5;--btn-border:#363636;}
+body.theme-light{--bg:#fafafa;--surface:#fff;--nav-bg:rgba(255,255,255,.95);--border:#dbdbdb;--text:#262626;--sub:#737373;--accent:#0095f6;--btn-bg:#efefef;--btn-text:#262626;--btn-border:#dbdbdb;}
+body.theme-sakura{--bg:#1a0010;--surface:#200015;--nav-bg:rgba(26,0,16,.95);--border:#4a0030;--text:#ffeaf4;--sub:#f0a8c8;--accent:#e63f75;--btn-bg:#300020;--btn-text:#ffeaf4;--btn-border:#5a0040;}
+body.theme-forest{--bg:#030f06;--surface:#061409;--nav-bg:rgba(3,15,6,.95);--border:#1a3520;--text:#d9ffe6;--sub:#8fd8a8;--accent:#4dd47a;--btn-bg:#0e2415;--btn-text:#d9ffe6;--btn-border:#245030;}
+body.theme-dusk{--bg:#0a0020;--surface:#100030;--nav-bg:rgba(10,0,32,.95);--border:#2a1060;--text:#f0e6ff;--sub:#b99be6;--accent:#c17cf4;--btn-bg:#1a0850;--btn-text:#f0e6ff;--btn-border:#3a1880;}
+body.theme-sand{--bg:#1e1608;--surface:#261c0a;--nav-bg:rgba(30,22,8,.95);--border:#4a3818;--text:#fff0c8;--sub:#c9a76f;--accent:#c47a2e;--btn-bg:#352808;--btn-text:#fff0c8;--btn-border:#5a4828;}
+body.theme-arctic{--bg:#020d1a;--surface:#051525;--nav-bg:rgba(2,13,26,.95);--border:#0e3060;--text:#e6f6ff;--sub:#8fc9f5;--accent:#3b9eff;--btn-bg:#0a2040;--btn-text:#e6f6ff;--btn-border:#144080;}
+body.theme-ember{--bg:#150300;--surface:#200500;--nav-bg:rgba(21,3,0,.95);--border:#4a1000;--text:#ffe2d1;--sub:#ff9a74;--accent:#ff6820;--btn-bg:#300800;--btn-text:#ffe2d1;--btn-border:#5a1800;}
+body.theme-mint{--bg:#001510;--surface:#001e18;--nav-bg:rgba(0,21,16,.95);--border:#004030;--text:#d8fff2;--sub:#79e6bd;--accent:#00b87a;--btn-bg:#003028;--btn-text:#d8fff2;--btn-border:#005040;}
 
 /* ════════════════════════════════════════════════
    WALLPAPER LAYER  (::before = static/animated bg)
@@ -33,6 +35,21 @@ body.theme-mint{--bg:#001510;--surface:#001e18;--nav-bg:rgba(0,21,16,.95);--bord
 body[class*="wp-"]::before{
   content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 }
+
+/* ── VANTA WEBGL BACKGROUND ── */
+#vanta-bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .35s ease;
+}
+body.wp-vanta-halo #vanta-bg,
+body.wp-vanta-waves #vanta-bg,
+body.wp-vanta-clouds #vanta-bg,
+body.wp-vanta-fog #vanta-bg,
+body.wp-vanta-birds #vanta-bg{opacity:1;}
 
 /* ── 1. GALAXY  (animated star drift) ── */
 @keyframes starDrift{0%{transform:translateY(0) rotate(0deg)}100%{transform:translateY(-120px) rotate(1deg)}}
@@ -212,6 +229,400 @@ body.wp-confetti::before{
   background-size:220px 220px;
 }
 
+
+
+
+/* ── 13. COLORDROP (animated falling color columns) ── */
+body.wp-colordrop::before{
+  background:#000;
+  opacity:1;
+}
+
+.colordrop-wrap{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:0;
+  overflow:hidden;
+  background:#000;
+  transition:opacity .35s ease;
+}
+
+body.wp-colordrop .colordrop-wrap{
+  opacity:1;
+}
+
+.color-drop-col{
+  --drop-height:400px;
+  --dot-size:.9vw;
+  position:absolute;
+  top:0;
+  height:var(--drop-height);
+  width:.69444%;
+  margin-top:calc(var(--drop-height) * -1);
+  left:calc(var(--i) * .69444%);
+  background-image:linear-gradient(to bottom,#000,hsla(var(--hue),100%,50%,.8));
+  animation:colorDrop 4s infinite ease-in;
+  animation-delay:var(--delay);
+  will-change:transform,opacity;
+}
+
+.color-drop-col::after{
+  content:'';
+  position:absolute;
+  width:var(--dot-size);
+  height:var(--dot-size);
+  border-radius:50%;
+  left:50%;
+  bottom:calc(var(--dot-size) / -2);
+  margin-left:calc(var(--dot-size) / -2);
+  background:hsla(var(--hue),100%,50%,1);
+  box-shadow:0 0 14px hsla(var(--hue),100%,55%,.8);
+}
+
+@keyframes colorDrop{
+  0%{transform:translate3d(0,0,0);opacity:1}
+  80%{opacity:1}
+  100%{transform:translate3d(0,150vh,0);opacity:0}
+}
+
+/* ── READABILITY OVERRIDES ──
+   Wallpapers can be brighter or busier than normal color themes.
+   These rules keep text, buttons, and the nav readable automatically. */
+body.wp-vanta-clouds,
+body.wp-marble{
+  --text:#111;
+  --sub:#444;
+  --btn-text:#111;
+  --btn-bg:rgba(255,255,255,.78);
+  --btn-border:rgba(0,0,0,.18);
+  --nav-bg:rgba(255,255,255,.78);
+  --surface:rgba(255,255,255,.72);
+  --border:rgba(0,0,0,.16);
+}
+
+body.wp-vanta-halo,
+body.wp-vanta-waves,
+body.wp-vanta-fog,
+body.wp-vanta-birds,
+body.wp-colordrop,
+body.wp-lava,
+body.wp-aurora,
+body.wp-sunset,
+body.wp-deepsea,
+body.wp-neon,
+body.wp-web,
+body.wp-botanical,
+body.wp-prism,
+body.wp-glitch,
+body.wp-confetti{
+  --text:#fff;
+  --sub:rgba(255,255,255,.76);
+  --btn-text:#fff;
+  --btn-bg:rgba(0,0,0,.42);
+  --btn-border:rgba(255,255,255,.22);
+  --nav-bg:rgba(0,0,0,.58);
+  --surface:rgba(0,0,0,.46);
+  --border:rgba(255,255,255,.16);
+}
+
+body[class*="wp-"]:not(.wp-none) .profile-info,
+body[class*="wp-"]:not(.wp-none) .nav-logo,
+body[class*="wp-"]:not(.wp-none) .nav-icon,
+body[class*="wp-"]:not(.wp-none) .hl-label,
+body[class*="wp-"]:not(.wp-none) .stat-label,
+body[class*="wp-"]:not(.wp-none) .stat-num,
+body[class*="wp-"]:not(.wp-none) .bio-name,
+body[class*="wp-"]:not(.wp-none) .bio-text,
+body[class*="wp-"]:not(.wp-none) .username,
+body[class*="wp-"]:not(.wp-none) .mutual-text{
+  text-shadow:0 1px 3px rgba(0,0,0,.65);
+}
+
+body.wp-vanta-clouds .profile-info,
+body.wp-vanta-clouds .nav-logo,
+body.wp-vanta-clouds .nav-icon,
+body.wp-vanta-clouds .hl-label,
+body.wp-vanta-clouds .stat-label,
+body.wp-vanta-clouds .stat-num,
+body.wp-vanta-clouds .bio-name,
+body.wp-vanta-clouds .bio-text,
+body.wp-vanta-clouds .username,
+body.wp-vanta-clouds .mutual-text,
+body.wp-marble .profile-info,
+body.wp-marble .nav-logo,
+body.wp-marble .nav-icon,
+body.wp-marble .hl-label,
+body.wp-marble .stat-label,
+body.wp-marble .stat-num,
+body.wp-marble .bio-name,
+body.wp-marble .bio-text,
+body.wp-marble .username,
+body.wp-marble .mutual-text{
+  text-shadow:0 1px 2px rgba(255,255,255,.45);
+}
+
+body[class*="wp-"]:not(.wp-none) .ig-nav,
+body[class*="wp-"]:not(.wp-none) .theme-panel{
+  box-shadow:0 8px 28px rgba(0,0,0,.24);
+}
+
+body[class*="wp-"]:not(.wp-none) .avatar-inner,
+body[class*="wp-"]:not(.wp-none) .hl-ring,
+body[class*="wp-"]:not(.wp-none) .hl-new,
+body[class*="wp-"]:not(.wp-none) .post-cell{
+  backdrop-filter:blur(8px);
+}
+
+
+
+/* ── ANIMATED ACTION BUTTONS FOR BUSY WALLPAPERS ──
+   These only activate on dark/busy wallpaper modes so quieter themes stay simple. */
+body.wp-vanta-halo,
+body.wp-vanta-waves,
+body.wp-vanta-fog,
+body.wp-vanta-birds,
+body.wp-colordrop,
+body.wp-lava,
+body.wp-aurora,
+body.wp-sunset,
+body.wp-deepsea,
+body.wp-neon,
+body.wp-web,
+body.wp-botanical,
+body.wp-prism,
+body.wp-glitch,
+body.wp-confetti{
+  --busy-btn-hue:210deg;
+}
+
+body.wp-colordrop,
+body.wp-neon,
+body.wp-prism{--busy-btn-hue:180deg;}
+body.wp-lava,
+body.wp-sunset{--busy-btn-hue:24deg;}
+body.wp-aurora,
+body.wp-botanical,
+body.wp-vanta-birds{--busy-btn-hue:135deg;}
+body.wp-vanta-fog,
+body.wp-vanta-halo{--busy-btn-hue:270deg;}
+body.wp-glitch{--busy-btn-hue:155deg;}
+
+body.wp-vanta-halo .row-username .btn:not(.btn-more),
+body.wp-vanta-waves .row-username .btn:not(.btn-more),
+body.wp-vanta-fog .row-username .btn:not(.btn-more),
+body.wp-vanta-birds .row-username .btn:not(.btn-more),
+body.wp-colordrop .row-username .btn:not(.btn-more),
+body.wp-lava .row-username .btn:not(.btn-more),
+body.wp-aurora .row-username .btn:not(.btn-more),
+body.wp-sunset .row-username .btn:not(.btn-more),
+body.wp-deepsea .row-username .btn:not(.btn-more),
+body.wp-neon .row-username .btn:not(.btn-more),
+body.wp-web .row-username .btn:not(.btn-more),
+body.wp-botanical .row-username .btn:not(.btn-more),
+body.wp-prism .row-username .btn:not(.btn-more),
+body.wp-glitch .row-username .btn:not(.btn-more),
+body.wp-confetti .row-username .btn:not(.btn-more){
+  --border-radius:24px;
+  --padding:4px;
+  --transition:.4s;
+  --button-color:rgba(8,8,8,.74);
+  --highlight-color-hue:var(--busy-btn-hue);
+  position:relative;
+  isolation:isolate;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:30px;
+  padding:.48em .95em;
+  border-radius:var(--border-radius);
+  border:solid 1px rgba(255,255,255,.22);
+  background-color:var(--button-color);
+  color:#fff;
+  overflow:visible;
+  opacity:1;
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.2),
+    inset 0 2px 2px rgba(255,255,255,.15),
+    inset 0 4px 4px rgba(255,255,255,.1),
+    inset 0 8px 8px rgba(255,255,255,.05),
+    0 8px 22px rgba(0,0,0,.34);
+  transition:box-shadow var(--transition),border var(--transition),background-color var(--transition),transform .2s;
+}
+
+body.wp-vanta-halo .row-username .btn:not(.btn-more)::before,
+body.wp-vanta-waves .row-username .btn:not(.btn-more)::before,
+body.wp-vanta-fog .row-username .btn:not(.btn-more)::before,
+body.wp-vanta-birds .row-username .btn:not(.btn-more)::before,
+body.wp-colordrop .row-username .btn:not(.btn-more)::before,
+body.wp-lava .row-username .btn:not(.btn-more)::before,
+body.wp-aurora .row-username .btn:not(.btn-more)::before,
+body.wp-sunset .row-username .btn:not(.btn-more)::before,
+body.wp-deepsea .row-username .btn:not(.btn-more)::before,
+body.wp-neon .row-username .btn:not(.btn-more)::before,
+body.wp-web .row-username .btn:not(.btn-more)::before,
+body.wp-botanical .row-username .btn:not(.btn-more)::before,
+body.wp-prism .row-username .btn:not(.btn-more)::before,
+body.wp-glitch .row-username .btn:not(.btn-more)::before,
+body.wp-confetti .row-username .btn:not(.btn-more)::before{
+  content:'';
+  position:absolute;
+  top:calc(0px - var(--padding));
+  left:calc(0px - var(--padding));
+  width:calc(100% + var(--padding) * 2);
+  height:calc(100% + var(--padding) * 2);
+  border-radius:calc(var(--border-radius) + var(--padding));
+  pointer-events:none;
+  background-image:linear-gradient(0deg,rgba(0,0,0,.25),rgba(0,0,0,.62));
+  z-index:-1;
+  box-shadow:1px 1px 1px rgba(255,255,255,.14),2px 2px 2px rgba(255,255,255,.08),-1px -1px 1px rgba(0,0,0,.2),-2px -2px 2px rgba(0,0,0,.1);
+  transition:box-shadow var(--transition),filter var(--transition);
+}
+
+body.wp-vanta-halo .row-username .btn:not(.btn-more)::after,
+body.wp-vanta-waves .row-username .btn:not(.btn-more)::after,
+body.wp-vanta-fog .row-username .btn:not(.btn-more)::after,
+body.wp-vanta-birds .row-username .btn:not(.btn-more)::after,
+body.wp-colordrop .row-username .btn:not(.btn-more)::after,
+body.wp-lava .row-username .btn:not(.btn-more)::after,
+body.wp-aurora .row-username .btn:not(.btn-more)::after,
+body.wp-sunset .row-username .btn:not(.btn-more)::after,
+body.wp-deepsea .row-username .btn:not(.btn-more)::after,
+body.wp-neon .row-username .btn:not(.btn-more)::after,
+body.wp-web .row-username .btn:not(.btn-more)::after,
+body.wp-botanical .row-username .btn:not(.btn-more)::after,
+body.wp-prism .row-username .btn:not(.btn-more)::after,
+body.wp-glitch .row-username .btn:not(.btn-more)::after,
+body.wp-confetti .row-username .btn:not(.btn-more)::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background-image:linear-gradient(0deg,#fff,hsl(var(--highlight-color-hue),100%,70%),hsla(var(--highlight-color-hue),100%,70%,.5) 8%,transparent);
+  opacity:.28;
+  transition:opacity var(--transition),filter var(--transition);
+  mask-image:linear-gradient(0deg,#fff,transparent);
+}
+
+.row-username .btn .btn-letter{
+  position:relative;
+  display:inline-block;
+  color:inherit;
+}
+
+body.wp-vanta-halo .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-vanta-waves .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-vanta-fog .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-vanta-birds .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-colordrop .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-lava .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-aurora .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-sunset .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-deepsea .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-neon .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-web .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-botanical .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-prism .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-glitch .row-username .btn:not(.btn-more) .btn-letter,
+body.wp-confetti .row-username .btn:not(.btn-more) .btn-letter{
+  color:rgba(255,255,255,.72);
+  animation:busyButtonLetter 2s ease-in-out infinite;
+  animation-delay:calc(var(--letter-index) * .08s);
+  text-shadow:0 1px 3px rgba(0,0,0,.7);
+  transition:color var(--transition),text-shadow var(--transition),opacity var(--transition),transform var(--transition);
+}
+
+@keyframes busyButtonLetter{
+  50%{color:#fff;text-shadow:0 0 3px rgba(255,255,255,.8),0 0 8px hsla(var(--busy-btn-hue),100%,70%,.45)}
+}
+
+body.wp-vanta-halo .row-username .btn:not(.btn-more):hover,
+body.wp-vanta-waves .row-username .btn:not(.btn-more):hover,
+body.wp-vanta-fog .row-username .btn:not(.btn-more):hover,
+body.wp-vanta-birds .row-username .btn:not(.btn-more):hover,
+body.wp-colordrop .row-username .btn:not(.btn-more):hover,
+body.wp-lava .row-username .btn:not(.btn-more):hover,
+body.wp-aurora .row-username .btn:not(.btn-more):hover,
+body.wp-sunset .row-username .btn:not(.btn-more):hover,
+body.wp-deepsea .row-username .btn:not(.btn-more):hover,
+body.wp-neon .row-username .btn:not(.btn-more):hover,
+body.wp-web .row-username .btn:not(.btn-more):hover,
+body.wp-botanical .row-username .btn:not(.btn-more):hover,
+body.wp-prism .row-username .btn:not(.btn-more):hover,
+body.wp-glitch .row-username .btn:not(.btn-more):hover,
+body.wp-confetti .row-username .btn:not(.btn-more):hover{
+  opacity:1;
+  transform:translateY(-1px);
+  border-color:hsla(var(--highlight-color-hue),100%,80%,.42);
+}
+
+body.wp-vanta-halo .row-username .btn:not(.btn-more):hover::after,
+body.wp-vanta-waves .row-username .btn:not(.btn-more):hover::after,
+body.wp-vanta-fog .row-username .btn:not(.btn-more):hover::after,
+body.wp-vanta-birds .row-username .btn:not(.btn-more):hover::after,
+body.wp-colordrop .row-username .btn:not(.btn-more):hover::after,
+body.wp-lava .row-username .btn:not(.btn-more):hover::after,
+body.wp-aurora .row-username .btn:not(.btn-more):hover::after,
+body.wp-sunset .row-username .btn:not(.btn-more):hover::after,
+body.wp-deepsea .row-username .btn:not(.btn-more):hover::after,
+body.wp-neon .row-username .btn:not(.btn-more):hover::after,
+body.wp-web .row-username .btn:not(.btn-more):hover::after,
+body.wp-botanical .row-username .btn:not(.btn-more):hover::after,
+body.wp-prism .row-username .btn:not(.btn-more):hover::after,
+body.wp-glitch .row-username .btn:not(.btn-more):hover::after,
+body.wp-confetti .row-username .btn:not(.btn-more):hover::after{
+  opacity:.8;
+}
+
+body.wp-vanta-halo .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-vanta-waves .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-vanta-fog .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-vanta-birds .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-colordrop .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-lava .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-aurora .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-sunset .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-deepsea .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-neon .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-web .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-botanical .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-prism .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-glitch .row-username .btn:not(.btn-more):focus-visible .btn-letter,
+body.wp-confetti .row-username .btn:not(.btn-more):focus-visible .btn-letter{
+  animation:busyButtonFocus .9s ease-in-out forwards,busyButtonLetter 1.2s ease-in-out infinite;
+}
+
+@keyframes busyButtonFocus{
+  0%,100%{filter:blur(0);transform:scale(1)}
+  50%{filter:blur(4px) brightness(150%) drop-shadow(-16px 8px 10px hsl(var(--busy-btn-hue),100%,70%));transform:scale(1.35)}
+}
+
+body.wp-vanta-halo .row-username .btn:not(.btn-more):active,
+body.wp-vanta-waves .row-username .btn:not(.btn-more):active,
+body.wp-vanta-fog .row-username .btn:not(.btn-more):active,
+body.wp-vanta-birds .row-username .btn:not(.btn-more):active,
+body.wp-colordrop .row-username .btn:not(.btn-more):active,
+body.wp-lava .row-username .btn:not(.btn-more):active,
+body.wp-aurora .row-username .btn:not(.btn-more):active,
+body.wp-sunset .row-username .btn:not(.btn-more):active,
+body.wp-deepsea .row-username .btn:not(.btn-more):active,
+body.wp-neon .row-username .btn:not(.btn-more):active,
+body.wp-web .row-username .btn:not(.btn-more):active,
+body.wp-botanical .row-username .btn:not(.btn-more):active,
+body.wp-prism .row-username .btn:not(.btn-more):active,
+body.wp-glitch .row-username .btn:not(.btn-more):active,
+body.wp-confetti .row-username .btn:not(.btn-more):active{
+  transform:translateY(0) scale(.98);
+  background-color:hsla(var(--highlight-color-hue),50%,20%,.54);
+  border-color:hsla(var(--highlight-color-hue),100%,80%,.7);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .row-username .btn .btn-letter{animation:none!important;}
+}
+
 /* everything above the pseudo-elements */
 .ig-nav,.ig-app,.theme-fab,.theme-panel{position:relative;z-index:1;}
 
@@ -269,15 +680,43 @@ body.wp-confetti::before{
 
 /* ── POST GRID ── */
 .post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding-bottom:80px;}
-.post-cell{aspect-ratio:1;background:var(--btn-bg);position:relative;overflow:hidden;cursor:pointer;}
-.post-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem;background:var(--btn-bg);transition:filter .2s;}
-.post-cell:hover .post-bg{filter:brightness(.65);}
-.post-reel-icon{position:absolute;top:7px;right:7px;color:#fff;opacity:.9;width:16px;height:16px;}
-.post-stats{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:18px;color:#fff;font-size:.82rem;font-weight:700;opacity:0;transition:opacity .2s;pointer-events:none;}
+.post-cell{aspect-ratio:1;background:var(--btn-bg);position:relative;overflow:hidden;cursor:pointer;isolation:isolate;}
+.post-bg{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:flex-start;background:#111;transition:filter .2s,transform .25s;overflow:hidden;}
+.post-cell:hover .post-bg{filter:brightness(.62);transform:scale(1.035);}
+.post-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.16),transparent 36%,rgba(0,0,0,.46));z-index:1;}
+.post-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 25% 18%,rgba(255,255,255,.22),transparent 22%),radial-gradient(circle at 80% 80%,rgba(0,0,0,.25),transparent 36%);mix-blend-mode:screen;opacity:.45;z-index:2;}
+.post-bg.is-video::after{background:repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 4px),radial-gradient(circle at 70% 30%,rgba(255,255,255,.22),transparent 24%);mix-blend-mode:overlay;opacity:.7;}
+.media-chip{position:absolute;top:7px;left:7px;z-index:4;font-size:.48rem;font-weight:800;letter-spacing:.7px;color:#fff;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:3px 6px;backdrop-filter:blur(5px);}
+.media-subject{position:relative;z-index:4;margin:0 8px 9px;max-width:78%;font-size:.66rem;line-height:1.15;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.8);letter-spacing:.1px;}
+.media-photo-icon{position:absolute;top:7px;right:7px;z-index:4;width:18px;height:18px;border:1.7px solid rgba(255,255,255,.95);border-radius:3px;opacity:.92;}
+.media-photo-icon::before{content:'';position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;top:3px;right:3px;}
+.media-photo-icon::after{content:'';position:absolute;left:3px;right:3px;bottom:3px;height:7px;background:linear-gradient(135deg,transparent 45%,#fff 46% 55%,transparent 56%),linear-gradient(45deg,transparent 40%,#fff 41% 55%,transparent 56%);}
+.post-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:4;opacity:.88;pointer-events:none;}
+.post-play span{width:42px;height:42px;border-radius:50%;background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.35);}
+.post-play svg{width:18px;height:18px;margin-left:2px;fill:#fff;filter:drop-shadow(0 1px 3px rgba(0,0,0,.8));}
+.post-reel-icon{position:absolute;top:7px;right:7px;color:#fff;opacity:.95;width:16px;height:16px;z-index:5;filter:drop-shadow(0 1px 3px rgba(0,0,0,.8));}
+.post-stats{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:18px;color:#fff;font-size:.82rem;font-weight:800;opacity:0;transition:opacity .2s;pointer-events:none;z-index:6;text-shadow:0 2px 8px rgba(0,0,0,.75);}
 .post-cell:hover .post-stats{opacity:1;}
-.post-cap{position:absolute;bottom:0;left:0;right:0;padding:22px 8px 7px;background:linear-gradient(transparent,rgba(0,0,0,.55));font-size:.68rem;font-weight:500;color:#fff;line-height:1.3;opacity:0;transition:opacity .2s;}
+.post-cap{position:absolute;bottom:0;left:0;right:0;padding:24px 8px 7px;background:linear-gradient(transparent,rgba(0,0,0,.7));font-size:.68rem;font-weight:600;color:#fff;line-height:1.3;opacity:0;transition:opacity .2s;z-index:7;}
 .post-cell:hover .post-cap{opacity:1;}
-
+.thumb-meal{background:linear-gradient(135deg,#38200c 0%,#9e5f2b 45%,#f6c66c 100%);} 
+.thumb-grocery{background:linear-gradient(135deg,#06351e 0%,#13965d 48%,#f4f0c9 100%);} 
+.thumb-progress{background:linear-gradient(135deg,#111827 0%,#475569 45%,#d8c3a5 100%);} 
+.thumb-oats{background:linear-gradient(135deg,#2f1b10 0%,#b7834f 52%,#f2dfb9 100%);} 
+.thumb-car{background:linear-gradient(135deg,#111827 0%,#2563eb 55%,#e5e7eb 100%);} 
+.thumb-lunch{background:linear-gradient(135deg,#17412a 0%,#62b857 50%,#f6d365 100%);} 
+.thumb-dogday{background:linear-gradient(135deg,#2d1b0f 0%,#9a5a2e 50%,#f2d3a0 100%);} 
+.thumb-checkin{background:linear-gradient(135deg,#1e293b 0%,#a855f7 55%,#f0abfc 100%);} 
+.thumb-beauty{background:linear-gradient(135deg,#2b1020 0%,#db6b97 55%,#ffe0ef 100%);} 
+.thumb-scale{background:linear-gradient(135deg,#0f172a 0%,#64748b 48%,#e2e8f0 100%);} 
+.thumb-bruno{background:linear-gradient(135deg,#3f260f 0%,#b7793a 50%,#fed7aa 100%);} 
+.thumb-fridge{background:linear-gradient(135deg,#072033 0%,#38bdf8 52%,#ecfeff 100%);} 
+.thumb-duck{background:linear-gradient(135deg,#3b2300 0%,#eab308 52%,#fef3c7 100%);} 
+.thumb-ready{background:linear-gradient(135deg,#1f1147 0%,#7c3aed 48%,#f5d0fe 100%);} 
+.thumb-macros{background:linear-gradient(135deg,#0c2440 0%,#2563eb 45%,#dbeafe 100%);} 
+.thumb-bigback{background:linear-gradient(135deg,#1c1917 0%,#78716c 55%,#e7e5e4 100%);} 
+.thumb-reset{background:linear-gradient(135deg,#310b0b 0%,#dc2626 50%,#fecaca 100%);} 
+.thumb-snack{background:linear-gradient(135deg,#16300e 0%,#84cc16 50%,#ecfccb 100%);} 
 /* ── THEME FAB ── */
 .theme-fab{position:fixed;bottom:22px;right:22px;z-index:200;width:50px;height:50px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:transform .2s;}
 .theme-fab:hover{transform:scale(1.1);}
@@ -306,6 +745,22 @@ body.wp-confetti::before{
 .wp-name2{position:absolute;bottom:0;left:0;right:0;font-size:.48rem;font-weight:700;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7);padding:4px 5px;background:linear-gradient(transparent,rgba(0,0,0,.55));text-transform:uppercase;letter-spacing:.3px;}
 
 /* ── WALLPAPER MINI-PREVIEWS (inside panel cards) ── */
+
+/* Vanta Halo */
+.wp-p-vanta{background:radial-gradient(circle at 40% 40%,rgba(0,149,246,.75),transparent 35%),radial-gradient(circle at 70% 60%,rgba(188,24,136,.65),transparent 40%),radial-gradient(circle at 30% 80%,rgba(240,148,51,.55),transparent 35%),#050510;animation:neonP 4s linear infinite;}
+/* Vanta Waves */
+.wp-p-vanta-waves{background:linear-gradient(180deg,#001a2f,#00456b 45%,#00a6c8);position:relative;overflow:hidden;}
+.wp-p-vanta-waves::before{content:'';position:absolute;inset:-20%;background:repeating-radial-gradient(ellipse at 50% 80%,rgba(255,255,255,.22) 0 1px,transparent 2px 9px);transform:rotate(-8deg);animation:seaP 3s ease-in-out infinite;}
+/* Vanta Clouds */
+.wp-p-vanta-clouds{background:linear-gradient(180deg,#7fb8ff 0%,#d9efff 50%,#ffffff 100%);position:relative;overflow:hidden;}
+.wp-p-vanta-clouds::before{content:'';position:absolute;inset:-15%;background:radial-gradient(ellipse at 20% 60%,rgba(255,255,255,.9) 0%,transparent 35%),radial-gradient(ellipse at 55% 45%,rgba(255,255,255,.75) 0%,transparent 38%),radial-gradient(ellipse at 80% 65%,rgba(255,255,255,.85) 0%,transparent 32%);animation:seaP 4s ease-in-out infinite;}
+/* Vanta Fog */
+.wp-p-vanta-fog{background:linear-gradient(135deg,#1c1230 0%,#725ba8 45%,#d8c8ff 100%);position:relative;overflow:hidden;}
+.wp-p-vanta-fog::before{content:'';position:absolute;inset:-20%;background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,.45) 0%,transparent 36%),radial-gradient(ellipse at 75% 55%,rgba(255,255,255,.35) 0%,transparent 42%),radial-gradient(ellipse at 45% 80%,rgba(255,255,255,.28) 0%,transparent 38%);animation:auroraP 5s ease infinite;}
+
+.wp-p-vanta-birds{background:linear-gradient(135deg,#061524 0%,#143a5a 45%,#3b9eff 100%);position:relative;overflow:hidden;}
+.wp-p-vanta-birds::before{content:'◜  ◝   ◜';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.8);font-size:1.25rem;letter-spacing:5px;animation:seaP 3.2s ease-in-out infinite;}
+.wp-p-vanta-birds::after{content:'◝   ◜';position:absolute;left:12%;right:8%;top:24%;color:rgba(255,255,255,.55);font-size:.9rem;letter-spacing:8px;animation:auroraP 5s ease infinite;}
 /* Galaxy */
 @keyframes starP{0%{transform:translateY(0)}100%{transform:translateY(-30px)}}
 .wp-p-galaxy{background:#000 radial-gradient(1px 1px at 15% 25%,#fff 0%,transparent 100%),radial-gradient(1px 1px at 40% 65%,rgba(255,255,255,.9) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 60% 15%,#fff 0%,transparent 100%),radial-gradient(1px 1px at 80% 50%,rgba(200,180,255,.9) 0%,transparent 100%),radial-gradient(1px 1px at 25% 80%,rgba(255,255,255,.8) 0%,transparent 100%),radial-gradient(ellipse at 50% 50%,rgba(100,40,180,.3) 0%,transparent 70%);background-size:80px 80px,80px 80px,80px 80px,80px 80px,80px 80px,100% 100%;animation:starP 4s linear infinite;}
@@ -339,6 +794,12 @@ body.wp-confetti::before{
 /* Confetti */
 .wp-p-confetti{background:#0a0a0a;background-image:radial-gradient(circle at 15% 20%,rgba(255,80,80,.6) 1.5px,transparent 1.5px),radial-gradient(circle at 40% 60%,rgba(80,200,255,.6) 1.5px,transparent 1.5px),radial-gradient(circle at 65% 25%,rgba(255,220,0,.6) 1.5px,transparent 1.5px),radial-gradient(circle at 80% 75%,rgba(200,80,255,.6) 1.5px,transparent 1.5px),radial-gradient(circle at 55% 85%,rgba(80,255,140,.6) 1.5px,transparent 1.5px);background-size:50px 50px;}
 
+/* ColorDrop */
+.wp-p-colordrop{background:#000;position:relative;overflow:hidden;}
+.wp-p-colordrop::before{content:'';position:absolute;inset:-20%;background:repeating-linear-gradient(90deg,rgba(255,0,90,.8) 0 4px,rgba(255,180,0,.8) 4px 8px,rgba(0,255,120,.8) 8px 12px,rgba(0,180,255,.8) 12px 16px,rgba(150,0,255,.8) 16px 20px,transparent 20px 32px);filter:blur(.4px);animation:prismP 1.6s linear infinite;}
+.wp-p-colordrop::after{content:'DROP';position:absolute;bottom:6px;left:7px;color:#fff;font-size:.52rem;font-weight:800;letter-spacing:.08em;text-shadow:0 1px 4px #000;}
+
+
 @media(max-width:600px){
   .profile-header{gap:16px;}
   .avatar-ring-wrap{width:76px;height:76px;}
@@ -350,6 +811,8 @@ body.wp-confetti::before{
 </style>
 </head>
 <body class="theme-dark">
+<div id="vanta-bg"></div>
+<div class="colordrop-wrap" id="colordropWrap" aria-hidden="true"></div>
 
 <!-- NAV -->
 <div class="ig-nav">
@@ -441,35 +904,205 @@ body.wp-confetti::before{
   <div class="wp-grid2" id="wpGrid"></div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
 <script>
+
+let vantaEffect = null;
+
+function startVantaHalo(){
+  if (!window.VANTA || !window.VANTA.HALO) return;
+
+  if (vantaEffect) {
+    vantaEffect.destroy();
+    vantaEffect = null;
+  }
+
+  vantaEffect = window.VANTA.HALO({
+    el: '#vanta-bg',
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200,
+    minWidth: 200,
+    baseColor: 0x111111,
+    backgroundColor: 0x000000,
+    amplitudeFactor: 1.6,
+    size: 1.2
+  });
+}
+
+function startVantaWaves(){
+  if (!window.VANTA || !window.VANTA.WAVES) return;
+
+  if (vantaEffect) {
+    vantaEffect.destroy();
+    vantaEffect = null;
+  }
+
+  vantaEffect = window.VANTA.WAVES({
+    el: '#vanta-bg',
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200,
+    minWidth: 200,
+    scale: 1,
+    scaleMobile: 1,
+    color: 0x005f8f,
+    shininess: 45,
+    waveHeight: 18,
+    waveSpeed: 0.9,
+    zoom: 0.9
+  });
+}
+
+function startVantaClouds(){
+  if (!window.VANTA || !window.VANTA.CLOUDS) return;
+
+  if (vantaEffect) {
+    vantaEffect.destroy();
+    vantaEffect = null;
+  }
+
+  vantaEffect = window.VANTA.CLOUDS({
+    el: '#vanta-bg',
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200,
+    minWidth: 200,
+    skyColor: 0x68b8d7,
+    cloudColor: 0xadc1de,
+    cloudShadowColor: 0x183550,
+    sunColor: 0xff9919,
+    sunGlareColor: 0xff6633,
+    sunlightColor: 0xff9933,
+    speed: 0.8
+  });
+}
+
+function startVantaFog(){
+  if (!window.VANTA || !window.VANTA.FOG) return;
+
+  if (vantaEffect) {
+    vantaEffect.destroy();
+    vantaEffect = null;
+  }
+
+  vantaEffect = window.VANTA.FOG({
+    el: '#vanta-bg',
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200,
+    minWidth: 200,
+    highlightColor: 0xb89cff,
+    midtoneColor: 0x6f4bd8,
+    lowlightColor: 0x1a0f35,
+    baseColor: 0x070712,
+    blurFactor: 0.65,
+    speed: 1.4,
+    zoom: 1.1
+  });
+}
+
+
+function startVantaBirds(){
+  if (!window.VANTA || !window.VANTA.BIRDS) return;
+
+  if (vantaEffect) {
+    vantaEffect.destroy();
+    vantaEffect = null;
+  }
+
+  vantaEffect = window.VANTA.BIRDS({
+    el: '#vanta-bg',
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200,
+    minWidth: 200,
+    scale: 1,
+    scaleMobile: 1,
+    backgroundColor: 0x061524,
+    color1: 0x3b9eff,
+    color2: 0xffffff,
+    birdSize: 1.2,
+    wingSpan: 24,
+    speedLimit: 4,
+    separation: 45,
+    alignment: 35,
+    cohesion: 35,
+    quantity: 3
+  });
+}
+
+function stopVanta(){
+  if (vantaEffect) {
+    vantaEffect.destroy();
+    vantaEffect = null;
+  }
+}
+
+
+function buildColorDrop(){
+  const wrap = document.getElementById('colordropWrap');
+  if (!wrap || wrap.dataset.built === 'true') return;
+
+  const total = 144;
+  for (let i = 0; i < total; i++) {
+    const col = document.createElement('div');
+    const hue = (300 / total) * (i + 1);
+    const delay = -(((i * 37) % total) * (4 / total));
+
+    col.className = 'color-drop-col';
+    col.style.setProperty('--i', i);
+    col.style.setProperty('--hue', hue.toFixed(2));
+    col.style.setProperty('--delay', delay.toFixed(3) + 's');
+    wrap.appendChild(col);
+  }
+
+  wrap.dataset.built = 'true';
+}
+
 const POSTS = [
-  {e:'🍱',cap:'Meal prep slop 🤙',reel:true,likes:312,cmts:18},
-  {e:'🛒',cap:'Calorie deficit grocery haul as an autistic woman.',reel:true,likes:520,cmts:34},
-  {e:'💪',cap:'I lost 20lbs & never gained it back.',reel:false,likes:1840,cmts:92},
-  {e:'🥣',cap:'Best overnight oats',reel:true,likes:430,cmts:27},
-  {e:'🚗',cap:'This is your hack to fatloss 🥴',reel:true,likes:670,cmts:41},
-  {e:'🥗',cap:'Lunch for fatloss',reel:true,likes:290,cmts:15},
-  {e:'🐕',cap:'International Dachshund Day',reel:true,likes:850,cmts:63},
-  {e:'📸',cap:'Progress check',reel:true,likes:1200,cmts:88},
-  {e:'💉',cap:'Botox recommendations?',reel:true,likes:380,cmts:52},
-  {e:'⚖️',cap:'System for weightloss',reel:true,likes:920,cmts:74},
-  {e:'🐶',cap:'Meet Bruno!',reel:true,likes:1100,cmts:95},
-  {e:'🧊',cap:'Fridge tour',reel:true,likes:460,cmts:31},
-  {e:'🦆',cap:'POV: you sound like Daffy Duck',reel:true,likes:2100,cmts:143},
-  {e:'✨',cap:"You're never gonna feel ready",reel:true,likes:730,cmts:58},
-  {e:'🚗',cap:"Macros. Let's talk about it.",reel:true,likes:540,cmts:39},
-  {e:'🧢',cap:"We get it. You're a fucking big back.",reel:true,likes:1650,cmts:118},
-  {e:'🎯',cap:'Your deficit needs a reset',reel:true,likes:480,cmts:29},
-  {e:'🥑',cap:'High protein snack ideas',reel:true,likes:610,cmts:44},
+  {type:'video', cls:'thumb-meal', label:'Meal prep reel', cap:'Meal prep slop 🤙', likes:312, cmts:18},
+  {type:'video', cls:'thumb-grocery', label:'Grocery haul', cap:'Calorie deficit grocery haul as an autistic woman.', likes:520, cmts:34},
+  {type:'image', cls:'thumb-progress', label:'Transformation post', cap:'I lost 20lbs & never gained it back.', likes:1840, cmts:92},
+  {type:'video', cls:'thumb-oats', label:'Overnight oats', cap:'Best overnight oats', likes:430, cmts:27},
+  {type:'video', cls:'thumb-car', label:'Car talk reel', cap:'This is your hack to fatloss 🥴', likes:670, cmts:41},
+  {type:'video', cls:'thumb-lunch', label:'Lunch idea', cap:'Lunch for fatloss', likes:290, cmts:15},
+  {type:'video', cls:'thumb-dogday', label:'Dachshund day', cap:'International Dachshund Day', likes:850, cmts:63},
+  {type:'image', cls:'thumb-checkin', label:'Progress check', cap:'Progress check', likes:1200, cmts:88},
+  {type:'video', cls:'thumb-beauty', label:'Beauty Q&A', cap:'Botox recommendations?', likes:380, cmts:52},
+  {type:'video', cls:'thumb-scale', label:'Weightloss system', cap:'System for weightloss', likes:920, cmts:74},
+  {type:'video', cls:'thumb-bruno', label:'Bruno reel', cap:'Meet Bruno!', likes:1100, cmts:95},
+  {type:'video', cls:'thumb-fridge', label:'Fridge tour', cap:'Fridge tour', likes:460, cmts:31},
+  {type:'video', cls:'thumb-duck', label:'Funny reel', cap:'POV: you sound like Daffy Duck', likes:2100, cmts:143},
+  {type:'video', cls:'thumb-ready', label:'Mindset reel', cap:"You're never gonna feel ready", likes:730, cmts:58},
+  {type:'video', cls:'thumb-macros', label:'Macro talk', cap:"Macros. Let's talk about it.", likes:540, cmts:39},
+  {type:'video', cls:'thumb-bigback', label:'Hot take reel', cap:"We get it. You're a fucking big back.", likes:1650, cmts:118},
+  {type:'video', cls:'thumb-reset', label:'Deficit reset', cap:'Your deficit needs a reset', likes:480, cmts:29},
+  {type:'image', cls:'thumb-snack', label:'Snack carousel', cap:'High protein snack ideas', likes:610, cmts:44},
 ];
 
 const grid = document.getElementById('postGrid');
 POSTS.forEach(p => {
+  const isVideo = p.type === 'video';
   const cell = document.createElement('div');
   cell.className = 'post-cell';
   cell.innerHTML = `
-    <div class="post-bg">${p.e}</div>
-    ${p.reel ? `<svg class="post-reel-icon" viewBox="0 0 24 24" fill="white" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>` : ''}
+    <div class="post-bg ${isVideo ? 'is-video' : 'is-image'} ${p.cls}">
+      <span class="media-chip">${isVideo ? 'VIDEO' : 'IMAGE'}</span>
+      <span class="media-subject">${p.label}</span>
+      ${isVideo ? `<div class="post-play"><span><svg viewBox="0 0 24 24"><polygon points="8 5 19 12 8 19 8 5"/></svg></span></div>` : `<span class="media-photo-icon"></span>`}
+    </div>
+    ${isVideo ? `<svg class="post-reel-icon" viewBox="0 0 24 24" fill="white" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>` : ''}
     <div class="post-stats"><span>♥ ${p.likes.toLocaleString()}</span><span>💬 ${p.cmts}</span></div>
     <div class="post-cap">${p.cap}</div>`;
   grid.appendChild(cell);
@@ -489,7 +1122,12 @@ const COLOR_THEMES = [
 
 const WALLPAPERS = [
   {id:'none',      label:'None',       pc:'wp-p-none',      anim:false},
-  {id:'galaxy',    label:'Galaxy',     pc:'wp-p-galaxy',    anim:true},
+  {id:'colordrop', label:'ColorDrop', pc:'wp-p-colordrop', anim:true},
+  {id:'vanta-halo',  label:'Vanta Halo',  pc:'wp-p-vanta',       anim:true},
+  {id:'vanta-waves', label:'Vanta Waves', pc:'wp-p-vanta-waves', anim:true},
+  {id:'vanta-clouds', label:'Vanta Clouds', pc:'wp-p-vanta-clouds', anim:true},
+  {id:'vanta-fog',   label:'Vanta Fog',   pc:'wp-p-vanta-fog',   anim:true},
+  {id:'vanta-birds', label:'Vanta Birds', pc:'wp-p-vanta-birds', anim:true},
   {id:'lava',      label:'Lava',       pc:'wp-p-lava',      anim:true},
   {id:'aurora',    label:'Aurora',     pc:'wp-p-aurora',    anim:true},
   {id:'sunset',    label:'Sunset',     pc:'wp-p-sunset',    anim:true},
@@ -503,14 +1141,60 @@ const WALLPAPERS = [
   {id:'confetti',  label:'Confetti',   pc:'wp-p-confetti',  anim:false},
 ];
 
+const WALLPAPER_THEME_MAP = {
+  none: 'dark',
+  colordrop: 'mint',
+  'vanta-halo': 'dusk',
+  'vanta-waves': 'arctic',
+  'vanta-clouds': 'light',
+  'vanta-fog': 'sakura',
+  'vanta-birds': 'forest',
+  lava: 'ember',
+  aurora: 'forest',
+  sunset: 'sakura',
+  deepsea: 'arctic',
+  neon: 'mint',
+  web: 'dark',
+  marble: 'light',
+  botanical: 'forest',
+  prism: 'dusk',
+  glitch: 'mint',
+  confetti: 'sakura'
+};
+
+
+function wrapActionButtonLetters(){
+  document.querySelectorAll('.row-username .btn:not(.btn-more)').forEach(btn => {
+    if (btn.dataset.lettersWrapped === 'true') return;
+
+    const text = btn.textContent.trim();
+    btn.textContent = '';
+
+    [...text].forEach((char, index) => {
+      const span = document.createElement('span');
+      span.className = 'btn-letter';
+      span.style.setProperty('--letter-index', index);
+      span.textContent = char === ' ' ? '\u00a0' : char;
+      btn.appendChild(span);
+    });
+
+    btn.dataset.lettersWrapped = 'true';
+  });
+}
+
 let activeColor = 'dark';
 let activeWp    = 'none';
+
+wrapActionButtonLetters();
+
+buildColorDrop();
 
 // Build colour swatches
 const cg = document.getElementById('colorGrid');
 COLOR_THEMES.forEach(t => {
   const sw = document.createElement('div');
   sw.className = 'c-swatch' + (t.id===activeColor?' active':'');
+  sw.dataset.theme = t.id;
   sw.style.background = `linear-gradient(135deg,${t.bg} 30%,${t.ac})`;
   sw.innerHTML = `<span class="c-label">${t.label}</span>`;
   sw.addEventListener('click',()=>{
@@ -535,7 +1219,18 @@ WALLPAPERS.forEach(w => {
   }
   card.addEventListener('click',()=>{
     document.querySelectorAll('.wp-card').forEach(c=>c.classList.remove('active'));
-    card.classList.add('active'); activeWp=w.id; applyTheme();
+    card.classList.add('active');
+    activeWp = w.id;
+
+    if (WALLPAPER_THEME_MAP[w.id]) {
+      activeColor = WALLPAPER_THEME_MAP[w.id];
+      document.querySelectorAll('.c-swatch').forEach(s=>s.classList.remove('active'));
+      const matchingSwatch = [...document.querySelectorAll('.c-swatch')]
+        .find(s => s.dataset.theme === activeColor);
+      if (matchingSwatch) matchingSwatch.classList.add('active');
+    }
+
+    applyTheme();
   });
   wg.appendChild(card);
 });
@@ -543,7 +1238,15 @@ WALLPAPERS.forEach(w => {
 function applyTheme(){
   document.body.className='';
   document.body.classList.add('theme-'+activeColor);
+
+  stopVanta();
+
   if(activeWp!=='none') document.body.classList.add('wp-'+activeWp);
+  if(activeWp==='vanta-halo') startVantaHalo();
+  if(activeWp==='vanta-waves') startVantaWaves();
+  if(activeWp==='vanta-clouds') startVantaClouds();
+  if(activeWp==='vanta-fog') startVantaFog();
+  if(activeWp==='vanta-birds') startVantaBirds();
 }
 
 // FAB toggle
